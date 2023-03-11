@@ -424,8 +424,9 @@ async def on_message(message):
         return
 
     if message.content == f'{PREFIX}gen':
-        await message.author.send(random.choice(VGEN))     
-
+        if message.channel.id = 1084002292010856538:
+            await message.author.send(random.choice(VGEN))     
+        
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

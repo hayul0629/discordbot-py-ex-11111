@@ -424,7 +424,7 @@ async def on_message(message):
         return
 
     if message.content == f'{PREFIX}gen':
-        if message.channel.id = 1084002292010856538:
+        if channel.id = 1084002292010856538:
             await message.author.send(random.choice(VGEN))     
         
 try:

@@ -424,9 +424,11 @@ async def on_message(message):
         return
 
     if message.content == f'{PREFIX}gen':
-        if channel.id = 1084002292010856538:
-            await message.author.send(random.choice(VGEN))     
-        
+        if message.channel.id == 1084002292010856538:
+            await message.author.send(random.choice(VGEN))
+        else:
+            await message.author.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
+
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

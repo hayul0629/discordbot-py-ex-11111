@@ -425,9 +425,10 @@ async def on_message(message):
 
     if message.content == f'{PREFIX}gen':
         if message.channel.id == 1084002292010856538:
+            await message.channel.send('DM으로 계정이 전송되었습니다. <#1078956269714559046>작성 부탁드립니다!')
             await message.author.send(random.choice(VGEN))
         else:
-            await message.author.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
+            await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
 
 try:
     client.run(TOKEN)

@@ -70,34 +70,25 @@ async def on_message(message):
         embedVar.add_field(name="",value="스킨 200개 이상 | **20000원**", inline=False)
         embedVar.add_field(name="",value="- 잔액충전은 <#1078652866165743676>에 문의해주세요.", inline=False)
         embedVar.add_field(name="",value="- 계정제고가 없으면 입고후 바로 지급해드립니다.", inline=False)
-        embedVar.add_field(name="",value="- 구매하시려면 “⭕” 이모지를 눌러주세요.", inline=False)
+        embedVar.add_field(name="",value="- 구매하시려면 “🕹️” 이모지를 눌러주세요.", inline=False)
 
         msg = await message.channel.send(embed=embedVar)
-        await msg.add_reaction('⭕')
-        await msg.add_reaction('❌')
+        await msg.add_reaction('🕹️')
 
         def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '⭕'
+            return user == message.author and str(reaction.emoji) == '🕹️'
 
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             await message.channel.send("Time out error")
         else:
+            await reaction.message.clear_reactions()
+            await reaction.message.add_reaction('🕹️')
             greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
             await message.author.send(greeting)
             
-            
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '❌'
-
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("Time out error")
-        else:
-            await msg.delete()
-            
+                     
         
 try:
     client.run(TOKEN)

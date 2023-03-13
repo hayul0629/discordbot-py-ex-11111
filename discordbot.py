@@ -61,16 +61,22 @@ async def on_message(message):
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
 @client.event
 async def on_message(message):
-    if message.content == '이모지를 눌러주세요':
-        sent_message = await message.channel.send('이모지를 눌러주세요 ❌')
-        await sent_message.add_reaction('❌')
+    if message.author == client.user:
+        return
 
-@client.event
-async def on_reaction_add(reaction, user):
-    if str(reaction.emoji) == '❌' and not user.bot:
-        message = reaction.message
-        content = f'{user.name}님이 ❌ 이모지로 반응했습니다!'
-        await message.channel.send(content)
+    if message.content == '!sample':
+        msg = await message.channel.send("Sample message")
+        await msg.add_reaction('❌')
+
+        def check(reaction, user):
+            return user == message.author and str(reaction.emoji) == '❌'
+
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+        except asyncio.TimeoutError:
+            await message.channel.send("Time out.")
+        else:
+            await message.channel.send("안녕하세요")
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

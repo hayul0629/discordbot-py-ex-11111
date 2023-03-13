@@ -5,6 +5,9 @@ import random
 from time import sleep
 from dotenv import load_dotenv
 from discord.ext import commands
+from discord.ext.commands import Bot
+import asyncio
+
 import os
 load_dotenv()
 
@@ -57,17 +60,24 @@ async def on_message(message):
             await message.author.send(random.choice(VGEN))
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
-    if message.content == f'{PREFIX}':
-        rctn = await message.channel.send('ㄱㄱ')
-        await rctn.add_reaction("⭕")
-        await rctn.add_reaction("❌")
+@client.event
+async def on_message(message):
+    if message.content.startswith('.'):
+        embed = discord.Embed(title="SHOP BOT",description="SHOP 아이템 목록. 쇼핑을 합시다", color=0x00aaaa)
+        embed.add_field(name="STEP🦶", value="빠르게 이동한다", inline=False)
+        embed.add_field(name="STUN⚔️", value="스턴!", inline=False)
+        msg = await message.channel.send(embed=embed)
+        await msg.add_reaction("🦶") #step
+        await msg.add_reaction("⚔️") #stun
+
+@client.event
 async def on_reaction_add(reaction, user):
-    if user.bot == 1:
+    if user.bot == 1: #봇이면 패스
         return None
-    if str(reaction.emoji) == "⭕":
-        await reaction.message.channel.send("⭕.")
-    if str(reaction.emoji) == "❌":
-        await reaction.message.channel.send("❌")
+    if str(reaction.emoji) == "🦶":
+        await reaction.message.channel.send(user.name + "님이 step 아이템을 구매")
+    if str(reaction.emoji) == "⚔️":
+        await reaction.message.channel.send(user.name + "님이 stun 아이템을 구매")
 
 try:
     client.run(TOKEN)

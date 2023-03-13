@@ -76,7 +76,7 @@ async def on_message(message):
             num, user_mention = content
             num = int(num)
 
-            user_id = user_mention.strip("<@!>")
+            user_id = user_mention.strip("<@>")
             if user_id.isnumeric():
                 user_id = int(user_id)
             else:

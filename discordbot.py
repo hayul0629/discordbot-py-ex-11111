@@ -84,7 +84,8 @@ async def on_message(message):
         except asyncio.TimeoutError:
             await message.channel.send("Time out error")
         else:
-            await message.author.send("안녕하세요 {user.name}님, 무엇을 도와드릴까요?")
+            greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
+            await message.author.send(greeting)
             
             
         def check(reaction, user):

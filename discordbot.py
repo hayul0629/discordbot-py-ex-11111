@@ -64,7 +64,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == '{PREFIX}.':
+    if message.content == '.':
         msg = await message.channel.send("Sample message")
         await msg.add_reaction('1️⃣')
         await msg.add_reaction('2️⃣')

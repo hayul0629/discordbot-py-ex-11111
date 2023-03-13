@@ -61,10 +61,13 @@ async def on_message(message):
         rctn = await message.channel.send('ㄱㄱ')
         await rctn.add_reaction("⭕")
         await rctn.add_reaction("❌")
-    if str(payload.emoji) == '⭕':
-        await message.channel.send('⭕')
-    elif str(payload.emoji) == '❌':
-        await message.channel.send('❌')
+async def on_reaction_add(reaction, user):
+    if user.bot == 1:
+        return None
+    if str(reaction.emoji) == "⭕":
+        await reaction.message.channel.send(user.name + "님이 ⭕로 반응했습니다.")
+    if str(reaction.emoji) == "❌":
+        await reaction.message.channel.send(user.name + "님이 ❌로 반응했습니다.")
 
 try:
     client.run(TOKEN)

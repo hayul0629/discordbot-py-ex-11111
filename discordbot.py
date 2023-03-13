@@ -64,19 +64,48 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == '!sample':
+    if message.content == '{PREFIX}.':
         msg = await message.channel.send("Sample message")
-        await msg.add_reaction('❌')
+        await msg.add_reaction('1️⃣')
+        await msg.add_reaction('2️⃣')
+        await msg.add_reaction('3️⃣')
 
         def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '❌'
-
+            return user == message.author and str(reaction.emoji) == '1️⃣'
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
         except asyncio.TimeoutError:
-            await message.channel.send("Time out.")
+            await message.channel.send("time out error")
         else:
-            await message.channel.send("안녕하세요")
+            await message.channel.send("1번")
+        
+        def check(reaction, user):
+            return user == message.author and str(reaction.emoji) == '2️⃣'
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+        except asyncio.TimeoutError:
+            await message.channel.send("time out error")
+        else:
+            await message.channel.send("2번")
+            
+        def check(reaction, user):
+            return user == message.author and str(reaction.emoji) == '3️⃣'
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+        except asyncio.TimeoutError:
+            await message.channel.send("time out error")
+        else:
+            msg = await message.channel.send("3번")
+            await msg.add_reaction('🎁')
+            def check(reaction, user):
+            return user == message.author and str(reaction.emoji) == '🎁'
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+        except asyncio.TimeoutError:
+            await message.channel.send("time out error")
+        else:
+            await message.channel.send("🎉")
+
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

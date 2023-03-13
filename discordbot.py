@@ -1,18 +1,13 @@
 from cmath import log
 from distutils.sysconfig import PREFIX
 import discord
-import random
-from time import sleep
 from dotenv import load_dotenv
-from discord.ext import commands
-import asyncio
+import random
 import os
 load_dotenv()
 
 PREFIX = os.environ['PREFIX']
 TOKEN = os.environ['TOKEN']
-Client = discord.Client()
-client = discord.Client()
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
@@ -43,6 +38,7 @@ VGEN = ['ghufranad:dedek2006',
 'urtywer:urtywer@leage1',
 'p33carryu:Nott064224',
 'h4wkk1ll3r:sankalp12']
+client = discord.Client()
 
 @client.event
 async def on_ready():
@@ -59,44 +55,21 @@ async def on_message(message):
             await message.author.send(random.choice(VGEN))
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+            
+
     if message.content == '.':
         msg = await message.channel.send("Sample message")
-        await msg.add_reaction('1️⃣')
-        await msg.add_reaction('2️⃣')
-        await msg.add_reaction('3️⃣')
+        await msg.add_reaction('❌')
 
         def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '1️⃣'
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("time out error")
-        else:
-            await message.channel.send("1번")
-        
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '2️⃣'
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("time out error")
-        else:
-            await message.channel.send("2번")
-            
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '3️⃣'
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("time out error")
-        else:
-            msg = await message.channel.send("3번")
-            await msg.add_reaction('🎁')
+            return user == message.author and str(reaction.emoji) == '❌'
 
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+        except asyncio.TimeoutError:
+            await message.channel.send("Time out.")
+        else:
+            await message.channel.send("안녕하세요")
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

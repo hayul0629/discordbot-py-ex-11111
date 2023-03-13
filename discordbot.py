@@ -59,11 +59,18 @@ async def on_message(message):
             await message.author.send(random.choice(VGEN))
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
+@client.event
+async def on_message(message):
+    if message.content == '이모지를 눌러주세요':
+        sent_message = await message.channel.send('이모지를 눌러주세요 ❌')
+        await sent_message.add_reaction('❌')
+
+@client.event
 async def on_reaction_add(reaction, user):
-    if str(reaction.emoji) == '❌':
+    if str(reaction.emoji) == '❌' and not user.bot:
         message = reaction.message
         content = f'{user.name}님이 ❌ 이모지로 반응했습니다!'
-        await message.edit(content=content)
+        await message.channel.send(content)
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

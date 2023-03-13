@@ -8,6 +8,8 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 
+client = discord.Client()
+
 import os
 load_dotenv()
 

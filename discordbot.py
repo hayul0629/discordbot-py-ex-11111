@@ -67,7 +67,7 @@ async def on_message(message):
     if message.content.startswith(f"{PREFIX}pnt"):
         if message.author.id != int(ADMIN_ID):
             await message.channel.send("관리자만 사용할 수 있는 명령어입니다.")
-                return
+            return
             
             content = message.content[len(PREFIX)+4:].split()
             if len(content) != 2:

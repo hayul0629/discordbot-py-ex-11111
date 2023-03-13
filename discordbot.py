@@ -96,7 +96,7 @@ async def on_message(message):
         except asyncio.TimeoutError:
             await message.channel.send("Time out error")
         else:
-         msg.delete()
+         msg.message.delete()
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

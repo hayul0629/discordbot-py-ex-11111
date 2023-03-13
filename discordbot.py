@@ -58,9 +58,9 @@ async def on_message(message):
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
     if message.content == f'{PREFIX}':
-        await message.channel.send('ㄱㄱ')
-        await conference_msg.add_reaction("⭕")
-        await conference_msg.add_reaction("❌")
+        rctn = await message.channel.send('ㄱㄱ')
+        await rctn.add_reaction("⭕")
+        await rctn.add_reaction("❌")
     if str(payload.emoji) == '⭕':
         await message.channel.send('⭕')
     elif str(payload.emoji) == '❌':

@@ -5,7 +5,6 @@ import random
 from time import sleep
 from dotenv import load_dotenv
 from discord.ext import commands
-from discord.ext.commands import Bot
 import asyncio
 import os
 load_dotenv()
@@ -59,10 +58,6 @@ async def on_message(message):
             await message.author.send(random.choice(VGEN))
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
 
     if message.content == '.':
         msg = await message.channel.send("Sample message")

@@ -41,7 +41,6 @@ VGEN = ['ghufranad:dedek2006',
 'urtywer:urtywer@leage1',
 'p33carryu:Nott064224',
 'h4wkk1ll3r:sankalp12']
-client = discord.Client()
 
 @client.event
 async def on_ready():

@@ -12,6 +12,7 @@ load_dotenv()
 PREFIX = os.environ['PREFIX']
 TOKEN = os.environ['TOKEN']
 Client = discord.Client()
+client = discord.Client()
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',

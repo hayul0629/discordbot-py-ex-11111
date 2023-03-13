@@ -11,6 +11,7 @@ load_dotenv()
 
 PREFIX = os.environ['PREFIX']
 TOKEN = os.environ['TOKEN']
+client = discord.Client()
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
@@ -57,7 +58,10 @@ async def on_message(message):
             await message.author.send(random.choice(VGEN))
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
-
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
     if message.content == '.':
         msg = await message.channel.send("Sample message")
         await msg.add_reaction('1️⃣')

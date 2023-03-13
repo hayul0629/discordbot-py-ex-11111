@@ -57,6 +57,11 @@ async def on_message(message):
             await message.author.send(random.choice(VGEN))
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
+    if message.content == f'{PREFIX}':
+    if str(payload.emoji) == '⭕':
+        await message.channel.send('⭕')
+    elif str(payload.emoji) == '❌':
+        await message.channel.send('❌')
 
 try:
     client.run(TOKEN)

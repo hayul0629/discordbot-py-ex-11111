@@ -101,7 +101,7 @@ async def on_message(message):
                 await msg.delete()
                 await message.delete()
                 def check2(reaction2, user2):
-                    return user2 == message.author and str(reaction2.emoji) in ['💵', '💳', '🏧', '❌'] and reaction2.message == msg2
+                    return user2 == message.author and str(reaction2.emoji)
                 
                 try:
                     reaction2, user2 = await client.wait_for('reaction_add', timeout=60.0, check=check2)

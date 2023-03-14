@@ -93,7 +93,7 @@ async def on_message(message):
                 embedVar2.add_field(name="",value="💳 : 계정 구매",inline=False)
                 embedVar2.add_field(name="",value="🏧 : 잔액 확인",inline=False)
                 embedVar2.add_field(name="",value="❌ : 취소",  inline=False)        
-                msg2 = await message.author.send(embed=embedVar)
+                msg2 = await message.author.send(embed=embedVar2)
                 await msg2.add_reaction('💵')
                 await msg2.add_reaction('💳')
                 await msg2.add_reaction('🏧')

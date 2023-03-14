@@ -93,10 +93,7 @@ async def on_message(message):
             return user == message.author and str(reaction.emoji) == '🕹️'
 
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("Time out error")
-        else:
+
             await reaction.message.clear_reactions()
             await reaction.message.add_reaction('🕹️')
             greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
@@ -118,10 +115,7 @@ async def on_message(message):
             return user == message.author and str(reaction.emoji) == '💵'
 
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("Time out error")
-        else:
+
             await reaction.message.clear_reactions()
             await reaction.message.add_reaction('💵')
             greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
@@ -131,10 +125,7 @@ async def on_message(message):
             return user == message.author and str(reaction.emoji) == '🏧'
 
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("Time out error")
-        else:
+
             await reaction.message.clear_reactions()
             await reaction.message.add_reaction('🏧')
             greeting = f'잔액 확인 명령어'
@@ -144,10 +135,7 @@ async def on_message(message):
             return user == message.author and str(reaction.emoji) == '❌'
 
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("Time out error")
-        else:
+
             await reaction.message.clear_reactions()
             await reaction.message.add_reaction('❌')
             await reaction.message.delete()
@@ -156,10 +144,7 @@ async def on_message(message):
             return user == message.author and str(reaction.emoji) == '💳'
 
         try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("Time out error")
-        else:
+
             await reaction.message.clear_reactions()
             await reaction.message.add_reaction('💳')
             embedVar = discord.Embed(title="계정 구매", color=0x0094ff)

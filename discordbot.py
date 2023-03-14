@@ -40,7 +40,21 @@ VGEN = ['ghufranad:dedek2006',
 'p33carryu:Nott064224',
 'h4wkk1ll3r:sankalp12']
 client = discord.Client()
-
+async def check(reaction, user):
+    if user.bot == True:
+        return
+    if reaction.message.id != msg.id:
+        return
+    if str(reaction.emoji) == "🔥":
+        await user.send("안녕하세요. 저는 봇입니다.")
+    elif str(reaction.emoji) == "❌":
+        await user.send("취소되었습니다.")
+    elif str(reaction.emoji) == "❤":
+        await user.send("❤ 이모지를 선택하셨습니다.")
+    elif str(reaction.emoji) == "🎁":
+        await user.send("🎁 이모지를 선택하셨습니다.")
+    else:
+        return
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
@@ -57,10 +71,15 @@ async def on_message(message):
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
             ######################################################################################
-@client.event
-async def on_reaction_add(reaction,  user):
-    if str(reaction.emoji) == "🔥":
-        await reaction.message.author.send(user.name + ' : 🔥')
+    if message.content == "!test":
+        greeting = "안녕하세요. 봇 테스트 중입니다."
+        embedVar = discord.Embed(title="제목", description="설명", color=0x00ff00)
+        embedVar.add_field(name="필드명", value="필드값", inline=False)
+        msg = await message.channel.send(greeting, embed=embedVar)
+        await msg.add_reaction('🔥')
+        await msg.add_reaction('❌')
+        await msg.add_reaction('❤')
+        await msg.add_reaction('🎁')
      
                         
                         

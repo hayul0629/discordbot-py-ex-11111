@@ -85,7 +85,6 @@ async def on_message(message):
             await message.channel.send('hello')
             await sent_message.remove_reaction('🕹️', client.user)
             await sent_message.add_reaction('🕹️')
-            continue
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

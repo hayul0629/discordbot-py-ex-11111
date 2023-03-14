@@ -56,7 +56,7 @@ async def on_message(message):
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
             
-    if message.content.startswith('!sample'):
+    msg_1 = if message.content.startswith('!sample'):
         embedVar = discord.Embed(title="계정 가격표", color=0x0094ff)
         embedVar.add_field(name="",value="스킨 10~20개 | **2000원**",inline=False)
         embedVar.add_field(name="",value="스킨 20~30개 | **3000원**",inline=False)
@@ -95,7 +95,7 @@ async def on_message(message):
             await msg.add_reaction('🏧')
             await msg.add_reaction('❌')             
             await sent_message.delete()
-            await message.delete()
+            await msg_1.delete()
 
 
 try:

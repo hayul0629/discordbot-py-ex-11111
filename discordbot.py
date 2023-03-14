@@ -137,6 +137,8 @@ async def pnt(ctx, amount: int, user: discord.Member):
             await reaction.message.add_reaction('💵')
             greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
             await message.author.send(greeting)
+            await reaction.message.clear_reactions()
+            await reaction.message.add_reaction('💵')
 
         def check(reaction, user):
             return user == message.author and str(reaction.emoji) == '🏧'

@@ -95,6 +95,8 @@ async def on_message(message):
             await msg.add_reaction('🏧')
             await msg.add_reaction('❌')             
             await sent_message.delete()
+            await message.delete()
+
 
 try:
     client.run(TOKEN)

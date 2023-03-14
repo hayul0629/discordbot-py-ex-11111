@@ -116,7 +116,6 @@ async def pnt(ctx, amount: int, user: discord.Member):
             await reaction.message.add_reaction('🕹️')
             greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
             await message.author.send(greeting)
-        if message.content == '.':
             embedVar = discord.Embed(title="옵션", color=0x0094ff)
             embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
             embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)

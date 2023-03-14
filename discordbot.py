@@ -109,7 +109,7 @@ async def on_message(message):
                 await msg_2.add_reaction('❌')
                 await msg_2.delete()            
                 await message.delete()
-try:
+    try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:
     print("Improper token has been passed.")

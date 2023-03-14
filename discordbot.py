@@ -82,9 +82,6 @@ async def on_message(message):
         except asyncio.TimeoutError:
             await sent_message.delete()
         else:
-            await sent_message.delete()
-            await sent_message.remove_reaction('🕹️')
-            await sent_message.add_reaction('🕹️')
             greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
             await message.author.send(greeting)
             embedVar = discord.Embed(title="옵션", color=0x0094ff)
@@ -96,7 +93,9 @@ async def on_message(message):
             await msg.add_reaction('💵')
             await msg.add_reaction('💳')
             await msg.add_reaction('🏧')
-            await msg.add_reaction('❌') 
+            await msg.add_reaction('❌')             
+            await sent_message.delete()
+
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

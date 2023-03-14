@@ -46,10 +46,22 @@ client = discord.Client()
 async def check(reaction, user):
     if user == client.user: # 봇이 자신의 이모지를 누르는 경우를 방지
         return False
-    if str(reaction.emoji) == "❤️":
-        await user.send("Hello!")
-    elif str(reaction.emoji) == "🎁":
-        await user.send("Gift!")
+    if str(reaction.emoji) == "🕹️":
+        greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
+        await message.author.send(greeting)
+        embedVar = discord.Embed(title="옵션", color=0x0094ff)
+        embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
+        embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
+        embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
+        embedVar.add_field(name="",value="❌ : 취소",  inline=False)        
+        msg = await message.author.send(embed=embedVar)
+        await msg.add_reaction('💵')
+        await msg.add_reaction('💳')
+        await msg.add_reaction('🏧')
+        await msg.add_reaction('❌') 
+    elif str(reaction.emoji) == "💵":
+        greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
+        await message.author.send(greeting)
     else:
         return False
     return True
@@ -61,23 +73,31 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
-    if message.content == "!test":
-        embedVar = discord.Embed(title="Test Embed", description="This is a test embed.", color=0x00ff00)
-        embedVar.add_field(name="Field1", value="test1", inline=False)
-        embedVar.add_field(name="Field2", value="test2", inline=False)
-        msg = await message.channel.send(embed=embedVar)
-        await msg.add_reaction("❤️")
-        await msg.add_reaction("🎁")
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send("Time is up!")
+    if message.content == f'{PREFIX}gen':
+        if message.channel.id == 1084002292010856538:
+            await message.channel.send('DM으로 계정이 전송되었습니다. 꼭 <#1078956269714559046>작성 부탁드립니다!')
+            await message.author.send(random.choice(VGEN))
         else:
-            await check(reaction, user)
-    elif message.content == "!stop":
-        await message.channel.send("Goodbye!")
-        await client.close()
+            await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
+            
+    if message.content == '!sample':
+        embedVar = discord.Embed(title="계정 가격표", color=0x0094ff)
+        embedVar.add_field(name="",value="스킨 10~20개 | **2000원**",inline=False)
+        embedVar.add_field(name="",value="스킨 20~30개 | **3000원**",inline=False)
+        embedVar.add_field(name="",value="스킨 30~40개 | **4000원**",  inline=False)        
+        embedVar.add_field(name="",value="스킨 40~50개 | **5000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 50~80개 | **6000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 80~100개 | **8000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 100~150개 | **10000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 150~200개 | **15000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 200개 이상 | **20000원**", inline=False)
+        embedVar.add_field(name="",value="- 잔액충전은 <#1078652866165743676>에 문의해주세요.", inline=False)
+        embedVar.add_field(name="",value="- 계정제고가 없으면 입고후 바로 지급해드립니다.", inline=False)
+        embedVar.add_field(name="",value="- 구매하시려면 “🕹️” 이모지를 눌러주세요.", inline=False)
+
+        msg = await message.channel.send(embed=embedVar)
+        await msg.add_reaction('🕹️')
+
 
 
 try:

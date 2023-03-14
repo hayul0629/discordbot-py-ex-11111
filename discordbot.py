@@ -2,6 +2,7 @@ from cmath import log
 from distutils.sysconfig import PREFIX
 import discord
 from dotenv import load_dotenv
+import asyncio
 import os
 import random
 load_dotenv()
@@ -78,7 +79,7 @@ async def on_message(message):
             return user == message.author and str(reaction.emoji)
         
         try:
-            reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
         except asyncio.TimeoutError:
             await msg.delete()
             await message.delete()

@@ -51,8 +51,7 @@ async def on_ready():
                 
                 
                 
-                
-                
+
                 
                 
                 
@@ -62,7 +61,26 @@ async def on_message(message):
     if message.author == client.user:
         return 
                 
-                
+@client.command()
+async def 포인트(ctx):
+    user_id = ctx.author.id
+    if user_id not in points:
+        points[user_id] = 0
+    point = points[user_id]
+    await ctx.send(f'{ctx.author.mention}의 포인트는 {point}입니다.')
+
+# 포인트 지급 명령어
+@client.command()
+async def pnt(ctx, amount: int, user: discord.Member):
+    admin_id = 819436785998102548
+    if ctx.author.id == admin_id:
+        if user.id not in points:
+            points[user.id] = 0
+        points[user.id] += amount
+        await ctx.send(f'{user.mention}에게 {amount} 포인트를 지급하였습니다.')
+    else:
+        await ctx.send('관리자만 사용할 수 있는 명령어입니다.')
+        
     if message.content == f'{PREFIX}gen':
         if message.channel.id == 1084002292010856538:
             await message.channel.send('DM으로 계정이 전송되었습니다. 꼭 <#1078956269714559046>작성 부탁드립니다!')

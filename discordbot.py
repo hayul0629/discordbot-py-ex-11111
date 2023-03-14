@@ -59,50 +59,48 @@ async def on_message(message):
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
             
-    if message.content.startswith('!test'):
-        embedVar = discord.Embed(title="Test Embed", description="This is a test embed.", color=0x00ff00)
-        msg = await message.channel.send(embed=embedVar)
-        await msg.add_reaction('❤️')
-        await msg.add_reaction('🎁')
-    
-    if message.content.startswith('!test2'):
-        embedVar2 = discord.Embed(title="Test Embed2", description="This is a test embed2.", color=0x00ff00)
-        msg2 = await message.channel.send(embed=embedVar2)
-        await msg2.add_reaction('🔥')
-        await msg2.add_reaction('💣')
-        await msg2.add_reaction('👍')
+@client.command()
+async def test2(ctx):
+    embedVar = discord.Embed(title="Test 2 Embed", description="This is a test embed for test 2 command.", color=0x00ff00)
+    msg = await ctx.send(embed=embedVar)
+    await msg.add_reaction('❤')
+    await msg.add_reaction('🎁')
+    await msg.add_reaction('🔥')
 
-        def check(reaction, user):
-            return user != client.user and str(reaction.emoji) in ['🔥', '💣', '👍']
+    # 이벤트 핸들러 함수입니다.
+    def check(reaction, user):
+        return user == ctx.author and str(reaction.emoji) in ['❤', '🎁', '🔥']
 
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-            if str(reaction.emoji) == "🔥":
-                await message.channel.send("You clicked the fire emoji!")
-            elif str(reaction.emoji) == "💣":
-                await message.channel.send("You clicked the bomb emoji!")
-            elif str(reaction.emoji) == "👍":
-                await message.channel.send("You clicked the thumbs up emoji!")
-        except asyncio.TimeoutError:
-            await message.channel.send("You didn't react in time!")
+    # 이벤트 대기 상태입니다.
+    try:
+        reaction, user = await client.wait_for('reaction_add', timeout=30.0, check=check)
+    except asyncio.TimeoutError:
+        await ctx.send("Timeout occurred, you didn't react in time.")
+    else:
+        if str(reaction.emoji) == "❤":
+            await ctx.send("You reacted with ❤!")
+        elif str(reaction.emoji) == "🎁":
+            await ctx.send("You reacted with 🎁!")
+        elif str(reaction.emoji) == "🔥":
+            await ctx.send("You reacted with 🔥!")
 
-    if message.content.startswith('!test3'):
-        embedVar3 = discord.Embed(title="Test Embed3", description="This is a test embed3.", color=0x00ff00)
-        msg3 = await message.channel.send(embed=embedVar3)
-        await msg3.add_reaction('❤️')
-        await msg3.add_reaction('🎁')
+# test3 명령어를 입력하면 임베드를 보여주는 함수입니다.
+@client.command()
+async def test3(ctx):
+    embedVar = discord.Embed(title="Test 3 Embed", description="This is a test embed for test 3 command.", color=0x00ff00)
+    await ctx.send(embed=embedVar)
 
-        def check2(reaction, user):
-            return user != client.user and str(reaction.emoji) in ['❤️', '🎁']
+    # 이벤트 핸들러 함수입니다.
+    def check(reaction, user):
+        return user == ctx.author and str(reaction.emoji) == '❤'
 
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check2)
-            if str(reaction.emoji) == "❤️":
-                await message.channel.send("You clicked the heart emoji!")
-            elif str(reaction.emoji) == "🎁":
-                await message.channel.send("You clicked the gift emoji!")
-        except asyncio.TimeoutError:
-            await message.channel.send("You didn't react in time!")
+    # 이벤트 대기 상태입니다.
+    try:
+        reaction, user = await client.wait_for('reaction_add', timeout=30.0, check=check)
+    except asyncio.TimeoutError:
+        await ctx.send("Timeout occurred, you didn't react in time.")
+    else:
+        await ctx.send("You reacted with ❤ from test2!")
 
 
 

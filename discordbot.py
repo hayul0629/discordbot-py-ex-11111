@@ -47,46 +47,6 @@ points = {}
 async def on_ready():
     print(f'Logged in as {client.user}.')
 
-async def on_message(message):
-    # 메시지를 보낸 사람이 봇일 경우 무시합니다.
-    if message.author.bot:
-        return
-
-    # !포인트 명령어를 처리합니다.
-    if message.content == "!포인트":
-        # 메시지를 보낸 유저의 포인트를 가져옵니다.
-        user_id = message.author.id
-        point = points.get(user_id, 0)
-
-        # 메시지를 보낸 유저에게 포인트 정보를 전송합니다.
-        await message.channel.send(f"{message.author.mention}의 포인트는 {point}입니다.")
-    
-    # !pnt 명령어를 처리합니다.
-    if message.content.startswith("!pnt"):
-        # 메시지를 보낸 유저가 관리자인지 확인합니다.
-        admin_id = "819436785998102548" # 여기에 관리자의 아이디를 입력합니다.
-        if str(message.author.id) != admin_id:
-            await message.channel.send("관리자만 사용할 수 있는 명령어입니다.")
-            return
-
-        # 명령어에서 유저 멘션과 포인트 값을 추출합니다.
-        content = message.content.split()
-        if len(content) != 3 or not content[1].isdigit():
-            await message.channel.send("잘못된 명령어 형식입니다. `!pnt 숫자 @유저`와 같은 형식으로 입력해주세요.")
-            return
-        point = int(content[1])
-        user_mention = content[2]
-
-        # 유저 멘션을 파싱하여 유저 아이디를 추출합니다.
-        user_id = int(user_mention[3:-1])
-        if user_mention[2] == "!":
-            user_id = int(user_mention[4:-1])
-
-        # 유저에게 포인트를 추가합니다.
-        if user_id not in points:
-            points[user_id] = 0
-        points[user_id] += point
-        await message.channel.send(f"{user_mention}에게 {point} 포인트가 추가되었습니다.")
                 
                 
                 

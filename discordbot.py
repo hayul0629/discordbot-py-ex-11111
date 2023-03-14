@@ -98,7 +98,7 @@ async def on_message(message):
                 await msg2.add_reaction('💳')
                 await msg2.add_reaction('🏧')
                 await msg2.add_reaction('❌')
-                await msg2.delete()
+                await msg.delete()
                 await message.delete()
                 def check2(reaction2, user2):
                     return user2 == message.author and str(reaction2.emoji) in ['💵', '💳', '🏧', '❌'] and reaction2.message == msg2
@@ -115,7 +115,7 @@ async def on_message(message):
                         msg3 = await message.author.send("잔액 충전은 <#1078652866165743676>에서 관리자에게 요청해주세요.```🔙 : 뒤로가기\n❌ : 취소```")
                         await msg3.add_reaction('🔙')
                         await msg3.add_reaction('❌')
-                        await msg3.delete()
+                        await msg2.delete()
                         await message.delete()
 
                         

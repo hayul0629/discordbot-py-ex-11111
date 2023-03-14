@@ -1,6 +1,7 @@
 from cmath import log
 from distutils.sysconfig import PREFIX
 import discord
+
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -96,12 +97,12 @@ async def on_message(message):
             await msg.add_reaction('🏧')
             await msg.add_reaction('❌')
 
-        
-    def check(reaction, user):
-        return user == message.author and str(reaction.emoji) == '💵'
+async def check(reaction, user):
+    return user == message.author and str(reaction.emoji) == '💵'
 
         try:
 
+        if str(reaction.emoji) == '💵':
             await reaction.message.clear_reactions()
             await reaction.message.add_reaction('💵')
             greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'

@@ -43,28 +43,7 @@ VGEN = ['ghufranad:dedek2006',
 
 points = {}
 client = discord.Client()
-async def check(reaction, user):
-    if user == client.user: # 봇이 자신의 이모지를 누르는 경우를 방지
-        return False
-    if str(reaction.emoji) == "🕹️":
-        greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
-        await message.author.send(greeting)
-        embedVar = discord.Embed(title="옵션", color=0x0094ff)
-        embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
-        embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
-        embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
-        embedVar.add_field(name="",value="❌ : 취소",  inline=False)        
-        msg = await message.author.send(embed=embedVar)
-        await msg.add_reaction('💵')
-        await msg.add_reaction('💳')
-        await msg.add_reaction('🏧')
-        await msg.add_reaction('❌') 
-    elif str(reaction.emoji) == "💵":
-        greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
-        await message.author.send(greeting)
-    else:
-        return False
-    return True
+
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
@@ -80,23 +59,50 @@ async def on_message(message):
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
             
-    if message.content == '!sample':
-        embedVar = discord.Embed(title="계정 가격표", color=0x0094ff)
-        embedVar.add_field(name="",value="스킨 10~20개 | **2000원**",inline=False)
-        embedVar.add_field(name="",value="스킨 20~30개 | **3000원**",inline=False)
-        embedVar.add_field(name="",value="스킨 30~40개 | **4000원**",  inline=False)        
-        embedVar.add_field(name="",value="스킨 40~50개 | **5000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 50~80개 | **6000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 80~100개 | **8000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 100~150개 | **10000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 150~200개 | **15000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 200개 이상 | **20000원**", inline=False)
-        embedVar.add_field(name="",value="- 잔액충전은 <#1078652866165743676>에 문의해주세요.", inline=False)
-        embedVar.add_field(name="",value="- 계정제고가 없으면 입고후 바로 지급해드립니다.", inline=False)
-        embedVar.add_field(name="",value="- 구매하시려면 “🕹️” 이모지를 눌러주세요.", inline=False)
-
+    if message.content.startswith('!test'):
+        embedVar = discord.Embed(title="Test Embed", description="This is a test embed.", color=0x00ff00)
         msg = await message.channel.send(embed=embedVar)
-        await msg.add_reaction('🕹️')
+        await msg.add_reaction('❤️')
+        await msg.add_reaction('🎁')
+    
+    if message.content.startswith('!test2'):
+        embedVar2 = discord.Embed(title="Test Embed2", description="This is a test embed2.", color=0x00ff00)
+        msg2 = await message.channel.send(embed=embedVar2)
+        await msg2.add_reaction('🔥')
+        await msg2.add_reaction('💣')
+        await msg2.add_reaction('👍')
+
+        def check(reaction, user):
+            return user != client.user and str(reaction.emoji) in ['🔥', '💣', '👍']
+
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+            if str(reaction.emoji) == "🔥":
+                await message.channel.send("You clicked the fire emoji!")
+            elif str(reaction.emoji) == "💣":
+                await message.channel.send("You clicked the bomb emoji!")
+            elif str(reaction.emoji) == "👍":
+                await message.channel.send("You clicked the thumbs up emoji!")
+        except asyncio.TimeoutError:
+            await message.channel.send("You didn't react in time!")
+
+    if message.content.startswith('!test3'):
+        embedVar3 = discord.Embed(title="Test Embed3", description="This is a test embed3.", color=0x00ff00)
+        msg3 = await message.channel.send(embed=embedVar3)
+        await msg3.add_reaction('❤️')
+        await msg3.add_reaction('🎁')
+
+        def check2(reaction, user):
+            return user != client.user and str(reaction.emoji) in ['❤️', '🎁']
+
+        try:
+            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check2)
+            if str(reaction.emoji) == "❤️":
+                await message.channel.send("You clicked the heart emoji!")
+            elif str(reaction.emoji) == "🎁":
+                await message.channel.send("You clicked the gift emoji!")
+        except asyncio.TimeoutError:
+            await message.channel.send("You didn't react in time!")
 
 
 

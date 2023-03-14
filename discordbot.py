@@ -97,68 +97,67 @@ async def on_message(message):
             await msg.add_reaction('🏧')
             await msg.add_reaction('❌')
 
-async def check(reaction, user):
-    return user == message.author and str(reaction.emoji) == '💵'
+            def check(reaction, user):
+                return user == message.author and str(reaction.emoji) == '🕹️'
 
-        try:
+            try:
 
-        if str(reaction.emoji) == '💵':
-            await reaction.message.clear_reactions()
-            await reaction.message.add_reaction('💵')
-            greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
-            await message.author.send(greeting)
-            await reaction.message.clear_reactions()
-            await reaction.message.add_reaction('💵')
+                await reaction.message.clear_reactions()
+                await reaction.message.add_reaction('💵')
+                greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
+                await message.author.send(greeting)
+                await reaction.message.clear_reactions()
+                await reaction.message.add_reaction('💵')
 
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '🏧'
+                def check(reaction, user):
+                    return user == message.author and str(reaction.emoji) == '🏧'
 
-        try:
+                try:
 
-            await reaction.message.clear_reactions()
-            await reaction.message.add_reaction('🏧')
-            greeting = f'잔액 확인 명령어'
-            await message.author.send(greeting)
+                    await reaction.message.clear_reactions()
+                    await reaction.message.add_reaction('🏧')
+                    greeting = f'잔액 확인 명령어'
+                    await message.author.send(greeting)
     
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '❌'
+                def check(reaction, user):
+                    return user == message.author and str(reaction.emoji) == '❌'
 
-        try:
+                try:
 
-            await reaction.message.clear_reactions()
-            await reaction.message.add_reaction('❌')
-            await reaction.message.delete()
+                    await reaction.message.clear_reactions()
+                    await reaction.message.add_reaction('❌')
+                    await reaction.message.delete()
             
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '💳'
+                def check(reaction, user):
+                    return user == message.author and str(reaction.emoji) == '💳'
 
-        try:
+                try:
 
-            await reaction.message.clear_reactions()
-            await reaction.message.add_reaction('💳')
-            embedVar = discord.Embed(title="계정 구매", color=0x0094ff)
-            embedVar.add_field(name="",value="1️⃣ : 스킨 10~20개 | **2000원**",inline=False)
-            embedVar.add_field(name="",value="2️⃣ : 스킨 20~30개 | **3000원**",inline=False)
-            embedVar.add_field(name="",value="3️⃣ : 스킨 30~40개 | **4000원**",  inline=False)        
-            embedVar.add_field(name="",value="4️⃣ : 스킨 40~50개 | **5000원**", inline=False)
-            embedVar.add_field(name="",value="5️⃣ : 스킨 50~80개 | **6000원**", inline=False)
-            embedVar.add_field(name="",value="6️⃣ : 스킨 80~100개 | **8000원**", inline=False)
-            embedVar.add_field(name="",value="7️⃣ : 스킨 100~150개 | **10000원**", inline=False)
-            embedVar.add_field(name="",value="8️⃣ : 스킨 150~200개 | **15000원**", inline=False)
-            embedVar.add_field(name="",value="9️⃣ : 스킨 200개 이상 | **20000원**", inline=False)
-            embedVar.add_field(name="",value="❌ : 취소", inline=False)
+                    await reaction.message.clear_reactions()
+                    await reaction.message.add_reaction('💳')
+                    embedVar = discord.Embed(title="계정 구매", color=0x0094ff)
+                    embedVar.add_field(name="",value="1️⃣ : 스킨 10~20개 | **2000원**",inline=False)
+                    embedVar.add_field(name="",value="2️⃣ : 스킨 20~30개 | **3000원**",inline=False)
+                    embedVar.add_field(name="",value="3️⃣ : 스킨 30~40개 | **4000원**",  inline=False)        
+                    embedVar.add_field(name="",value="4️⃣ : 스킨 40~50개 | **5000원**", inline=False)
+                    embedVar.add_field(name="",value="5️⃣ : 스킨 50~80개 | **6000원**", inline=False)
+                    embedVar.add_field(name="",value="6️⃣ : 스킨 80~100개 | **8000원**", inline=False)
+                    embedVar.add_field(name="",value="7️⃣ : 스킨 100~150개 | **10000원**", inline=False)
+                    embedVar.add_field(name="",value="8️⃣ : 스킨 150~200개 | **15000원**", inline=False)
+                    embedVar.add_field(name="",value="9️⃣ : 스킨 200개 이상 | **20000원**", inline=False)
+                    embedVar.add_field(name="",value="❌ : 취소", inline=False)
 
-            msg = await message.channel.send(embed=embedVar)
-            await msg.add_reaction('1️⃣')
-            await msg.add_reaction('2️⃣')
-            await msg.add_reaction('3️⃣')
-            await msg.add_reaction('4️⃣')
-            await msg.add_reaction('5️⃣')
-            await msg.add_reaction('6️⃣')
-            await msg.add_reaction('7️⃣')
-            await msg.add_reaction('8️⃣')
-            await msg.add_reaction('9️⃣')
-            await msg.add_reaction('❌')
+                    msg = await message.channel.send(embed=embedVar)
+                    await msg.add_reaction('1️⃣')
+                    await msg.add_reaction('2️⃣')
+                    await msg.add_reaction('3️⃣')
+                    await msg.add_reaction('4️⃣')
+                    await msg.add_reaction('5️⃣')
+                    await msg.add_reaction('6️⃣')
+                    await msg.add_reaction('7️⃣')
+                    await msg.add_reaction('8️⃣')
+                    await msg.add_reaction('9️⃣')
+                    await msg.add_reaction('❌')
 
 
 try:

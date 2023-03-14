@@ -57,20 +57,34 @@ async def on_message(message):
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
             
     if message.content.startswith('!sample'):
-        # send message with reaction
-        sent_message = await message.channel.send('sample')
-        await sent_message.add_reaction('1️⃣')
+        embedVar = discord.Embed(title="계정 가격표", color=0x0094ff)
+        embedVar.add_field(name="",value="스킨 10~20개 | **2000원**",inline=False)
+        embedVar.add_field(name="",value="스킨 20~30개 | **3000원**",inline=False)
+        embedVar.add_field(name="",value="스킨 30~40개 | **4000원**",  inline=False)        
+        embedVar.add_field(name="",value="스킨 40~50개 | **5000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 50~80개 | **6000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 80~100개 | **8000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 100~150개 | **10000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 150~200개 | **15000원**", inline=False)
+        embedVar.add_field(name="",value="스킨 200개 이상 | **20000원**", inline=False)
+        embedVar.add_field(name="",value="- 잔액충전은 <#1078652866165743676>에 문의해주세요.", inline=False)
+        embedVar.add_field(name="",value="- 계정제고가 없으면 입고후 바로 지급해드립니다.", inline=False)
+        embedVar.add_field(name="",value="- 구매하시려면 “🕹️” 이모지를 눌러주세요.", inline=False)
+        sent_message = await message.channel.send(embed=embedVar)
+        await sent_message.add_reaction('🕹️')
 
         # wait for reaction
         def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '1️⃣'
+            return user == message.author and str(reaction.emoji) == '🕹️'
         
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
         except asyncio.TimeoutError:
-            await message.channel.send('Timeout')
+            await sent_message.delete()
         else:
             await message.channel.send('hello')
+            await reaction.message.clear_reactions()
+            await reaction.message.add_reaction('🕹️')
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

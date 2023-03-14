@@ -97,8 +97,8 @@ async def on_message(message):
             await msg.add_reaction('❌')
 
         
-def check(reaction, user):
-    return user == message.author and str(reaction.emoji) == '💵'
+    def check(reaction, user):
+        return user == message.author and str(reaction.emoji) == '💵'
 
         try:
 

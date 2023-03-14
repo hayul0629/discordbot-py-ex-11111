@@ -97,8 +97,8 @@ async def on_message(message):
             await msg.add_reaction('💵')
             await msg.add_reaction('💳')
             await msg.add_reaction('🏧')
-            await msg.add_reaction('❌')
-
+            await msg.add_reaction('❌') 
+#############
         if message.author == client.user:
             return
             

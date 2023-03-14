@@ -97,18 +97,18 @@ async def on_message(message):
             await sent_message.delete()
             await message.delete()
 
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '💵'
+            def check(reaction, user):
+                return user == message.author and str(reaction.emoji) == '💵'
 
-        try:
+            try:
 
-            greeting = f'잔액 충전은 <#1078652866165743676>에서 관리자에게 요청해주세요.```🔙 : 뒤로가기\n❌ : 취소```'
-            await message.author.send(greeting)      
-            msg_2 = await message.author.send(embed=embedVar)
-            await msg_2.add_reaction('🔙')
-            await msg_2.add_reaction('❌')
-            await msg_2.delete()            
-            await message.delete()
+                greeting = f'잔액 충전은 <#1078652866165743676>에서 관리자에게 요청해주세요.```🔙 : 뒤로가기\n❌ : 취소```'
+                await message.author.send(greeting)      
+                msg_2 = await message.author.send(embed=embedVar)
+                await msg_2.add_reaction('🔙')
+                await msg_2.add_reaction('❌')
+                await msg_2.delete()            
+                await message.delete()
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

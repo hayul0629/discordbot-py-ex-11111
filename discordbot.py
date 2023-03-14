@@ -1,8 +1,10 @@
 from cmath import log
 from distutils.sysconfig import PREFIX
 import discord
-
+import random
+from time import sleep
 from dotenv import load_dotenv
+from discord.ext import commands
 import os
 load_dotenv()
 
@@ -97,18 +99,19 @@ async def on_message(message):
             await msg.add_reaction('🏧')
             await msg.add_reaction('❌')
 
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '🕹️'
-
-        try:
+        if message.author == client.user:
+            return
             
-            
-            await reaction.message.clear_reactions()
-            await reaction.message.add_reaction('💵')
-            greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
-            await message.author.send(greeting)
-            await reaction.message.clear_reactions()
-            await reaction.message.add_reaction('💵')
+    @client.event
+    async def on_reaction_add(reaction, user):
+        if reaction.emoji == '💵' and not user.bot:
+            if reaction.message.id == 1085146105123176478:
+                await reaction.message.clear_reactions()
+                await reaction.message.add_reaction('💵')
+                greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
+                await message.author.send(greeting)
+                await reaction.message.clear_reactions()
+                await reaction.message.add_reaction('💵')
 
                 def check(reaction, user):
                     return user == message.author and str(reaction.emoji) == '🏧'

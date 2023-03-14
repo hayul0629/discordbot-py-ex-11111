@@ -104,7 +104,7 @@ async def on_message(message):
                     return user2 == message.author and str(reaction2.emoji) in ['💵', '💳', '🏧', '❌'] and reaction2.message == msg2
                 
                 try:
-                    reaction2, user2 = await bot.wait_for('reaction_add', timeout=60.0, check=check2)
+                    reaction2, user2 = await client.wait_for('reaction_add', timeout=60.0, check=check2)
                 except asyncio.TimeoutError:
                     await msg2.delete()
                     await message.delete()

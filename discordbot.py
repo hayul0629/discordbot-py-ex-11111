@@ -89,15 +89,26 @@ async def on_message(message):
             embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
             embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
             embedVar.add_field(name="",value="❌ : 취소",  inline=False)        
-            msg = await message.author.send(embed=embedVar)
-            await msg.add_reaction('💵')
-            await msg.add_reaction('💳')
-            await msg.add_reaction('🏧')
-            await msg.add_reaction('❌')             
+            msg_1 = await message.author.send(embed=embedVar)
+            await msg_1.add_reaction('💵')
+            await msg_1.add_reaction('💳')
+            await msg_1.add_reaction('🏧')
+            await msg_1.add_reaction('❌')             
             await sent_message.delete()
             await message.delete()
 
+        def check(reaction, user):
+            return user == message.author and str(reaction.emoji) == '💵'
 
+        try:
+
+            greeting = f'잔액 충전은 <#1078652866165743676>에서 관리자에게 요청해주세요.```🔙 : 뒤로가기\n❌ : 취소```'
+            await message.author.send(greeting)      
+            msg_2 = await message.author.send(embed=embedVar)
+            await msg_2.add_reaction('🔙')
+            await msg_2.add_reaction('❌')
+            await msg_2.delete()            
+            await message.delete()
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

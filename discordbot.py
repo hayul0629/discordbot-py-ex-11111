@@ -88,7 +88,7 @@ async def on_message(message):
             if reaction.emoji == '🕹️':
                 greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
                 await message.author.send(greeting)
-                embedVar = discord.Embed(title="옵션", color=0x0094ff)
+                embedVar2 = discord.Embed(title="옵션", color=0x0094ff)
                 embedVar2.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
                 embedVar2.add_field(name="",value="💳 : 계정 구매",inline=False)
                 embedVar2.add_field(name="",value="🏧 : 잔액 확인",inline=False)
@@ -106,7 +106,7 @@ async def on_message(message):
                 try:
                     reaction2, user2 = await bot.wait_for('reaction_add', timeout=60.0, check=check2)
                 except asyncio.TimeoutError:
-                    await msg.delete()
+                    await msg2.delete()
                     await message.delete()
                     return
                 else:

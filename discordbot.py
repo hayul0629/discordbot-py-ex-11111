@@ -71,9 +71,9 @@ async def on_message(message):
         try:
             reaction3, user = await bot.wait_for('reaction_add', timeout=60.0, check=check3)
 
-            if reaction3.emoji == '1️⃣': # 콜라 선택
-                await message.channel.send('콜라를 선택하셨습니다.')
-                await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
+        if reaction3.emoji == '1️⃣': # 콜라 선택
+            await message.channel.send('콜라를 선택하셨습니다.')
+            await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
 
         def check3(reaction, user):
             return user != client.user and str(reaction.emoji) in ['👍', '👎']

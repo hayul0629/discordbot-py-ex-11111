@@ -70,7 +70,7 @@ async def on_message(message):
         embedVar.add_field(name="",value="- 구매하시려면 “🕹️” 이모지를 눌러주세요.", inline=False)
 
         msg1 = await message.channel.send(embed=embedVar)
-        await msg.add_reaction('🕹️')
+        await msg1.add_reaction('🕹️')
 
 
 @client.event

@@ -70,13 +70,16 @@ async def on_reaction_add(reaction, user):
         return
 
     if reaction.emoji == '😎':
-        sent_message2 = 'click anything'
-        await sent_message2.reply('click any things!')
-        await sent_message2.add_reaction('❤️')
-        await sent_message2.add_reaction('🤍')
+        sent_message = reaction.message
+        await sent_message.reply('click any things!')
+        await reaction.message.clear_reactions('😎')
+        await sent_message.add_reaction('❤️')
+        await sent_message.add_reaction('🤍')
 
     if reaction.emoji == '❤️':
         sent_message = reaction.message
+        await reaction.message.clear_reactions('❤️')
+        await sent_message.add_reaction('❤️')
         await sent_message.reply('heart!')
 
 try:

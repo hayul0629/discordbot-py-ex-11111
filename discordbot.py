@@ -74,7 +74,7 @@ async def on_message(message):
 
 
 @client.event
-async def on_raw_reaction_add(payload, member):
+async def on_raw_reaction_add(payload):
     if payload.user_id == client.user.id:  # 봇이 누른 이모지라면 무시
         return
     channel = client.get_channel(payload.channel_id)
@@ -82,7 +82,7 @@ async def on_raw_reaction_add(payload, member):
     if message.author != client.user:
         return
     if str(payload.emoji) == '🕹️':
-        await message.author.send(f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?')
+        await message.author.send(f'무엇을 도와드릴까요?')
         embedVar2 = discord.Embed(title="옵션", color=0x0094ff)
         embedVar2.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
         embedVar2.add_field(name="",value="💳 : 계정 구매",inline=False)

@@ -59,46 +59,38 @@ async def on_message(message):
         return
 
     if message.content.startswith('!emoji'):
-        emoji_message = await message.channel.send('이모지를 클릭하셈')
-        await emoji_message.add_reaction('1️⃣')
-        await emoji_message.add_reaction('2️⃣')
-        await emoji_message.add_reaction('3️⃣')
-        await emoji_message.add_reaction('4️⃣')
-        await emoji_message.add_reaction('5️⃣')
-        await emoji_message.add_reaction('6️⃣')
-        await emoji_message.add_reaction('7️⃣')
-        await emoji_message.add_reaction('8️⃣')
-        await emoji_message.add_reaction('9️⃣')
-        await emoji_message.add_reaction('🔟')
+        game_msg = await message.channel.send("시작합니다! 500 이하입니까?")
 
-    elif message.content.startswith('!'):
-        await message.channel.send('Invalid command. Try `!emoji`.')
+        # 이모지 추가
+        thumbs_up = ""
+        thumbs_down = ""
+        await game_msg.add_reaction(thumbs_up)
+        await game_msg.add_reaction(thumbs_down)
 
-@client.event
-async def on_reaction_add(reaction, user):
-    if user == client.user:
-        return
+        # 게임 로직
+        min_number = 0
+        max_number = 1000
 
-    if str(reaction.emoji) in ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟']:
-        num = int(str(reaction.emoji)[0])
-        response_message = await reaction.message.channel.send(f'{num}번 이모지입니다.')
-        await response_message.add_reaction('⭕')
-        await response_message.add_reaction('❌')
+        while True:
+            def check(reaction, user):
+                return user == message.author and str(reaction.emoji) in [thumbs_up, thumbs_down]
 
-@client.event
-async def on_reaction_add(reaction, user):
-    if user == client.user:
-        return
+            try:
+                reaction, user = await bot.wait_for("reaction_add", timeout=60.0, check=check)
+            except asyncio.TimeoutError:
+                await message.channel.send("시간 초과!")
+                break
 
-    if str(reaction.emoji) in ['⭕', '❌']:
-        num = int(reaction.message.content.split('번')[0])
-        emoji_type = '표시'
-        if str(reaction.emoji) == '⭕':
-            emoji_type = '⭕이모지'
-        elif str(reaction.emoji) == '❌':
-            emoji_type = '❌이모지'
-        await reaction.message.channel.send(f'{num}번 이모지에 {emoji_type}를 사용했습니다.')
+            if str(reaction.emoji) == thumbs_up:
+                max_number = (min_number + max_number) // 2
+            elif str(reaction.emoji) == thumbs_down:
+                min_number = (min_number + max_number) // 2
 
+            if min_number == max_number or min_number + 1 == max_number:
+                await message.channel.send(f"당신이 생각한 숫자는 {max_number}입니다!")
+                break
+            else:
+                await message.channel.send(f"{(min_number + max_number) // 2} 이하입니까?")
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

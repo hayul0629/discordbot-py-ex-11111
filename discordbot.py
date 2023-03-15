@@ -71,9 +71,9 @@ async def on_message(message):
         try:
             reaction3, user = await bot.wait_for('reaction_add', timeout=60.0, check=check3)
 
-        if reaction3.emoji == '1️⃣': # 콜라 선택
-            await message.channel.send('콜라를 선택하셨습니다.')
-            await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
+            if reaction3.emoji == '1️⃣': # 콜라 선택
+                await message.channel.send('콜라를 선택하셨습니다.')
+                await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
 
         def check3(reaction, user):
             return user != client.user and str(reaction.emoji) in ['👍', '👎']
@@ -81,17 +81,17 @@ async def on_message(message):
         try:
             reaction4, user = await bot.wait_for('reaction_add', timeout=60.0, check=check4)
 
-        if reaction4.emoji == '👍':
-            await message.channel.send('주문이 완료되었습니다. 즐거운 시간 되세요.')
-        else:
-            await message.channel.send('주문이 취소되었습니다.')
+            if reaction4.emoji == '👍':
+                await message.channel.send('주문이 완료되었습니다. 즐거운 시간 되세요.')
+            else:
+                await message.channel.send('주문이 취소되었습니다.')
 
-            except asyncio.TimeoutError:
-                await message.channel.send('시간이 초과되었습니다. 주문이 자동으로 취소됩니다.')
+                except asyncio.TimeoutError:
+                    await message.channel.send('시간이 초과되었습니다. 주문이 자동으로 취소됩니다.')
 
-        if reaction3.emoji == '2️⃣': # 사이다 선택
-            await message.channel.send('콜라를 선택하셨습니다.')
-            await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
+            if reaction3.emoji == '2️⃣': # 사이다 선택
+                await message.channel.send('콜라를 선택하셨습니다.')
+                await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
 
         def check4(reaction, user):
             return user != client.user and str(reaction.emoji) in ['👍', '👎']
@@ -106,9 +106,9 @@ async def on_message(message):
 
             except asyncio.TimeoutError:
                 await message.channel.send('시간이 초과되었습니다. 주문이 자동으로 취소됩니다.')
-        if reaction3.emoji == '3️⃣': # 환타 선택
-            await message.channel.send('환타를 선택하셨습니다.')
-            await message.channel.send('주문하신 음료수는 환타입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
+            if reaction3.emoji == '3️⃣': # 환타 선택
+                await message.channel.send('환타를 선택하셨습니다.')
+                await message.channel.send('주문하신 음료수는 환타입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
 
         def check5(reaction, user):
             return user != client.user and str(reaction.emoji) in ['👍', '👎']

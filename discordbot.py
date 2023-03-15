@@ -52,55 +52,23 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content == f'{PREFIX}gen':
-        if message.channel.id == 1084002292010856538:
-            await message.channel.send('DM으로 계정이 전송되었습니다. 꼭 <#1078956269714559046>작성 부탁드립니다!')
-            await message.author.send(random.choice(VGEN))
-        else:
-            await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
-            
-@client.command()
-async def test2(ctx):
-    embedVar = discord.Embed(title="Test 2 Embed", description="This is a test embed for test 2 command.", color=0x00ff00)
-    msg = await ctx.send(embed=embedVar)
-    await msg.add_reaction('❤')
-    await msg.add_reaction('🎁')
-    await msg.add_reaction('🔥')
+@client.event
+async def on_message(message):
+    if message.content.startswith('!sample'):
+        await message.channel.send('1 ans')
 
-    # 이벤트 핸들러 함수입니다.
-    def check(reaction, user):
-        return user == ctx.author and str(reaction.emoji) in ['❤', '🎁', '🔥']
-
-    # 이벤트 대기 상태입니다.
-    try:
-        reaction, user = await client.wait_for('reaction_add', timeout=30.0, check=check)
-    except asyncio.TimeoutError:
-        await ctx.send("Timeout occurred, you didn't react in time.")
-    else:
-        if str(reaction.emoji) == "❤":
-            await ctx.send("You reacted with ❤!")
-        elif str(reaction.emoji) == "🎁":
-            await ctx.send("You reacted with 🎁!")
-        elif str(reaction.emoji) == "🔥":
-            await ctx.send("You reacted with 🔥!")
-
-# test3 명령어를 입력하면 임베드를 보여주는 함수입니다.
-@client.command()
-async def test3(ctx):
-    embedVar = discord.Embed(title="Test 3 Embed", description="This is a test embed for test 3 command.", color=0x00ff00)
-    await ctx.send(embed=embedVar)
-
-    # 이벤트 핸들러 함수입니다.
-    def check(reaction, user):
-        return user == ctx.author and str(reaction.emoji) == '❤'
-
-    # 이벤트 대기 상태입니다.
-    try:
-        reaction, user = await client.wait_for('reaction_add', timeout=30.0, check=check)
-    except asyncio.TimeoutError:
-        await ctx.send("Timeout occurred, you didn't react in time.")
-    else:
-        await ctx.send("You reacted with ❤ from test2!")
+@client.event
+async def on_raw_reaction_add(payload):
+    channel = client.get_channel(payload.channel_id)
+    message = await channel.fetch_message(payload.message_id)
+    if message.author != client.user:
+        return
+    if str(payload.emoji) == '🎁':
+        await channel.send('2 ans')
+    elif str(payload.emoji) == '1️⃣':
+        await channel.send('1')
+    elif str(payload.emoji) == '2️⃣':
+        await channel.send('2')
 
 
 

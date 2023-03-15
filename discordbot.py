@@ -62,7 +62,7 @@ async def on_message(message):
         sent_message = await message.channel.send('test sample')
         await sent_message.add_reaction('😎')
 
-    await bot.process_commands(message)
+    await client.process_commands(message)
 
 @client.event
 async def on_reaction_add(reaction, user):
@@ -70,10 +70,10 @@ async def on_reaction_add(reaction, user):
         return
 
     if reaction.emoji == '😎':
-        sent_message = reaction.message
-        await sent_message.reply('click any things!')
-        await sent_message.add_reaction('❤️')
-        await sent_message.add_reaction('🤍')
+        sent_message2 = 'click anything'
+        await sent_message2.reply('click any things!')
+        await sent_message2.add_reaction('❤️')
+        await sent_message2.add_reaction('🤍')
 
     if reaction.emoji == '❤️':
         sent_message = reaction.message

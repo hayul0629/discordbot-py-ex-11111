@@ -59,9 +59,17 @@ async def on_message(message):
         return
 
     if message.content.startswith('!emoji'):
-        emoji_message = await message.channel.send('1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟')
-        for i in range(1, 11):
-            await emoji_message.add_reaction(str(i) + '\ufe0f\u20e3')
+        emoji_message = await message.channel.send('이모지를 클릭하셈')
+            await emoji_message.add_reaction('1️⃣')
+            await emoji_message.add_reaction('2️⃣')
+            await emoji_message.add_reaction('3️⃣')
+            await emoji_message.add_reaction('4️⃣')
+            await emoji_message.add_reaction('5️⃣')
+            await emoji_message.add_reaction('6️⃣')
+            await emoji_message.add_reaction('7️⃣')
+            await emoji_message.add_reaction('8️⃣')
+            await emoji_message.add_reaction('9️⃣')
+            await emoji_message.add_reaction('🔟')
 
     elif message.content.startswith('!'):
         await message.channel.send('Invalid command. Try `!emoji`.')

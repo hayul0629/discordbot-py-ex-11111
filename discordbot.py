@@ -1,6 +1,7 @@
 from cmath import log
 from distutils.sysconfig import PREFIX
 import discord
+import asyncio
 import random
 from time import sleep
 from dotenv import load_dotenv
@@ -57,27 +58,38 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == '!sample':
-        await message.channel.send('test sample')
+    if message.content.startswith('!emoji'):
+        emoji_message = await message.channel.send('1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟')
         for i in range(1, 11):
-            emo = await message.channel.send(f'{i}\u20e3')
-            await emo.add_reaction('\u2705')
-            await emo.add_reaction('\u274c')
+            await emoji_message.add_reaction(str(i) + '\ufe0f\u20e3')
 
-    await client.process_commands(message)
+    elif message.content.startswith('!'):
+        await message.channel.send('Invalid command. Try `!emoji`.')
 
 @client.event
 async def on_reaction_add(reaction, user):
     if user == client.user:
         return
 
-    if str(reaction.emoji) == '\u2705':
-        num = str(reaction.message.content).replace('\u20e3', '')
-        await reaction.message.channel.send(f'{num}번 이모지에 ⭕이모지를 사용했습니다.')
+    if str(reaction.emoji) in ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟']:
+        num = int(str(reaction.emoji)[0])
+        response_message = await reaction.message.channel.send(f'{num}번 이모지입니다.')
+        await response_message.add_reaction('⭕')
+        await response_message.add_reaction('❌')
 
-    elif str(reaction.emoji) == '\u274c':
-        num = str(reaction.message.content).replace('\u20e3', '')
-        await reaction.message.channel.send(f'{num}번 이모지에 ❌이모지를 사용했습니다.')
+@client.event
+async def on_reaction_add(reaction, user):
+    if user == client.user:
+        return
+
+    if str(reaction.emoji) in ['⭕', '❌']:
+        num = int(reaction.message.content.split('번')[0])
+        emoji_type = '표시'
+        if str(reaction.emoji) == '⭕':
+            emoji_type = '⭕이모지'
+        elif str(reaction.emoji) == '❌':
+            emoji_type = '❌이모지'
+        await reaction.message.channel.send(f'{num}번 이모지에 {emoji_type}를 사용했습니다.')
 
 try:
     client.run(TOKEN)

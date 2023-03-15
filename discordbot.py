@@ -89,19 +89,18 @@ async def on_raw_reaction_add(payload):
         embedVar2.add_field(name="",value="💳 : 계정 구매",inline=False)
         embedVar2.add_field(name="",value="🏧 : 잔액 확인",inline=False)
         embedVar2.add_field(name="",value="❌ : 취소",  inline=False)        
-        msg2 = await message.author.send(embed=embedVar)
-        await msg2.add_reaction('💵')
-        await msg2.add_reaction('💳')
-        await msg2.add_reaction('🏧')
-        await msg2.add_reaction('❌')
-        await msg1.delete()
+        msg1 = await message.author.send(embed=embedVar2)
+        await msg1.add_reaction('💵')
+        await msg1.add_reaction('💳')
+        await msg1.add_reaction('🏧')
+        await msg1.add_reaction('❌')
         await message.delete()   
     elif str(payload.emoji) == '💵':
         greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
         await message.author.send(greeting)
-        msg3 = await message.author.send('```◀ : 뒤로가기\n❌ : 구매취소')
-        await msg3.add_reaction('◀')
-        await msg3.add_reaction('❌')
+        await message.author.send('```◀ : 뒤로가기\n❌ : 구매취소```')
+        await msg1.add_reaction('◀')
+        await msg1.add_reaction('❌')
     elif str(payload.emoji) == '2️⃣':
         await channel.send('2')
 

@@ -65,21 +65,21 @@ async def on_message(message):
         if reaction2.emoji == '🥤': # 탄산 선택
             await message.channel.send('탄산을 선택하셨습니다. 어떤 음료를 선택하시겠습니까?\n:one: 콜라\n:two: 사이다\n:three: 환타\n')
 
-        def check2(reaction, user):
-            return user != client.user and str(reaction.emoji) in ['1️⃣', '2️⃣', '3️⃣']
+    def check2(reaction, user):
+        return user != client.user and str(reaction.emoji) in ['1️⃣', '2️⃣', '3️⃣']
 
-        try:
-            reaction3, user = await bot.wait_for('reaction_add', timeout=60.0, check=check3)
+    try:
+        reaction3, user = await bot.wait_for('reaction_add', timeout=60.0, check=check3)
 
         if reaction3.emoji == '1️⃣': # 콜라 선택
             await message.channel.send('콜라를 선택하셨습니다.')
             await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
 
-        def check3(reaction, user):
-            return user != client.user and str(reaction.emoji) in ['👍', '👎']
+    def check3(reaction, user):
+        return user != client.user and str(reaction.emoji) in ['👍', '👎']
 
-        try:
-            reaction4, user = await bot.wait_for('reaction_add', timeout=60.0, check=check4)
+    try:
+        reaction4, user = await bot.wait_for('reaction_add', timeout=60.0, check=check4)
 
             if reaction4.emoji == '👍':
                 await message.channel.send('주문이 완료되었습니다. 즐거운 시간 되세요.')

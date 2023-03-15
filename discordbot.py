@@ -76,7 +76,7 @@ async def on_message(message):
                 return user == message.author and str(reaction.emoji) in [thumbs_up, thumbs_down]
 
             try:
-                reaction, user = await bot.wait_for("reaction_add", timeout=60.0, check=check)
+                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
             except asyncio.TimeoutError:
                 await message.channel.send("시간 초과!")
                 break

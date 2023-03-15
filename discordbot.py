@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from discord.ext import commands
 import os
 load_dotenv()
-
+#
 PREFIX = os.environ['PREFIX']
 TOKEN = os.environ['TOKEN']
 VGEN = ['ghufranad:dedek2006',

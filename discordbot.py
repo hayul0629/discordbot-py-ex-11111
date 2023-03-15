@@ -82,18 +82,18 @@ async def on_raw_reaction_add(payload):
     if message.author != client.user:
         return
     if str(payload.emoji) == '🕹️':
-        greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
-        await message.author.send(greeting)
-        embedVar1 = discord.Embed(title="옵션", color=0x0094ff)
-        embedVar1.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
-        embedVar1.add_field(name="",value="💳 : 계정 구매",inline=False)
-        embedVar1.add_field(name="",value="🏧 : 잔액 확인",inline=False)
-        embedVar1.add_field(name="",value="❌ : 취소",  inline=False)        
+        greeting1 = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
+        await message.author.send(greeting1)
+        embedVar2 = discord.Embed(title="옵션", color=0x0094ff)
+        embedVar2.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
+        embedVar2.add_field(name="",value="💳 : 계정 구매",inline=False)
+        embedVar2.add_field(name="",value="🏧 : 잔액 확인",inline=False)
+        embedVar2.add_field(name="",value="❌ : 취소",  inline=False)        
         msg2 = await message.author.send(embed=embedVar)
-        await msg1.add_reaction('💵')
-        await msg1.add_reaction('💳')
-        await msg1.add_reaction('🏧')
-        await msg1.add_reaction('❌')
+        await msg2.add_reaction('💵')
+        await msg2.add_reaction('💳')
+        await msg2.add_reaction('🏧')
+        await msg2.add_reaction('❌')
         await msg1.delete()
         await message.delete()   
     elif str(payload.emoji) == '💵':

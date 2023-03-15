@@ -56,11 +56,11 @@ async def on_message(message):
         await message.channel.send('자판기를 시작합니다. 원하는 음료수를 선택해주세요.')
         await message.channel.send(':soda: 탄산\n:coffee: 커피\n')
 
-        def check1(reaction, user):
-            return user != client.user and str(reaction.emoji) in ['🥤', '☕']
+    def check1(reaction, user):
+        return user != client.user and str(reaction.emoji) in ['🥤', '☕']
 
-        try:
-            reaction1, user = await bot.wait_for('reaction_add', timeout=60.0, check=check1)
+    try:
+        reaction1, user = await bot.wait_for('reaction_add', timeout=60.0, check=check1)
 
     if reaction2.emoji == '🥤': # 탄산 선택
         await message.channel.send('탄산을 선택하셨습니다. 어떤 음료를 선택하시겠습니까?\n:one: 콜라\n:two: 사이다\n:three: 환타\n')

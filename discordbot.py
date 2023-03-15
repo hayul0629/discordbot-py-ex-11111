@@ -102,7 +102,7 @@ async def on_raw_reaction_add(payload):
         await message.author.send('```◀ : 뒤로가기\n❌ : 구매취소')
         await msg1.add_reaction('◀')
         await msg1.add_reaction('❌')
-        elif str(payload.emoji) == '2️⃣':
+    elif str(payload.emoji) == '2️⃣':
         await channel.send('2')
 
 

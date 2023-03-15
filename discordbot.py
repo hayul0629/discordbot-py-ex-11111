@@ -64,7 +64,7 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-@bot.event
+@client.event
 async def on_reaction_add(reaction, user):
     if user.bot:
         return

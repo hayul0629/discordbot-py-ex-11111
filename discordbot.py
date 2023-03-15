@@ -58,39 +58,27 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('!emoji'):
-        game_msg = await message.channel.send("시작합니다! 500 이하입니까?")
+    if message.content == 'sample':
+        sent_message = await message.channel.send('test sample')
+        await sent_message.add_reaction('😎')
 
-        # 이모지 추가
-        thumbs_up = "🔼"
-        thumbs_down = "🔽"
-        await game_msg.add_reaction(thumbs_up)
-        await game_msg.add_reaction(thumbs_down)
+    await bot.process_commands(message)
 
-        # 게임 로직
-        min_number = 0
-        max_number = 1000
+@bot.event
+async def on_reaction_add(reaction, user):
+    if user.bot:
+        return
 
-        while True:
-            def check(reaction, user):
-                return user == message.author and str(reaction.emoji) in [thumbs_up, thumbs_down]
+    if reaction.emoji == '😎':
+        sent_message = reaction.message
+        await sent_message.reply('click any things!')
+        await sent_message.add_reaction('❤️')
+        await sent_message.add_reaction('🤍')
 
-            try:
-                reaction, user = await client.wait_for("reaction_add", timeout=60.0, check=check)
-            except asyncio.TimeoutError:
-                await message.channel.send("시간 초과!")
-                break
+    if reaction.emoji == '❤️':
+        sent_message = reaction.message
+        await sent_message.reply('heart!')
 
-            if str(reaction.emoji) == thumbs_up:
-                max_number = (min_number + max_number) // 2
-            elif str(reaction.emoji) == thumbs_down:
-                min_number = (min_number + max_number) // 2
-
-            if min_number == max_number or min_number + 1 == max_number:
-                await message.channel.send(f"당신이 생각한 숫자는 {max_number}입니다!")
-                break
-            else:
-                await message.channel.send(f"{(min_number + max_number) // 2} 이하입니까?")
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

@@ -82,8 +82,7 @@ async def on_raw_reaction_add(payload):
     if message.author != client.user:
         return
     if str(payload.emoji) == '🕹️':
-        greeting1 = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
-        await message.author.send(greeting1)
+        await message.author.send(f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?')
         embedVar2 = discord.Embed(title="옵션", color=0x0094ff)
         embedVar2.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
         embedVar2.add_field(name="",value="💳 : 계정 구매",inline=False)
@@ -96,8 +95,7 @@ async def on_raw_reaction_add(payload):
         await msg1.add_reaction('❌')
         await message.delete()   
     elif str(payload.emoji) == '💵':
-        greeting = f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.'
-        await message.author.send(greeting)
+        await message.author.send(f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.')
         await message.author.send('```◀ : 뒤로가기\n❌ : 구매취소```')
         await msg1.add_reaction('◀')
         await msg1.add_reaction('❌')

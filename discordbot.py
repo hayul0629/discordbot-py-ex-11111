@@ -55,13 +55,9 @@ async def on_message(message):
 @client.event
 async def on_message(message):
     if message.content.startswith('!sample'):
-        msg1 = await message.channel.send('1 ans 🎁')
-        await msg1.add_reaction('1️⃣')
-        await msg1.add_reaction('2️⃣')
-        msg2 = await message.channel.send('2 ans')
-        await msg2.add_reaction('1️⃣')
-        await msg2.add_reaction('2️⃣')
-        await msg2.add_reaction('🎁')
+        msg1 = await message.channel.send('1 ans')
+        await msg1.add_reaction('🎁')
+
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -72,10 +68,10 @@ async def on_raw_reaction_add(payload):
     if message.author != client.user:
         return
     if str(payload.emoji) == '🎁':
-        if message.content == '1 ans 🎁':
-            await channel.send('2 ans')
+        msg2 = await message.channel.send('2 ans')
+        await msg2.add_reaction('1️⃣')
+        await msg2.add_reaction('2️⃣')
         else:
-            await channel.send('1 ans 🎁')
     elif str(payload.emoji) == '1️⃣':
         await channel.send('1')
     elif str(payload.emoji) == '2️⃣':

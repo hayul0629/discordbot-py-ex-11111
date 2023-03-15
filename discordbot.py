@@ -62,8 +62,8 @@ async def on_message(message):
         game_msg = await message.channel.send("시작합니다! 500 이하입니까?")
 
         # 이모지 추가
-        thumbs_up = ""
-        thumbs_down = ""
+        thumbs_up = "🔼"
+        thumbs_down = "🔽"
         await game_msg.add_reaction(thumbs_up)
         await game_msg.add_reaction(thumbs_down)
 

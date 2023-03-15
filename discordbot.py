@@ -52,58 +52,77 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-@client.event
-async def on_message(message):
-    if message.content.startswith('!sample'):
-        embedVar = discord.Embed(title="계정 가격표", color=0x0094ff)
-        embedVar.add_field(name="",value="스킨 10~20개 | **2000원**",inline=False)
-        embedVar.add_field(name="",value="스킨 20~30개 | **3000원**",inline=False)
-        embedVar.add_field(name="",value="스킨 30~40개 | **4000원**",  inline=False)        
-        embedVar.add_field(name="",value="스킨 40~50개 | **5000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 50~80개 | **6000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 80~100개 | **8000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 100~150개 | **10000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 150~200개 | **15000원**", inline=False)
-        embedVar.add_field(name="",value="스킨 200개 이상 | **20000원**", inline=False)
-        embedVar.add_field(name="",value="- 잔액충전은 <#1078652866165743676>에 문의해주세요.", inline=False)
-        embedVar.add_field(name="",value="- 계정제고가 없으면 입고후 바로 지급해드립니다.", inline=False)
-        embedVar.add_field(name="",value="- 구매하시려면 “🕹️” 이모지를 눌러주세요.", inline=False)
+    if message.content.startswith('!start'):
+        await message.channel.send('자판기를 시작합니다. 원하는 음료수를 선택해주세요.')
+        await message.channel.send(':soda: 탄산\n:coffee: 커피\n')
 
-        msg1 = await message.channel.send(embed=embedVar)
-        await msg1.add_reaction('🕹️')
+        def check1(reaction, user):
+            return user != client.user and str(reaction.emoji) in ['🥤', '☕']
 
+        try:
+            reaction1, user = await bot.wait_for('reaction_add', timeout=60.0, check=check1)
 
-@client.event
-async def on_raw_reaction_add(payload):
-    if payload.user_id == client.user.id:  # 봇이 누른 이모지라면 무시
-        return
-    channel = client.get_channel(payload.channel_id)
-    message = await channel.fetch_message(payload.message_id)
-    if message.author != client.user:
-        return
-    if str(payload.emoji) == '🕹️':
-        await message.author.send(f'무엇을 도와드릴까요?')
-        embedVar2 = discord.Embed(title="옵션", color=0x0094ff)
-        embedVar2.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
-        embedVar2.add_field(name="",value="💳 : 계정 구매",inline=False)
-        embedVar2.add_field(name="",value="🏧 : 잔액 확인",inline=False)
-        embedVar2.add_field(name="",value="❌ : 취소",  inline=False)        
-        msg1 = await message.author.send(embed=embedVar2)
-        await msg1.add_reaction('💵')
-        await msg1.add_reaction('💳')
-        await msg1.add_reaction('🏧')
-        await msg1.add_reaction('❌')
-        await message.delete()   
-    elif str(payload.emoji) == '💵':
-        await message.author.send(f'잔액충전은 <#1078652866165743676>에서 요청 해주세요.')
-        await message.author.send('```◀ : 뒤로가기\n❌ : 구매취소```')
-        await msg1.add_reaction('◀')
-        await msg1.add_reaction('❌')
-    elif str(payload.emoji) == '2️⃣':
-        await channel.send('2')
+if reaction2.emoji == '🥤': # 탄산 선택
+    await message.channel.send('탄산을 선택하셨습니다. 어떤 음료를 선택하시겠습니까?\n:one: 콜라\n:two: 사이다\n:three: 환타\n')
 
+    def check2(reaction, user):
+        return user != client.user and str(reaction.emoji) in ['1️⃣', '2️⃣', '3️⃣']
 
+    try:
+        reaction3, user = await bot.wait_for('reaction_add', timeout=60.0, check=check3)
 
+        if reaction3.emoji == '1️⃣': # 콜라 선택
+            await message.channel.send('콜라를 선택하셨습니다.')
+            await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
+
+            def check3(reaction, user):
+                return user != client.user and str(reaction.emoji) in ['👍', '👎']
+
+            try:
+                reaction4, user = await bot.wait_for('reaction_add', timeout=60.0, check=check4)
+
+                if reaction4.emoji == '👍':
+                    await message.channel.send('주문이 완료되었습니다. 즐거운 시간 되세요.')
+                else:
+                    await message.channel.send('주문이 취소되었습니다.')
+
+            except asyncio.TimeoutError:
+                await message.channel.send('시간이 초과되었습니다. 주문이 자동으로 취소됩니다.')
+
+        if reaction3.emoji == '2️⃣': # 사이다 선택
+            await message.channel.send('콜라를 선택하셨습니다.')
+            await message.channel.send('주문하신 음료수는 콜라입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
+
+            def check4(reaction, user):
+                return user != client.user and str(reaction.emoji) in ['👍', '👎']
+
+            try:
+                reaction4, user = await bot.wait_for('reaction_add', timeout=60.0, check=check4)
+
+                if reaction4.emoji == '👍':
+                    await message.channel.send('주문이 완료되었습니다. 즐거운 시간 되세요.')
+                else:
+                    await message.channel.send('주문이 취소되었습니다.')
+
+            except asyncio.TimeoutError:
+                await message.channel.send('시간이 초과되었습니다. 주문이 자동으로 취소됩니다.')
+        if reaction3.emoji == '3️⃣': # 환타 선택
+            await message.channel.send('환타를 선택하셨습니다.')
+            await message.channel.send('주문하신 음료수는 환타입니다. 이 음료수를 받으시겠습니까?\n:thumbsup: 예\n:thumbsdown: 아니오\n')
+
+            def check5(reaction, user):
+                return user != client.user and str(reaction.emoji) in ['👍', '👎']
+
+            try:
+                reaction5, user = await bot.wait_for('reaction_add', timeout=60.0, check=check4)
+
+                if reaction4.emoji == '👍':
+                    await message.channel.send('주문이 완료되었습니다. 즐거운 시간 되세요.')
+                else:
+                    await message.channel.send('주문이 취소되었습니다.')
+
+            except asyncio.TimeoutError:
+                await message.channel.send('시간이 초과되었습니다. 주문이 자동으로 취소됩니다.')
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

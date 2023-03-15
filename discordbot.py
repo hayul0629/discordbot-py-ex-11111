@@ -71,7 +71,6 @@ async def on_raw_reaction_add(payload):
         msg2 = await message.channel.send('2 ans')
         await msg2.add_reaction('1️⃣')
         await msg2.add_reaction('2️⃣')
-        else:
     elif str(payload.emoji) == '1️⃣':
         await channel.send('1')
     elif str(payload.emoji) == '2️⃣':

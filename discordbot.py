@@ -74,7 +74,7 @@ async def on_message(message):
 
 
 @client.event
-async def on_raw_reaction_add(payload):
+async def on_raw_reaction_add(payload, user):
     if payload.user_id == client.user.id:  # 봇이 누른 이모지라면 무시
         return
     channel = client.get_channel(payload.channel_id)

@@ -104,7 +104,7 @@ async def on_message(message):
                                 await message.channel.send('주문이 취소되었습니다.')
                         except asyncio.TimeoutError:
                             await message.channel.send('시간이 초과되었습니다')
-try:
-    client.run(TOKEN)
-except discord.errors.LoginFailure as e:
-    print("Improper token has been passed.")
+                try:
+                    client.run(TOKEN)
+                except discord.errors.LoginFailure as e:
+                    print("Improper token has been passed.")

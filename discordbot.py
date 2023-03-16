@@ -5,10 +5,9 @@ import asyncio
 import random
 from time import sleep
 from dotenv import load_dotenv
-from discord import app_commands, Interaction, Object
+from discord_components import DiscordComponents, Button, ButtonStyle
 from discord.ext import commands
-from discord.ui import Button, View
-from discord import ButtonStyle
+
 import os
 load_dotenv()
 
@@ -47,27 +46,21 @@ VGEN = ['ghufranad:dedek2006',
 
 points = {}
 client = discord.Client()
+DiscordComponents(client)
 
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
 
-class button(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
-        self.bot = bot
+    if message.content == '!test':
+        await message.channel.send('button test', components=[Button(style=ButtonStyle.blue, label='test')])
+        await client.process_commands(message)
 
-@app_commands.command(name="버튼")
-async def button(self, interaction: Interaction) -> None:
-    button1 = Button(label="버튼1", style=ButtonStyle.primary)
-
-async def button1_callback(interaction: Interaction):
-    await interaction.response.send_message("1번입니다.")
-    if message.content == '!sample':
-        button1.callback = button1_callback
-        view = View()
-        view.add_item(button1)
-        await interaction.response.send_message("버튼을 선택해주세요.", view=view)
-
+@client.event
+async def on_button_click(res):
+    if res.component.label == 'test':
+        await res.respond(content='this is test ans!')
+##########################################################################################################
     if message.content == 'sample':
         sent_message = await message.channel.send('test sample')
         await sent_message.add_reaction('😎')

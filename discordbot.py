@@ -6,8 +6,10 @@ from discordbuttons import DBtns
 import random
 from time import sleep
 from dotenv import load_dotenv
+from discord import app_commands, Interaction, Object
 from discord.ext import commands
-import os
+from discord.ui import Button, View
+from discord import ButtonStyleimport os
 load_dotenv()
 
 PREFIX = os.environ['PREFIX']

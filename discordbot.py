@@ -45,7 +45,6 @@ VGEN = ['ghufranad:dedek2006',
 
 points = {}
 client = discord.Client()
-DiscordComponents(client)
 
 @client.event
 async def on_ready():

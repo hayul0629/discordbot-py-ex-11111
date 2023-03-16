@@ -5,8 +5,10 @@ import asyncio
 import random
 from time import sleep
 from dotenv import load_dotenv
-from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
-from discord.ext import commands
+import sys
+sys.path.insert(1, './lib')
+
+from discord_components import DiscordComponents, Button, ButtonStyle, InteractionTypefrom discord.ext import commands
 
 import os
 load_dotenv()

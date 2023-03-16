@@ -55,8 +55,15 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
-
+@client.event
+async def on_message(message):
+    # 봇이 보낸 메시지는 무시합니다.
+    if message.author.bot:
+        return
+    
+    if message.content:
+        if message.channel.id == 1080458417006719016:
+            await message.channel.send("메세지가 도착했습니다!")
 ##########################################################################################################
     if message.content == 'sample':
         sent_message = await message.channel.send('test sample')

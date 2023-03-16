@@ -59,35 +59,26 @@ async def on_message(message):
         return
 
     if message.content == 'sample':
-        greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
-        await message.author.send(greeting)
-        embedVar = discord.Embed(title="옵션", color=0x0094ff)
-        embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
-        embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
-        embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
-        embedVar.add_field(name="",value="❌ : 취소",  inline=False)        
-        msg = await message.author.send(embed=embedVar)        
-        await msg.add_reaction('💵')
-        await msg.add_reaction('💳')
-        await msg.add_reaction('🏧')
-        await msg.add_reaction('❌')
+        sent_message = await message.channel.send('test sample')
+        await sent_message.add_reaction('😎')
 
+    await bot.process_commands(message)
 
-@client.event
+@bot.event
 async def on_reaction_add(reaction, user):
     if user.bot:
         return
 
-    if reaction.emoji == '💵':
-        msg = reaction.message
-        await msg.reply('click any things!')
-        await reaction.message.clear_reactions()
-        await msg.add_reaction('💳')
-        await msg.add_reaction('🏧')
+    if reaction.emoji == '😎':
+        sent_message = reaction.message
+        await sent_message.reply('click any things!')
+        await sent_message.add_reaction('❤️')
+        await sent_message.add_reaction('🤍')
 
-    if reaction.emoji == '🏧':
-        msg = reaction.message
-        await msg.reply('heart!')
+    if reaction.emoji == '❤️':
+        sent_message = reaction.message
+        await sent_message.reply('heart!')
+
 
         
         

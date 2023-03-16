@@ -81,7 +81,10 @@ async def on_reaction_add(reaction, user):
 
     if reaction.emoji == '❤️':
         sent_message = reaction.message
-        await sent_message.edit('heart!')
+        await sent_message.edit(content="heart!")
+        await reaction.message.clear_reactions()
+        await sent_message.add_reaction('❤️')
+        await sent_message.add_reaction('🤍'))
         
     if reaction.emoji == '🤍':
         sent_message = reaction.message

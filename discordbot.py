@@ -58,10 +58,10 @@ async def on_message(message):
         btns = DBtns(client, msg, message.author)
         client.add_cog(btns)
         await btns.add_button("✔", send_hi, { "name": name })
-	
+@client.event	
 async def send_hi(message, user, allowed_user, data):
-	if allowed_user.id == user.id:
-		await message.channel.send("Hi, " + data["name"] + "!")
+    if allowed_user.id == user.id:
+        await message.channel.send("Hi, " + data["name"] + "!")
     if message.content == 'sample':
         sent_message = await message.channel.send('test sample')
         await sent_message.add_reaction('😎')

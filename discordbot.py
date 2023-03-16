@@ -61,8 +61,17 @@ async def on_message(message):
         return
     
     if message.channel.id == 1086050167473578055 and message.content == ".구매":
-        sent_message = await message.channel.send('test sample')
-        await sent_message.add_reaction('😎')
+        embedVar = discord.Embed(title="옵션", color=0x0094ff)
+        embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
+        embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
+        embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
+        embedVar.add_field(name="",value="❌ : 취소",  inline=False)          
+        sent_message = await message.author.send(embed=embedVar)
+        await reaction.message.clear_reactions()
+        await sent_message.add_reaction('💵')
+        await sent_message.add_reaction('💳')
+        await sent_message.add_reaction('🏧')
+        await sent_message.add_reaction('❌')    
     elif message.channel.id == 1086050167473578055:
         await message.delete()
 
@@ -72,28 +81,31 @@ async def on_reaction_add(reaction, user):
     if user.bot:
         return
 
-    if reaction.emoji == '😎':
+    if reaction.emoji == '💵':
         sent_message = reaction.message
         await reaction.message.clear_reactions()
-        await sent_message.edit(content="click anything!")
-        await sent_message.add_reaction('❤️')
-        await sent_message.add_reaction('🤍')
+        await sent_message.edit(f'잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```🔙 : 뒤로가기\n❌ : 구매 취소```')
+        await sent_message.add_reaction('🔙')
+        await sent_message.add_reaction('❌')
 
-    if reaction.emoji == '❤️':
+    if reaction.emoji == '🔙':
         sent_message = reaction.message
-        await sent_message.edit(content="heart!")
+        embedVar = discord.Embed(title="옵션", color=0x0094ff)
+        embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
+        embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
+        embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
+        embedVar.add_field(name="",value="❌ : 취소",  inline=False)          
+        await sent_message.edit(embed=embedVar)
         await reaction.message.clear_reactions()
-        await sent_message.add_reaction('❤️')
-        await sent_message.add_reaction('🤍')
+        await sent_message.add_reaction('💵')
+        await sent_message.add_reaction('💳')
+        await sent_message.add_reaction('🏧')
+        await sent_message.add_reaction('❌')  
         
-    if reaction.emoji == '🤍':
-        sent_message = reaction.message
-        await sent_message.edit(content="white heart!")
-        await reaction.message.clear_reactions()
-        await sent_message.add_reaction('1️⃣')
-        await sent_message.add_reaction('2️⃣')
+    if reaction.emoji == '❌':
+        await sent_message.delete()
         
-    if reaction.emoji == '1️⃣':
+    if reaction.emoji == '💳':
         sent_message = reaction.message
         await sent_message.edit(content="1")
         await reaction.message.clear_reactions()

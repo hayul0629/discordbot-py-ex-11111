@@ -60,14 +60,12 @@ async def on_message(message):
     if message.author.bot:
         return
     
-    if message.channel.id == 1086050167473578055 and message.content == "test":
-        await message.channel.send("메세지가 도착했습니다!")
-    elif message.channel.id == 1086050167473578055:
-        await message.delete()
-##########################################################################################################
-    if message.content == 'sample':
+    if message.channel.id == 1086050167473578055 and message.content == ".구매":
         sent_message = await message.channel.send('test sample')
         await sent_message.add_reaction('😎')
+    elif message.channel.id == 1086050167473578055:
+        await message.delete()
+
 
 @client.event
 async def on_reaction_add(reaction, user):
@@ -76,6 +74,7 @@ async def on_reaction_add(reaction, user):
 
     if reaction.emoji == '😎':
         sent_message = reaction.message
+        await reaction.message.clear_reactions()
         await sent_message.reply('click any things!')
         await sent_message.add_reaction('❤️')
         await sent_message.add_reaction('🤍')
@@ -83,6 +82,26 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '❤️':
         sent_message = reaction.message
         await sent_message.reply('heart!')
+        
+    if reaction.emoji == '🤍':
+        sent_message = reaction.message
+        await sent_message.reply('white heart!')
+        await reaction.message.clear_reactions()
+        await sent_message.add_reaction('1️⃣')
+        await sent_message.add_reaction('2️⃣')
+        
+    if reaction.emoji == '1️⃣':
+        sent_message = reaction.message
+        await sent_message.reply('1')
+        
+    if reaction.emoji == '2️⃣':
+        sent_message = reaction.message
+        await sent_message.reply('2')
+               
+        
+        
+        
+        
         
         
 try:

@@ -5,7 +5,7 @@ import asyncio
 import random
 from time import sleep
 from dotenv import load_dotenv
-from discord_components import DiscordComponents, Button, ButtonStyle
+from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
 from discord.ext import commands
 
 import os
@@ -52,9 +52,26 @@ DiscordComponents(client)
 async def on_ready():
     print(f'Logged in as {client.user}.')
 
-    if message.content == '!test':
-        await message.channel.send('button test', components=[Button(style=ButtonStyle.blue, label='test')])
-        await client.process_commands(message)
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('!test'):
+        await message.channel.send(
+            "test button",
+            components = [
+                Button(style=ButtonStyle.blue, label="test", id="test_button")
+            ]
+        )
+
+@client.event
+async def on_button_click(interaction):
+    if interaction.component.id == "test_button":
+        await interaction.respond(
+            content="button clicked!",
+            type=InteractionType.ChannelMessageWithSource
+        )
 
 @client.event
 async def on_button_click(res):

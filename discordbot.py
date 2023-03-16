@@ -72,6 +72,7 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '😎':
         msg = reaction.message
         await msg.reply('click any things!')
+        await reaction.message.clear_reactions()
         await msg.add_reaction('❤️')
         await msg.add_reaction('🤍')
 

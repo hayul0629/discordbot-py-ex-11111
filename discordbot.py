@@ -60,12 +60,10 @@ async def on_message(message):
     if message.author.bot:
         return
     
-    if message.content:
-        if message.channel.id == 1086050167473578055:
-            if message.content == '!':
-                await message.channel.send("메세지가 도착했습니다!")
-            else:
-                message.delete()
+    if message.channel.id == 1086050167473578055 and message.content == "test":
+        await message.channel.send("메세지가 도착했습니다!")
+    elif message.channel.id == 1086050167473578055:
+        await message.delete()
 ##########################################################################################################
     if message.content == 'sample':
         sent_message = await message.channel.send('test sample')

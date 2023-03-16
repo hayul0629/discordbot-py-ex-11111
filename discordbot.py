@@ -2,7 +2,6 @@ from cmath import log
 from distutils.sysconfig import PREFIX
 import discord
 import asyncio
-from discordbuttons import DBtns
 import random
 from time import sleep
 from dotenv import load_dotenv
@@ -53,19 +52,22 @@ client = discord.Client()
 async def on_ready():
     print(f'Logged in as {client.user}.')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+class button(commands.Cog):
+    def __init__(self, bot: commands.Bot) -> None:
+        self.bot = bot
+
+@app_commands.command(name="버튼")
+async def button(self, interaction: Interaction) -> None:
+    button1 = Button(label="버튼1", style=ButtonStyle.primary)
+
+async def button1_callback(interaction: Interaction):
+    await interaction.response.send_message("1번입니다.")
     if message.content == '!sample':
-        msg = await message.channel.send("Hello")
-        btns = DBtns(client, msg, message.author)
-        client.add_cog(btns)
-        await btns.add_button("✔", send_hi, { "name": name })
-@client.event	
-async def send_hi(message, user, allowed_user, data):
-    if allowed_user.id == user.id:
-        await message.channel.send("Hi, " + data["name"] + "!")
+        button1.callback = button1_callback
+        view = View()
+        view.add_item(button1)
+        await interaction.response.send_message("버튼을 선택해주세요.", view=view)
+
     if message.content == 'sample':
         sent_message = await message.channel.send('test sample')
         await sent_message.add_reaction('😎')

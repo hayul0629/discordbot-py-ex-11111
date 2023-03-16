@@ -76,8 +76,6 @@ class MyView(discord.ui.View):
             )
         ]
     )
-async def select_callback(self, select, interaction): # the function called when the user is done selecting options
-    await interaction.response.send_message(f"Awesome! I like {select.values[0]} too!")
 
     if message.content == '!sample':
         await ctx.send("Choose a flavor!", view=MyView())

@@ -73,7 +73,7 @@ async def on_message(message):
         embedVar.add_field(name="",value="- 계정제고가 없으면 입고후 바로 지급해드립니다.", inline=False)
         embedVar.add_field(name="",value="- 구매하시려면 “🕹️” 이모지를 눌러주세요.", inline=False)
         sent_message = await message.author.send(embed=embedVar)
-        await msg.add_reaction('🕹️')
+        await sent_message.add_reaction('🕹️')
         
     await client.process_commands(message)
 

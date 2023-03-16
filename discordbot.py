@@ -72,7 +72,6 @@ async def on_message(message):
         await msg.add_reaction('🏧')
         await msg.add_reaction('❌')
 
-    await client.process_commands(message)
 
 @client.event
 async def on_reaction_add(reaction, user):

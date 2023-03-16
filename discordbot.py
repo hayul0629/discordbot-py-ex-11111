@@ -67,11 +67,11 @@ async def on_message(message):
         embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
         embedVar.add_field(name="",value="❌ : 취소",  inline=False)          
         sent_message = await message.author.send(embed=embedVar)
-        await reaction.message.clear_reactions()
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
-        await sent_message.add_reaction('❌')    
+        await sent_message.add_reaction('❌')
+        await message.delete()
     elif message.channel.id == 1086050167473578055:
         await message.delete()
 

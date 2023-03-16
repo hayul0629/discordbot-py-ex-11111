@@ -68,10 +68,10 @@ async def on_message(message):
         embedVar.add_field(name="",value="❌ : 취소",  inline=False)        
         msg = await sent_message.reply(embed=embedVar)        
         await reaction.message.clear_reactions()
-        await sent_message.add_reaction('💵')
-        await sent_message.add_reaction('💳')
-        await sent_message.add_reaction('🏧')
-        await sent_message.add_reaction('❌')
+        await msg.add_reaction('💵')
+        await msg.add_reaction('💳')
+        await msg.add_reaction('🏧')
+        await msg.add_reaction('❌')
 
     await client.process_commands(message)
 

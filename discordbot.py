@@ -75,7 +75,7 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '😎':
         sent_message = reaction.message
         await reaction.message.clear_reactions()
-        await message.edit(content="click anything!")
+        await sent_message.edit(content="click anything!")
         await sent_message.add_reaction('❤️')
         await sent_message.add_reaction('🤍')
 
@@ -85,18 +85,18 @@ async def on_reaction_add(reaction, user):
         
     if reaction.emoji == '🤍':
         sent_message = reaction.message
-        await message.edit(content="white heart!")
+        await sent_message.edit(content="white heart!")
         await reaction.message.clear_reactions()
         await sent_message.add_reaction('1️⃣')
         await sent_message.add_reaction('2️⃣')
         
     if reaction.emoji == '1️⃣':
         sent_message = reaction.message
-        await message.edit(content="1")
+        await sent_message.edit(content="1")
         
     if reaction.emoji == '2️⃣':
         sent_message = reaction.message
-        await message.edit(content="1")
+        await sent_message.edit(content="1")
                
         
         

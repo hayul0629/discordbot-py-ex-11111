@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 from discord import app_commands, Interaction, Object
 from discord.ext import commands
 from discord.ui import Button, View
-from discord import ButtonStyleimport os
+from discord import ButtonStyle
+import os
 load_dotenv()
 
 PREFIX = os.environ['PREFIX']

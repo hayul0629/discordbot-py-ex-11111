@@ -81,7 +81,6 @@ async def on_reaction_add(reaction, user):
         return
 
     if reaction.emoji == '🕹️':
-        sent_message = reaction.message
         greeting = f'안녕하세요 {message.author.mention}님, 무엇을 도와드릴까요?'
         await message.author.send(greeting)
         embedVar = discord.Embed(title="옵션", color=0x0094ff)

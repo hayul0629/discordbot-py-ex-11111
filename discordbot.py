@@ -57,14 +57,7 @@ async def on_message(message):
         return
     if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
         await message.channel.send('안녕하세요')
-        
-    if message.content == '!point':
-        user = message.author
-        if user.id not in points:
-            points[user.id] = 0
 
-        await message.channel.send(f"{user.name}님의 포인트는 {points[user.id]}입니다.")
-        
     if message.content.startswith('!p'):
         if len(message.content.split()) == 1:
             user = message.author

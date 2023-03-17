@@ -134,9 +134,9 @@ async def on_reaction_add(reaction, user):
         await sent_message.clear_reactions()
         await sent_message.add_reaction('⬅️')
         await sent_message.add_reaction('❌')
-user = message.author
-point = points.get(user.id, 0)
-member = message.mentions[0]
+    user = message.author
+    point = points.get(user.id, 0)
+    member = message.mentions[0]
 
     if reaction.emoji == '1️⃣':
         points[member.id] = points.get(member.id, 0) - 2000

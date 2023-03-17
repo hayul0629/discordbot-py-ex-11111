@@ -64,13 +64,13 @@ try:
 except FileNotFoundError:
     pass
 
-@client.command()
+@bot.command()
 async def point(ctx):
     user = ctx.author
     point = points.get(str(user.id), 0)
     await ctx.send(f"{user.name}님의 포인트는 {point}입니다.")
 
-@client.command()
+@bot.command()
 async def add_point(ctx, amount: int, member: discord.Member):
     if message.content.startswith('!p'):
         if ctx.author.id == 819436785998102548:

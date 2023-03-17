@@ -58,41 +58,38 @@ async def on_message(message):
     if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
         await message.channel.send('안녕하세요')
 
-try:
-    with open("users.json", "r") as f:
-        points = json.load(f)
-except FileNotFoundError:
-    pass
+with open("users.json", "r") as f:
+    users = json.load(f)
 
-@bot.command()
-async def point(ctx):
-    user = ctx.author
-    point = points.get(str(user.id), 0)
-    await ctx.send(f"{user.name}님의 포인트는 {point}입니다.")
+# 포인트를 추가하는 함수
+def add_points(user_id, amount):
+    # 유저가 존재하는 경우에만 포인트를 추가합니다.
+    if user_id in users:
+        users[user_id]["points"] += amount
+        return True
+    else:
+        return False
 
-@bot.command()
-async def add_point(ctx, amount: int, member: discord.Member):
-    if message.content.startswith('!p'):
-        if ctx.author.id == 819436785998102548:
-            points[str(member.id)] = points.get(str(member.id), 0) + amount
-            with open("users.json", "w") as f:
-                json.dump(points, f)
-            await ctx.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[str(member.id)]}입니다.")
-        else:
-            await ctx.send("해당 명령어는 사용할 수 없습니다.")
-
-@bot.command()
-async def point_add(ctx, amount: int, member: discord.Member):
-    points[str(member.id)] = points.get(str(member.id), 0) + amount
-    with open("points.json", "w") as f:
-        json.dump(points, f)
-    await ctx.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[str(member.id)]}입니다.")
-
-# 프로그램 종료시 파일에 데이터 저장
-@client.event
-async def on_disconnect():
+# json 파일에 유저 포인트 정보를 저장하는 함수
+def save_users():
     with open("users.json", "w") as f:
-        json.dump(points, f)
+        json.dump(users, f)
+
+@client.event
+async def on_message(message):
+    # '!p'로 시작하는 메시지를 처리합니다.
+    if message.content.startswith('!p'):
+        # 메시지에서 유저 멘션과 포인트 값을 추출합니다.
+        parts = message.content.split()
+        if len(parts) == 3:
+            # 멘션에서 유저 ID를 추출합니다.
+            user_id = parts[2].strip("<@!>")
+            # 유저에게 포인트를 추가하고, 결과에 따라 메시지를 전송합니다.
+            if add_points(user_id, int(parts[1])):
+                save_users()
+                await message.channel.send(f"{message.author.mention}, {message.content.split()[1]} point has been added to <@{user_id}>.")
+            else:
+                await message.channel.send(f"{message.author.mention}, user not found.")
 ##################################################################################################################        
     if message.content.startswith('!sample'):
         global sent_message

@@ -60,7 +60,7 @@ async def on_message(message):
         
         
     if message.content.startswith('!sample'):
-        sent_message = await message.channel.send('**옵션표**```💵 : 잔액 충전 안내\n💳 : 계정 구매\n🏧 : 잔액 확인\n❌ : 구매 취소```')
+        sent_message = await message.channel.send('무었을 도와드릴까요?```💵 : 잔액 충전 안내\n💳 : 계정 구매\n🏧 : 잔액 확인\n❌ : 구매 취소```')
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
@@ -71,7 +71,7 @@ async def on_reaction_add(reaction, user):
     if user.bot:
         return
 
-    if reaction.emoji == '🧐':
+    if reaction.emoji == '💵':
         await reaction.message.channel.send('click anything 🔼🔽')
         await reaction.message.add_reaction('🔼')
         await reaction.message.add_reaction('🔽')

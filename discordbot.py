@@ -64,11 +64,22 @@ async def on_message(message):
             points[user.id] = 0
 
         await message.channel.send(f"{user.name}님의 포인트는 {points[user.id]}입니다.")
-@bot.command()
-async def point(ctx, amount: int, member: discord.Member):
-    if ctx.author.id == 819436785998102548:
-        points[member.id] = points.get(member.id, 0) + amount
-        await ctx.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[member.id]}입니다.")
+        
+    if message.content.startswith('!p'):
+        if len(message.content.split()) == 1:
+            user = message.author
+            point = points.get(user.id, 0)
+            await message.channel.send(f"{user.name}님의 포인트는 {point}입니다.")
+        elif len(message.content.split()) == 3 and message.content.split()[1].isdigit():
+            if message.author.id == 819436785998102548:
+                amount = int(message.content.split()[1])
+                member = message.mentions[0]
+                points[member.id] = points.get(member.id, 0) + amount
+                await message.channel.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[member.id]}입니다.")
+            else:
+                await message.channel.send("해당 명령어는 사용할 수 없습니다.")
+        else:
+            await message.channel.send("잘못된 명령어입니다.")
 ##################################################################################################################        
     if message.content.startswith('!sample'):
         global sent_message

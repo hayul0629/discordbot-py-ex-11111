@@ -66,6 +66,8 @@ async def on_message(message):
     
 @client.event
 async def on_reaction_add(reaction, user):
+    if user.bot:
+        return
     if reaction.message.content == 'test sample' and reaction.emoji == '⭕':
         # 이모지 추가
         sub_reaction_emojis = ['🔽', '🔼']

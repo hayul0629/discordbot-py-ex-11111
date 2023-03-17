@@ -58,38 +58,50 @@ async def on_message(message):
     if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
         await message.channel.send('안녕하세요')
 
-with open("users.json", "r") as f:
-    users = json.load(f)
+# !p 명령어를 처리하는 코드입니다.
+@bot.command()
+async def p(ctx):
+    # JSON 파일에서 유저 정보를 불러옵니다.
+    with open("users.json", "r") as f:
+        users = json.load(f)
+    
+    # 유저 정보가 없으면 새로 생성합니다.
+    if str(ctx.author.id) not in users:
+        users[str(ctx.author.id)] = {
+            "name": str(ctx.author),
+            "points": 0
+        }
+    
+    # 유저의 포인트를 출력합니다.
+    points = users[str(ctx.author.id)]["points"]
+    await ctx.send(f"{ctx.author.name}님의 포인트는 {points}입니다.")
 
-# 포인트를 추가하는 함수
-def add_points(user_id, amount):
-    # 유저가 존재하는 경우에만 포인트를 추가합니다.
-    if user_id in users:
-        users[user_id]["points"] += amount
-        return True
-    else:
-        return False
-
-# json 파일에 유저 포인트 정보를 저장하는 함수
-def save_users():
+    # 변경된 정보를 JSON 파일에 저장합니다.
     with open("users.json", "w") as f:
         json.dump(users, f)
 
-@client.event
-async def on_message(message):
-    # '!p'로 시작하는 메시지를 처리합니다.
-    if message.content.startswith('!p'):
-        # 메시지에서 유저 멘션과 포인트 값을 추출합니다.
-        parts = message.content.split()
-        if len(parts) == 3:
-            # 멘션에서 유저 ID를 추출합니다.
-            user_id = parts[2].strip("<@!>")
-            # 유저에게 포인트를 추가하고, 결과에 따라 메시지를 전송합니다.
-            if add_points(user_id, int(parts[1])):
-                save_users()
-                await message.channel.send(f"{message.author.mention}, {message.content.split()[1]} point has been added to <@{user_id}>.")
-            else:
-                await message.channel.send(f"{message.author.mention}, user not found.")
+# !a 명령어를 처리하는 코드입니다.
+@bot.command()
+async def a(ctx, amount: int, member: discord.Member):
+    # JSON 파일에서 유저 정보를 불러옵니다.
+    with open("users.json", "r") as f:
+        users = json.load(f)
+    
+    # 유저 정보가 없으면 새로 생성합니다.
+    if str(member.id) not in users:
+        users[str(member.id)] = {
+            "name": str(member),
+            "points": 0
+        }
+    
+    # 유저의 포인트를 추가합니다.
+    users[str(member.id)]["points"] += amount
+
+    # 변경된 정보를 JSON 파일에 저장합니다.
+    with open("users.json", "w") as f:
+        json.dump(users, f)
+
+    await ctx.send(f"{member.name}님에게 {amount} 포인트를 추가했습니다.")
 ##################################################################################################################        
     if message.content.startswith('!sample'):
         global sent_message

@@ -43,7 +43,7 @@ VGEN = ['ghufranad:dedek2006',
 'p33carryu:Nott064224',
 'h4wkk1ll3r:sankalp12']
 
-points = {}
+porint = None
 client = discord.Client()
 sent_message = None
 
@@ -61,6 +61,7 @@ async def on_message(message):
     if message.content.startswith('!p'):
         if len(message.content.split()) == 1:
             user = message.author
+            global point
             point = points.get(user.id, 0)
             await message.channel.send(f"{user.name}님의 보유콘은 {point}입니다.")
         elif len(message.content.split()) == 3 and message.content.split()[1].isdigit():

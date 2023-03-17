@@ -119,7 +119,7 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '💳':
         await sent_message.edit(content=f'**계정구매**```1️⃣ : 스킨 10~20개 | 2000원\n2️⃣ : 스킨 20~30개 | 3000원\n3️⃣ : 스킨 30~40개 | 4000원/n4️⃣ : 스킨 40~50개 | 5000원\n5️⃣ : 스킨 50~80개 | 6000원\n6️⃣ : 스킨 80~100개 | 8000원\n7️⃣ : 스킨 100~150개 | 10000원\n8️⃣ : 스킨 150~200개 | 15000원\n9️⃣ : 스킨 200개 이상 | 20000원```')
         await sent_message.clear_reactions()
-        await sent_message.add_reaction('1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣')
+        await sent_message.add_reaction('1️⃣')
         await sent_message.add_reaction('2️⃣')
         await sent_message.add_reaction('3️⃣')
         await sent_message.add_reaction('4️⃣')

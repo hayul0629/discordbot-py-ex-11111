@@ -67,7 +67,7 @@ async def on_message(message):
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
         await sent_message.add_reaction('❌')
-
+        await message.delete()
 @client.event
 async def on_reaction_add(reaction, user):
     if user.bot:
@@ -80,6 +80,7 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('❌')
     if reaction.emoji == '⬅️':
         await sent_message.edit(content=f'무엇을 도와드릴까요?```💵 : 잔액 충전 안내\n💳 : 계정 구매\n🏧 : 잔액 확인\n❌ : 구매 취소```')
+        await sent_message.clear_reactions()
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')

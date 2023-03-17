@@ -64,9 +64,9 @@ async def on_message(message):
             points[user.id] = 0
 
         await message.channel.send(f"{user.name}님의 포인트는 {points[user.id]}입니다.")
-@client.command()
+@bot.command()
 async def point(ctx, amount: int, member: discord.Member):
-    if ctx.author.id == 348054354:
+    if ctx.author.id == 819436785998102548:
         points[member.id] = points.get(member.id, 0) + amount
         await ctx.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[member.id]}입니다.")
 ##################################################################################################################        

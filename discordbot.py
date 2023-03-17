@@ -54,7 +54,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.channel.category_id == 1086199114917756938 and message.content == '안녕':
+    if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
         await message.channel.send('안녕하세요')
         
         

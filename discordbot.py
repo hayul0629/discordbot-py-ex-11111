@@ -43,7 +43,7 @@ VGEN = ['ghufranad:dedek2006',
 'p33carryu:Nott064224',
 'h4wkk1ll3r:sankalp12']
 
-porint = None
+point = None
 client = discord.Client()
 sent_message = None
 

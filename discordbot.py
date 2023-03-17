@@ -62,13 +62,13 @@ async def on_message(message):
         if len(message.content.split()) == 1:
             user = message.author
             point = points.get(user.id, 0)
-            await message.channel.send(f"{user.name}님의 포인트는 {point}입니다.")
+            await message.channel.send(f"{user.name}님의 보유콘은 {point}입니다.")
         elif len(message.content.split()) == 3 and message.content.split()[1].isdigit():
             if message.author.id == 819436785998102548:
                 amount = int(message.content.split()[1])
                 member = message.mentions[0]
                 points[member.id] = points.get(member.id, 0) + amount
-                await message.channel.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[member.id]}입니다.")
+                await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 추가되었습니다. 현재 콘은 {points[member.id]}입니다.")
             else:
                 await message.channel.send("해당 명령어는 사용할 수 없습니다.")
         else:
@@ -77,13 +77,13 @@ async def on_message(message):
         if len(message.content.split()) == 1:
             user = message.author
             point = points.get(user.id, 0)
-            await message.channel.send(f"{user.name}님의 포인트는 {point}입니다.")
+            await message.channel.send(f"{user.name}님의 보유 콘은 {point}입니다.")
         elif len(message.content.split()) == 3 and message.content.split()[1].isdigit():
             if message.author.id == 819436785998102548:
                 amount = int(message.content.split()[1])
                 member = message.mentions[0]
                 points[member.id] = points.get(member.id, 0) - amount
-                await message.channel.send(f"{member.name}님의 포인트가 {amount}만큼 차감되었습니다. 현재 포인트는 {points[member.id]}입니다.")
+                await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 차감되었습니다. 현재 보유  {points[member.id]}입니다.")
             else:
                 await message.channel.send("해당 명령어는 사용할 수 없습니다.")
         else:
@@ -117,7 +117,7 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '❌':
         await sent_message.delete()
     if reaction.emoji == '💳':
-        await sent_message.edit(content=f'**계정구매**```1️⃣ : 스킨 10~20개 | 2000원\n2️⃣ : 스킨 20~30개 | 3000원\n3️⃣ : 스킨 30~40개 | 4000원\n4️⃣ : 스킨 40~50개 | 5000원\n5️⃣ : 스킨 50~80개 | 6000원\n6️⃣ : 스킨 80~100개 | 8000원\n7️⃣ : 스킨 100~150개 | 10000원\n8️⃣ : 스킨 150~200개 | 15000원\n9️⃣ : 스킨 200개 이상 | 20000원```')
+        await sent_message.edit(content=f'**계정구매**```1️⃣ : 스킨 10~20개 | 2000C\n2️⃣ : 스킨 20~30개 | 3000C\n3️⃣ : 스킨 30~40개 | 4000C\n4️⃣ : 스킨 40~50개 | 5000C\n5️⃣ : 스킨 50~80개 | 6000C\n6️⃣ : 스킨 80~100개 | 8000C\n7️⃣ : 스킨 100~150개 | 10000C\n8️⃣ : 스킨 150~200개 | 15000C\n9️⃣ : 스킨 200개 이상 | 20000C```')
         await sent_message.clear_reactions()
         await sent_message.add_reaction('1️⃣')
         await sent_message.add_reaction('2️⃣')
@@ -128,6 +128,52 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('7️⃣')
         await sent_message.add_reaction('8️⃣')
         await sent_message.add_reaction('9️⃣')
+    if reaction.emoji == '🏧':
+        await sent_message.edit(content=f"{user.name}님의 보류콘은 {point}입니다. ```⬅️ : 뒤로가기\n❌ : 구매 취소```")
+        await sent_message.clear_reactions()
+        await sent_message.add_reaction('⬅️')
+        await sent_message.add_reaction('❌')
+ 
+    if reaction.emoji == '1️⃣':
+        points[member.id] = points.get(member.id, 0) - 2000
+        await sent_message.edit(content=f"**옵션[1] - 스킨 10~20개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 2,000C`")
+    if reaction.emoji == '2️⃣':
+        points[member.id] = points.get(member.id, 0) - 3000
+        await sent_message.edit(content=f"**옵션[2] - 스킨 20~30개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 3,000C`")
+    if reaction.emoji == '3️⃣':
+        points[member.id] = points.get(member.id, 0) - 4000
+        await sent_message.edit(content=f"**옵션[3] - 스킨 30~40개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 4,000C`")
+    if reaction.emoji == '4️⃣':
+        points[member.id] = points.get(member.id, 0) - 5000
+        await sent_message.edit(content=f"**옵션[4] - 스킨 40~50개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 5,000C`")
+    if reaction.emoji == '5️⃣':
+        points[member.id] = points.get(member.id, 0) - 6000
+        await sent_message.edit(content=f"**옵션[5] - 스킨 50~80개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 6,000C`")
+    if reaction.emoji == '6️⃣':
+        points[member.id] = points.get(member.id, 0) - 8000
+        await sent_message.edit(content=f"**옵션[6] - 스킨 80~100개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 8,000C`")
+    if reaction.emoji == '7️⃣':
+        points[member.id] = points.get(member.id, 0) - 10000
+        await sent_message.edit(content=f"**옵션[7] - 스킨 100~150개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 10,000C`")
+    if reaction.emoji == '8️⃣':
+        points[member.id] = points.get(member.id, 0) - 15000
+        await sent_message.edit(content=f"**옵션[8] - 스킨 150~200개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 15,000C`")
+    if reaction.emoji == '9️⃣':
+        points[member.id] = points.get(member.id, 0) - 20000
+        await sent_message.edit(content=f"**옵션[9] - 스킨 200개 이상**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 20,000C`")        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

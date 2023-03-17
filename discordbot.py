@@ -58,51 +58,13 @@ async def on_message(message):
     if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
         await message.channel.send('안녕하세요')
         
-def open_account(user):
-    users = load_users()
-
-    if str(user.id) in users:
-        return False
-    else:
-        users[str(user.id)] = {}
-        users[str(user.id)]["points"] = 0
-
-    with open("users.json","w") as f:
-        json.dump(users,f)
-
-    return True
-
-def load_users():
-    with open("users.json","r") as f:
-        users = json.load(f)
-    return users
-
 @bot.command()
-async def points(message):
-    users = load_users()
+async def point(message):
     user = message.author
-    if open_account(user):
-        await message.channel.send(f"{user.mention}님, 계정이 생성되었습니다!")
-    else:
-        points = users[str(user.id)]["points"]
-        await message.channel.send(f"{user.mention}님, 당신의 포인트는 {points}점 입니다.")
-
-@bot.command()
-async def give(message, amount:int, user:discord.Member):
-    users = load_users()
-    author = message.author
-
-    if amount < 0:
-        await message.channel.send(f"{author.mention}님, 잘못된 입력입니다. 0 이상의 값을 입력해주세요.")
-        return
-
-    if open_account(user):
-        await message.channel.send(f"{user.mention}님, 계정이 생성되었습니다!")
-    else:
-        users[str(user.id)]["points"] += amount
-        with open("users.json","w") as f:
-            json.dump(users,f)
-        await message.channel.send(f"{author.mention}님, {user.mention}님에게 {amount}점을 지급했습니다.")
+    if user.id not in points:
+        points[user.id] = 0
+    
+    await message.channel.send(f"{user.name}님의 포인트는 {points[user.id]}입니다.")
 ##################################################################################################################        
     if message.content.startswith('!sample'):
         global sent_message

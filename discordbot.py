@@ -58,36 +58,41 @@ async def on_message(message):
     if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
         await message.channel.send('안녕하세요')
 
+try:
+    with open("points.json", "r") as f:
+        points = json.load(f)
+except FileNotFoundError:
+    pass
+
+@client.command()
+async def point(ctx):
+    user = ctx.author
+    point = points.get(str(user.id), 0)
+    await ctx.send(f"{user.name}님의 포인트는 {point}입니다.")
+
+@client.command()
+async def add_point(ctx, amount: int, member: discord.Member):
     if message.content.startswith('!p'):
-        if len(message.content.split()) == 1:
-            user = message.author
-            point = points.get(user.id, 0)
-            await message.channel.send(f"{user.name}님의 포인트는 {point}입니다.")
-        elif len(message.content.split()) == 3 and message.content.split()[1].isdigit():
-            if message.author.id == 819436785998102548:
-                amount = int(message.content.split()[1])
-                member = message.mentions[0]
-                points[member.id] = points.get(member.id, 0) + amount
-                await message.channel.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[member.id]}입니다.")
-            else:
-                await message.channel.send("해당 명령어는 사용할 수 없습니다.")
+        if ctx.author.id == 819436785998102548:
+            points[str(member.id)] = points.get(str(member.id), 0) + amount
+            with open("points.json", "w") as f:
+                json.dump(points, f)
+            await ctx.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[str(member.id)]}입니다.")
         else:
-            await message.channel.send("잘못된 명령어입니다.")
-    if message.content.startswith('!d'):
-        if len(message.content.split()) == 1:
-            user = message.author
-            point = points.get(user.id, 0)
-            await message.channel.send(f"{user.name}님의 포인트는 {point}입니다.")
-        elif len(message.content.split()) == 3 and message.content.split()[1].isdigit():
-            if message.author.id == 819436785998102548:
-                amount = int(message.content.split()[1])
-                member = message.mentions[0]
-                points[member.id] = points.get(member.id, 0) - amount
-                await message.channel.send(f"{member.name}님의 포인트가 {amount}만큼 차감되었습니다. 현재 포인트는 {points[member.id]}입니다.")
-            else:
-                await message.channel.send("해당 명령어는 사용할 수 없습니다.")
-        else:
-            await message.channel.send("잘못된 명령어입니다.")
+            await ctx.send("해당 명령어는 사용할 수 없습니다.")
+
+@client.command()
+async def point_add(ctx, amount: int, member: discord.Member):
+    points[str(member.id)] = points.get(str(member.id), 0) + amount
+    with open("points.json", "w") as f:
+        json.dump(points, f)
+    await ctx.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[str(member.id)]}입니다.")
+
+# 프로그램 종료시 파일에 데이터 저장
+@client.event
+async def on_disconnect():
+    with open("points.json", "w") as f:
+        json.dump(points, f)
 ##################################################################################################################        
     if message.content.startswith('!sample'):
         global sent_message

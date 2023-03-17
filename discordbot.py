@@ -55,37 +55,26 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == '!test':
-        # 메시지 전송
-        test_message = await message.channel.send('test sample')
-        
-        # 이모지 추가
-        reaction_emojis = ['⭕', '❌']
-        for emoji in reaction_emojis:
-            await test_message.add_reaction(emoji)
-    
+    if message.content.startswith('!sample'):
+        await message.channel.send('test sample 🧐')
+        sent_message = await message.channel.send('click anything 🔼🔽')
+
+        await sent_message.add_reaction('🔼')
+        await sent_message.add_reaction('🔽')
+
 @client.event
 async def on_reaction_add(reaction, user):
     if user.bot:
         return
-    if reaction.message.content == 'test sample' and reaction.emoji == '⭕':
-        # 이모지 추가
-        sub_reaction_emojis = ['🔽', '🔼']
-        for emoji in sub_reaction_emojis:
-            await reaction.message.add_reaction(emoji)
-        
-        # 메시지 전송
-        click_message = await reaction.message.channel.send('click emoji')
-        
-        # 이모지 추가
-        for emoji in sub_reaction_emojis:
-            await click_message.add_reaction(emoji)
-    
-    elif reaction.message.content == 'click emoji':
-        if reaction.emoji == '🔽':
-            await reaction.message.channel.send('down!')
-        elif reaction.emoji == '🔼':
-            await reaction.message.channel.send('up!')
+
+    if reaction.emoji == '🧐':
+        await reaction.message.channel.send('click anything 🔼🔽')
+        await reaction.message.add_reaction('🔼')
+        await reaction.message.add_reaction('🔽')
+    elif reaction.emoji == '🔼':
+        await reaction.message.channel.send('up')
+    elif reaction.emoji == '🔽':
+        await reaction.message.channel.send('down')
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

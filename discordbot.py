@@ -59,7 +59,7 @@ async def on_message(message):
         await message.channel.send('안녕하세요')
 
 try:
-    with open("points.json", "r") as f:
+    with open("users.json", "r") as f:
         points = json.load(f)
 except FileNotFoundError:
     pass
@@ -75,13 +75,13 @@ async def add_point(ctx, amount: int, member: discord.Member):
     if message.content.startswith('!p'):
         if ctx.author.id == 819436785998102548:
             points[str(member.id)] = points.get(str(member.id), 0) + amount
-            with open("points.json", "w") as f:
+            with open("users.json", "w") as f:
                 json.dump(points, f)
             await ctx.send(f"{member.name}님의 포인트가 {amount}만큼 추가되었습니다. 현재 포인트는 {points[str(member.id)]}입니다.")
         else:
             await ctx.send("해당 명령어는 사용할 수 없습니다.")
 
-@client.command()
+@bot.command()
 async def point_add(ctx, amount: int, member: discord.Member):
     points[str(member.id)] = points.get(str(member.id), 0) + amount
     with open("points.json", "w") as f:
@@ -91,7 +91,7 @@ async def point_add(ctx, amount: int, member: discord.Member):
 # 프로그램 종료시 파일에 데이터 저장
 @client.event
 async def on_disconnect():
-    with open("points.json", "w") as f:
+    with open("users.json", "w") as f:
         json.dump(points, f)
 ##################################################################################################################        
     if message.content.startswith('!sample'):

@@ -54,18 +54,16 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-@client.event
-async def on_message(message):
-    # 봇이 보낸 메시지는 무시합니다.
-    if message.author.bot:
-        return
+
     
-    if message.content == 'test':
-        sent_message = await message.author.send('test')
-        await sent_message.add_reaction('💵')
-        await sent_message.add_reaction('💳')
-        await sent_message.add_reaction('🏧')
-        await sent_message.add_reaction('❌')
+    if message.content == "emoji":
+        await message.channel.send("sample emoji")
+
+        # 이모지 추가하기
+        emoji1 = '1️⃣'
+        emoji2 = '2️⃣'
+        await message.add_reaction(emoji1)
+        await message.add_reaction(emoji2)
 
 @client.event
 async def on_reaction_add(reaction, user):
@@ -80,11 +78,10 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('❌')    
         
 
-    if str(reaction.emoji) == "💳":
+    if str(reaction.emoji) == "1️⃣":
         await reaction.message.channel.send("hello")
-    elif str(reaction.emoji) == "🏧":
+    elif str(reaction.emoji) == "2️⃣":
         await reaction.message.channel.send("word!")
-        
         
         
         

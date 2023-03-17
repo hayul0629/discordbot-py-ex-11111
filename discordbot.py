@@ -60,7 +60,7 @@ async def on_message(message):
         
         
     if message.content.startswith('!sample'):
-        await message.channel.send('test sample 🧐')
+        await message.channel.send('**옵션표**```💵 : 잔액 충전 안내\n💳 : 계정 구매\n🏧 : 잔액 확인\n❌ : 구매 취소')
         sent_message = await message.channel.send('click anything 🔼🔽')
 
         await sent_message.add_reaction('🔼')

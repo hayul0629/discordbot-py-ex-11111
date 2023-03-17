@@ -61,12 +61,7 @@ async def on_message(message):
         return
     
     if message.content == 'test':
-        embedVar = discord.Embed(title="옵션", color=0x0094ff)
-        embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
-        embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
-        embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
-        embedVar.add_field(name="",value="❌ : 취소",  inline=False)          
-        sent_message = await message.author.send(embed=embedVar)
+        sent_message = await message.author.send('test')
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
@@ -84,7 +79,11 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('🔙')
         await sent_message.add_reaction('❌')    
         
-        
+
+    if str(reaction.emoji) == "💳":
+        await reaction.message.channel.send("hello")
+    elif str(reaction.emoji) == "🏧":
+        await reaction.message.channel.send("word!")
         
         
         

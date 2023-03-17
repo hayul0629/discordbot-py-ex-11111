@@ -60,7 +60,7 @@ async def on_message(message):
         
         
     if message.content.startswith('!sample'):
-        sent_message = await message.channel.send('무었을 도와드릴까요?```💵 : 잔액 충전 안내\n💳 : 계정 구매\n🏧 : 잔액 확인\n❌ : 구매 취소```')
+        sent_message = await message.channel.send(f'무엇을 도와드릴까요?```💵 : 잔액 충전 안내\n💳 : 계정 구매\n🏧 : 잔액 확인\n❌ : 구매 취소```')
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
@@ -72,13 +72,13 @@ async def on_reaction_add(reaction, user):
         return
 
     if reaction.emoji == '💵':
-        await reaction.message.channel.send('click anything 🔼🔽')
-        await reaction.message.add_reaction('🔼')
-        await reaction.message.add_reaction('🔽')
-    elif reaction.emoji == '🔼':
-        await reaction.message.channel.send('up')
-    elif reaction.emoji == '🔽':
-        await reaction.message.channel.send('down')
+        await sent_message.edit(f'잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```🔙 : 뒤로가기\n❌ : 구매 취소```')
+        await reaction.message.add_reaction('🔙')
+        await reaction.message.add_reaction('❌')
+    elif reaction.emoji == '🔙':
+        await reaction.message.channel.send(f'up')
+    elif reaction.emoji == '❌':
+        await reaction.message.channel.send(f'down')
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

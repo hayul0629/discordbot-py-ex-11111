@@ -72,7 +72,7 @@ async def on_reaction_add(reaction, user):
         return
 
     if reaction.emoji == '💵':
-        await sent_message.edit(f'잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```🔙 : 뒤로가기\n❌ : 구매 취소```')
+        await sent_message.edit(content=f'잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```🔙 : 뒤로가기\n❌ : 구매 취소```')
         await reaction.message.add_reaction('🔙')
         await reaction.message.add_reaction('❌')
     elif reaction.emoji == '🔙':

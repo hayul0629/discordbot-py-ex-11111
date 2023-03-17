@@ -57,25 +57,20 @@ async def on_message(message):
 
     
     if message.content == "emoji":
-        await message.channel.send("sample emoji")
+        msg1 = await message.channel.send("sample emoji")
 
         # 이모지 추가하기
         emoji1 = '1️⃣'
         emoji2 = '2️⃣'
-        await message.add_reaction(emoji1)
-        await message.add_reaction(emoji2)
+        await msg1.add_reaction(emoji1)
+        await msg1.add_reaction(emoji2)
 
 @client.event
 async def on_reaction_add(reaction, user):
     if user.bot:
         return
 
-    if str(reaction.emoji) == '💵':
-        sent_message = reaction.message
-        await sent_message.clear_reactions()
-        await sent_message.edit(content='잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```🔙 : 뒤로가기\n❌ : 구매 취소```')
-        await sent_message.add_reaction('🔙')
-        await sent_message.add_reaction('❌')    
+
         
 
     if str(reaction.emoji) == "1️⃣":

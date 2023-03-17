@@ -55,55 +55,35 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == '!계정판매':
-        # 계정 옵션 리스트
-        options = ['옵션1', '옵션2', '옵션3', '옵션4', '옵션5', '옵션6', '옵션7', '옵션8', '옵션9', '옵션10']
+    if message.content == '!test':
+        # 메시지 전송
+        test_message = await message.channel.send('test sample')
         
         # 이모지 추가
-        await message.channel.send('계정을 구매하시겠습니까? ⭕ or ❌')
         reaction_emojis = ['⭕', '❌']
         for emoji in reaction_emojis:
-            await message.add_reaction(emoji)
-            
-        # 이모지 반응 처리
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) in reaction_emojis
+            await test_message.add_reaction(emoji)
+    
+@client.event
+async def on_reaction_add(reaction, user):
+    if reaction.message.content == 'test sample' and reaction.emoji == '⭕':
+        # 이모지 추가
+        sub_reaction_emojis = ['🔽', '🔼']
+        for emoji in sub_reaction_emojis:
+            await reaction.message.add_reaction(emoji)
         
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=30.0, check=check)
-        except asyncio.TimeoutError:
-            await message.channel.send('시간이 초과되었습니다.')
-            return
-        else:
-            if reaction.emoji == '⭕':
-                # 계정 옵션 선택
-                await message.channel.send('다음 중 하나의 옵션을 선택해주세요:\n' + '\n'.join(options))
-                
-                def option_check(m):
-                    return m.author == message.author and m.content in options
-                
-                try:
-                    option = await client.wait_for('message', timeout=30.0, check=option_check)
-                except asyncio.TimeoutError:
-                    await message.channel.send('시간이 초과되었습니다.')
-                    return
-                else:
-                    await message.channel.send(f'{option.content}을(를) 선택하셨습니다. 계정을 판매하겠습니다.')
-                    await message.channel.send('계정판매 채널에 판매 정보를 등록해주세요.')
-                    
-                    # 계정판매 채널 ID
-                    sales_channel_id = 1234567890
-                    
-                    # 계정 정보 메시지 작성
-                    sales_channel = client.get_channel(sales_channel_id)
-                    sales_message = f'판매자: {message.author}\n계정 옵션: {option.content}'
-                    await sales_channel.send(sales_message)
-                    
-            elif reaction.emoji == '❌':
-                await message.channel.send('판매를 취소합니다.')
+        # 메시지 전송
+        click_message = await reaction.message.channel.send('click emoji')
         
-        
-        
+        # 이모지 추가
+        for emoji in sub_reaction_emojis:
+            await click_message.add_reaction(emoji)
+    
+    elif reaction.message.content == 'click emoji':
+        if reaction.emoji == '🔽':
+            await reaction.message.channel.send('down!')
+        elif reaction.emoji == '🔼':
+            await reaction.message.channel.send('up!')
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

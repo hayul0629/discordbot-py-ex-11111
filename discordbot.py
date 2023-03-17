@@ -96,7 +96,6 @@ async def on_message(message):
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
         await sent_message.add_reaction('❌')
-        await message.delete()
 @client.event
 async def on_reaction_add(reaction, user):
     if user.bot:
@@ -116,6 +115,7 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('❌')
     if reaction.emoji == '❌':
         await sent_message.delete()
+        await message.delete()
     if reaction.emoji == '💳':
         await sent_message.edit(content=f'**계정구매**```1️⃣ : 스킨 10~20개 | 2000C\n2️⃣ : 스킨 20~30개 | 3000C\n3️⃣ : 스킨 30~40개 | 4000C\n4️⃣ : 스킨 40~50개 | 5000C\n5️⃣ : 스킨 50~80개 | 6000C\n6️⃣ : 스킨 80~100개 | 8000C\n7️⃣ : 스킨 100~150개 | 10000C\n8️⃣ : 스킨 150~200개 | 15000C\n9️⃣ : 스킨 200개 이상 | 20000C```')
         await sent_message.clear_reactions()

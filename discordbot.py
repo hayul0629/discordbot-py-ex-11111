@@ -43,7 +43,7 @@ VGEN = ['ghufranad:dedek2006',
 'p33carryu:Nott064224',
 'h4wkk1ll3r:sankalp12']
 
-point = None
+global point
 points = {}
 client = discord.Client()
 sent_message = None
@@ -62,7 +62,6 @@ async def on_message(message):
     if message.content.startswith('!p'):
         if len(message.content.split()) == 1:
             user = message.author
-            global point
             point = points.get(user.id, 0)
             await message.channel.send(f"{user.name}님의 보유콘은 {point}입니다.")
         elif len(message.content.split()) == 3 and message.content.split()[1].isdigit():
@@ -135,7 +134,10 @@ async def on_reaction_add(reaction, user):
         await sent_message.clear_reactions()
         await sent_message.add_reaction('⬅️')
         await sent_message.add_reaction('❌')
- 
+user = message.author
+point = points.get(user.id, 0)
+member = message.mentions[0]
+
     if reaction.emoji == '1️⃣':
         points[member.id] = points.get(member.id, 0) - 2000
         await sent_message.edit(content=f"**옵션[1] - 스킨 10~20개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 2,000C`")

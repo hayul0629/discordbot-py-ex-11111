@@ -44,6 +44,7 @@ VGEN = ['ghufranad:dedek2006',
 'h4wkk1ll3r:sankalp12']
 
 point = None
+points = {}
 client = discord.Client()
 sent_message = None
 

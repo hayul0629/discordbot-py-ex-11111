@@ -75,7 +75,7 @@ async def on_reaction_add(reaction, user):
 
     if reaction.emoji == '💵':
         await sent_message.edit(content='잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```⬅️ : 뒤로가기\n❌ : 구매 취소```')
-        await reaction.sent_message.clear_reactions()
+        await sent_message.clear_reactions()
         await reaction.sent_message.add_reaction('⬅️')
         await reaction.sent_message.add_reaction('❌')
     if reaction.emoji == '⬅️':

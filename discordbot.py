@@ -74,13 +74,14 @@ async def on_reaction_add(reaction, user):
         return
 
     if reaction.emoji == '💵':
-        await sent_message.edit(content='잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```🔙 : 뒤로가기\n❌ : 구매 취소```')
-        await reaction.message.add_reaction('🔙')
-        await reaction.message.add_reaction('❌')
-    elif reaction.emoji == '🔙':
-        await reaction.message.channel.send(f'up')
-    elif reaction.emoji == '❌':
-        await reaction.message.channel.send(f'down')
+        await sent_message.edit(content='잔액충전은 <#1078652866165743676>에서 요청 해주세요. ```⬅ : 뒤로가기\n❌ : 구매 취소```')
+        await reaction.sent_message.clear_reactions()
+        await reaction.sent_message.add_reaction('⬅')
+        await reaction.sent_message.add_reaction('❌')
+    if reaction.emoji == '⬅':
+        await sent_message.edit(content=f'무엇을 도와드릴까요?```💵 : 잔액 충전 안내\n💳 : 계정 구매\n🏧 : 잔액 확인\n❌ : 구매 취소```')
+    if reaction.emoji == '❌':
+        await sent_message.delete()
 try:
     client.run(TOKEN)
 except discord.errors.LoginFailure as e:

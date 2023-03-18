@@ -117,6 +117,7 @@ async def on_reaction_add(reaction, user):
         await sent_message.delete()
         await message.delete()
     if reaction.emoji == '💳':
+        point = points.get(user.id, 0)
         await sent_message.edit(content=f'**계정구매**```1️⃣ : 스킨 10~20개 | 2000C\n2️⃣ : 스킨 20~30개 | 3000C\n3️⃣ : 스킨 30~40개 | 4000C\n4️⃣ : 스킨 40~50개 | 5000C\n5️⃣ : 스킨 50~80개 | 6000C\n6️⃣ : 스킨 80~100개 | 8000C\n7️⃣ : 스킨 100~150개 | 10000C\n8️⃣ : 스킨 150~200개 | 15000C\n9️⃣ : 스킨 200개 이상 | 20000C```')
         await sent_message.clear_reactions()
         await sent_message.add_reaction('1️⃣')
@@ -137,9 +138,26 @@ async def on_reaction_add(reaction, user):
 
 
     if reaction.emoji == '1️⃣':
+        await sent_message.clear_reactions()
         point = points.get(user.id, 0)
-        points[user.id] -= 2000
-        await sent_message.edit(content=f"**옵션[1] - 스킨 10~20개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 2,000C")
+        embedVar1 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar1.add_field(name="",value="**현제 콘 : {point}**",inline=False)
+        embedVar1.add_field(name="",value="**계정 가격 : 2000C**",inline=False)
+        embedVar1.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
+        embedVar1.add_field(name="",value="🏧 : 잔액 확인",inline=False)
+        embedVar1.add_field(name="",value="⬅️ : 뒤로가기",inline=False)
+        embedVar1.add_field(name="",value="❌ : 구매 취소",  inline=False)        
+        if point >= 2000:
+            points[user.id] -= 2000
+            await sent_message.edit(content=f"**옵션[1] - 스킨 10~20개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 2,000C")
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar1, content='')
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '2️⃣':
         point = points.get(user.id, 0)
         points[user.id] -= 3000

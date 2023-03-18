@@ -148,7 +148,7 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '💳':
         point = points.get(user.id, 0)
         embedVar14 = discord.Embed(title="계정 구매", color=0x0094ff)
-        embedVar14.add_field(name="",value="**이모지 모두 로드된 후 선택해주세요.**",inline=False)
+        embedVar14.add_field(name="",value="**이모지가 모두 로드된 후 선택해주세요.**",inline=False)
         embedVar14.add_field(name="",value="1️⃣ : 스킨 10~20개 | 1000C",inline=False)
         embedVar14.add_field(name="",value="2️⃣ : 스킨 20~30개 | 2000C",inline=False)
         embedVar14.add_field(name="",value="3️⃣ : 스킨 30~40개 | 3000C",inline=False)

@@ -156,7 +156,7 @@ async def on_reaction_add(reaction, user):
         embedVar14.add_field(name="",value="3️⃣ : 스킨 30~40개 | 3000C",inline=False)
         embedVar14.add_field(name="",value="4️⃣ : 스킨 40~50개 | 4000C",inline=False)
         embedVar14.add_field(name="",value="5️⃣ : 스킨 50~80개 | 5000C",inline=False)
-        embedVar14.add_field(name="",value="6️⃣ : 스킨 80~100개 | 8000C",inline=False)
+        embedVar14.add_field(name="",value="6️⃣ : 스킨 80~100개 | 7000C",inline=False)
         embedVar14.add_field(name="",value="7️⃣ : 스킨 100~150개 | 10000C",inline=False)
         embedVar14.add_field(name="",value="8️⃣ : 스킨 150~200개 | 15000C",inline=False)
         embedVar14.add_field(name="",value="9️⃣ : 스킨 200개 이상 | 20000C",inline=False)
@@ -192,7 +192,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar1 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
         embedVar1.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
-        embedVar1.add_field(name="",value=f"**계정 가격 : 2000C**\n",inline=False)
+        embedVar1.add_field(name="",value=f"**계정 가격 : 1000C**\n",inline=False)
         embedVar1.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
         embedVar1.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar1.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
@@ -200,11 +200,11 @@ async def on_reaction_add(reaction, user):
         buyem1 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
         buyem1.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem1.add_field(name="",value=f"옵션1 : **스킨 10~20개**",inline=False)
-        buyem1.add_field(name="",value=f"계정 가격 : **2000C**\n",inline=False)
+        buyem1.add_field(name="",value=f"계정 가격 : **1000C**\n",inline=False)
         buyem1.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         buyem1.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        if point >= 2000:
-            points[user.id] -= 2000
+        if point >= 1000:
+            points[user.id] -= 1000
             await uid.send(random.choice(VGEN))
             await sent_message.edit(embed=buyem1)
             await sent_message.clear_reactions()
@@ -222,7 +222,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar2 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
         embedVar2.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
-        embedVar2.add_field(name="",value=f"**계정 가격 : 3000C**",inline=False)
+        embedVar2.add_field(name="",value=f"**계정 가격 : 2000C**",inline=False)
         embedVar2.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
         embedVar2.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar2.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
@@ -230,11 +230,11 @@ async def on_reaction_add(reaction, user):
         buyem2 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
         buyem2.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem2.add_field(name="",value=f"옵션2 : **스킨 20~30개**",inline=False)
-        buyem2.add_field(name="",value=f"계정 가격 : **3000C**\n",inline=False)
+        buyem2.add_field(name="",value=f"계정 가격 : **2000C**\n",inline=False)
         buyem2.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         buyem2.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
-        if point >= 3000:
-            points[user.id] -= 3000
+        if point >= 2000:
+            points[user.id] -= 2000
             await uid.send(random.choice(ap2))
             await sent_message.edit(embed=buyem2)
             await sent_message.clear_reactions()
@@ -252,7 +252,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar3 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
         embedVar3.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
-        embedVar3.add_field(name="",value=f"**계정 가격 : 4000C**",inline=False)
+        embedVar3.add_field(name="",value=f"**계정 가격 : 3000C**",inline=False)
         embedVar3.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
         embedVar3.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar3.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
@@ -260,11 +260,11 @@ async def on_reaction_add(reaction, user):
         buyem3 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
         buyem3.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem3.add_field(name="",value=f"옵션3 : **스킨 30~40개**",inline=False)
-        buyem3.add_field(name="",value=f"계정 가격 : **4000C**\n",inline=False)
+        buyem3.add_field(name="",value=f"계정 가격 : **3000C**\n",inline=False)
         buyem3.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         buyem3.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
-        if point >= 4000:
-            points[user.id] -= 4000
+        if point >= 3000:
+            points[user.id] -= 3000
             await uid.send(random.choice(ap3))
             await sent_message.edit(embed=buyem3)
             await sent_message.clear_reactions()
@@ -282,7 +282,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar4 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
         embedVar4.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
-        embedVar4.add_field(name="",value=f"**계정 가격 : 5000C**",inline=False)
+        embedVar4.add_field(name="",value=f"**계정 가격 : 4000C**",inline=False)
         embedVar4.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
         embedVar4.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar4.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
@@ -290,11 +290,11 @@ async def on_reaction_add(reaction, user):
         buyem4 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
         buyem4.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem4.add_field(name="",value=f"옵션4 : **스킨 40~50개**",inline=False)
-        buyem4.add_field(name="",value=f"계정 가격 : **5000C**\n",inline=False)
+        buyem4.add_field(name="",value=f"계정 가격 : **4000C**\n",inline=False)
         buyem4.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         buyem4.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
-        if point >= 5000:
-            points[user.id] -= 5000
+        if point >= 4000:
+            points[user.id] -= 4000
             await uid.send(random.choice(ap4))
             await sent_message.edit(embed=buyem4)
             await sent_message.clear_reactions()
@@ -312,7 +312,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar5 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
         embedVar5.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
-        embedVar5.add_field(name="",value=f"**계정 가격 : 6000C**",inline=False)
+        embedVar5.add_field(name="",value=f"**계정 가격 : 5000C**",inline=False)
         embedVar5.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
         embedVar5.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar5.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
@@ -320,11 +320,11 @@ async def on_reaction_add(reaction, user):
         buyem5 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
         buyem5.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem5.add_field(name="",value=f"옵션5 : **스킨 50~80개**",inline=False)
-        buyem5.add_field(name="",value=f"계정 가격 : **6000C**\n",inline=False)
+        buyem5.add_field(name="",value=f"계정 가격 : **5000C**\n",inline=False)
         buyem5.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         buyem5.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
-        if point >= 6000:
-            points[user.id] -= 6000
+        if point >= 5000:
+            points[user.id] -= 5000
             await uid.send(random.choice(ap5))
             await sent_message.edit(embed=buyem5)
             await sent_message.clear_reactions()
@@ -342,7 +342,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar6 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
         embedVar6.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
-        embedVar6.add_field(name="",value=f"**계정 가격 : 8000C**",inline=False)
+        embedVar6.add_field(name="",value=f"**계정 가격 : 7000C**",inline=False)
         embedVar6.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
         embedVar6.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar6.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
@@ -350,11 +350,11 @@ async def on_reaction_add(reaction, user):
         buyem6 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
         buyem6.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem6.add_field(name="",value=f"옵션6 : **스킨 80~100개**",inline=False)
-        buyem6.add_field(name="",value=f"계정 가격 : **8000C**\n",inline=False)
+        buyem6.add_field(name="",value=f"계정 가격 : **7000C**\n",inline=False)
         buyem6.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         buyem6.add_field(name="",value=f"❌ : 구매 취소",  inline=False)         
-        if point >= 8000:
-            points[user.id] -= 8000
+        if point >= 7000:
+            points[user.id] -= 7000
             await uid.send(random.choice(ap6))
             await sent_message.edit(embed=buyem6)
             await sent_message.clear_reactions()

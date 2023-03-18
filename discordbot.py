@@ -162,52 +162,189 @@ async def on_reaction_add(reaction, user):
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')
     if reaction.emoji == '2️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 3000
+        embedVar2 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar2.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar2.add_field(name="",value=f"**계정 가격 : 3000C**",inline=False)
+        embedVar2.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar2.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar2.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar2.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 3000:
+            points[user.id] -= 3000
         await sent_message.edit(content=f"**옵션[2] - 스킨 20~30개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 3,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar2, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '3️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 4000
+        embedVar3 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar3.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar3.add_field(name="",value=f"**계정 가격 : 4000C**",inline=False)
+        embedVar3.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar3.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar3.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar3.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 4000:
+            points[user.id] -= 4000
         await sent_message.edit(content=f"**옵션[3] - 스킨 30~40개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 4,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar3, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '4️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 5000
+        embedVar4 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar4.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar4.add_field(name="",value=f"**계정 가격 : 5000C**",inline=False)
+        embedVar4.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar4.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar4.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar4.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 5000:
+            points[user.id] -= 5000
         await sent_message.edit(content=f"**옵션[4] - 스킨 40~50개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 5,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar4, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '5️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 6000
+        embedVar5 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar5.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar5.add_field(name="",value=f"**계정 가격 : 6000C**",inline=False)
+        embedVar5.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar5.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar5.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar5.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 6000:
+            points[user.id] -= 6000
         await sent_message.edit(content=f"**옵션[5] - 스킨 50~80개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 6,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar5, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '6️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 8000
+        embedVar6 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar6.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar6.add_field(name="",value=f"**계정 가격 : 8000C**",inline=False)
+        embedVar6.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar6.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar6.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar6.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 8000:
+            points[user.id] -= 8000
         await sent_message.edit(content=f"**옵션[6] - 스킨 80~100개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 8,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar6, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '7️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 10000
+        embedVar7 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar7.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar7.add_field(name="",value=f"**계정 가격 : 10000C**",inline=False)
+        embedVar7.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar7.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar7.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar7.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 10000:
+            points[user.id] -= 10000
         await sent_message.edit(content=f"**옵션[7] - 스킨 100~150개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 10,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar7, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '8️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 15000
+        embedVar8 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar8.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar8.add_field(name="",value=f"**계정 가격 : 15000C**",inline=False)
+        embedVar8.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar8.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar8.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar8.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 15000:
+            points[user.id] -= 15000
         await sent_message.edit(content=f"**옵션[8] - 스킨 150~200개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 15,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar8, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
     if reaction.emoji == '9️⃣':
+        await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        points[user.id] -= 20000
-        embedVar = discord.Embed(title="옵션", color=0x0094ff)
-        embedVar.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
-        embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
-        embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
-        embedVar.add_field(name="",value="❌ : 취소",  inline=False)         
-        await sent_message.edit(embed=embedVar)        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        embedVar9 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar9.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
+        embedVar9.add_field(name="",value=f"**계정 가격 : 20000C**",inline=False)
+        embedVar9.add_field(name="",value=f"💵 : 잔액 충전 안내",inline=False)
+        embedVar9.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar9.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar9.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
+        if point >= 20000:
+            points[user.id] -= 20000
+        await sent_message.edit(content=f"**옵션[8] - 스킨 150~200개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 20,000C")
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')       
+        else:
+            await sent_message.edit(embed=embedVar9, content='')
+            await sent_message.clear_reactions()
+            await sent_message.add_reaction('💵')
+            await sent_message.add_reaction('🏧')
+            await sent_message.add_reaction('⬅️')
+            await sent_message.add_reaction('❌')
         
         
         

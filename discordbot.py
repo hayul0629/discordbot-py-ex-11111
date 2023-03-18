@@ -138,7 +138,6 @@ async def on_reaction_add(reaction, user):
 
 
     if reaction.emoji == '1️⃣':
-        await sent_message.clear_reactions()
         point = points.get(user.id, 0)
         embedVar1 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
         embedVar1.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
@@ -149,13 +148,13 @@ async def on_reaction_add(reaction, user):
         embedVar1.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 2000:
             points[user.id] -= 2000
-            await sent_message.clear_reactions()
             await sent_message.edit(content=f"**옵션[1] - 스킨 10~20개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 2,000C")
+            await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
         else:
-            await sent_message.clear_reactions()
             await sent_message.edit(embed=embedVar1, content='')
+            await sent_message.clear_reactions()
             await sent_message.add_reaction('💵')
             await sent_message.add_reaction('🏧')
             await sent_message.add_reaction('⬅️')

@@ -46,6 +46,7 @@ VGEN = ['ghufranad:dedek2006',
 points = {}
 client = discord.Client()
 sent_message = None
+global message
 
 @client.event
 async def on_ready():

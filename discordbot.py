@@ -235,6 +235,7 @@ async def on_reaction_add(reaction, user):
         buyem2.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
         if point >= 3000:
             points[user.id] -= 3000
+            await uid.send(random.choice(ap2))
             await sent_message.edit(embed=buyem2)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
@@ -264,6 +265,7 @@ async def on_reaction_add(reaction, user):
         buyem3.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
         if point >= 4000:
             points[user.id] -= 4000
+            await uid.send(random.choice(ap3))
             await sent_message.edit(embed=buyem3)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
@@ -293,6 +295,7 @@ async def on_reaction_add(reaction, user):
         buyem4.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
         if point >= 5000:
             points[user.id] -= 5000
+            await uid.send(random.choice(ap4))
             await sent_message.edit(embed=buyem4)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
@@ -322,6 +325,7 @@ async def on_reaction_add(reaction, user):
         buyem5.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
         if point >= 6000:
             points[user.id] -= 6000
+            await uid.send(random.choice(ap5))
             await sent_message.edit(embed=buyem5)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
@@ -351,6 +355,7 @@ async def on_reaction_add(reaction, user):
         buyem6.add_field(name="",value=f"❌ : 구매 취소",  inline=False)         
         if point >= 8000:
             points[user.id] -= 8000
+            await uid.send(random.choice(ap6))
             await sent_message.edit(embed=buyem6)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
@@ -380,6 +385,7 @@ async def on_reaction_add(reaction, user):
         buyem7.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
         if point >= 10000:
             points[user.id] -= 10000
+            await uid.send(random.choice(ap7))
             await sent_message.edit(embed=buyem7)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
@@ -409,6 +415,7 @@ async def on_reaction_add(reaction, user):
         buyem8.add_field(name="",value=f"❌ : 구매 취소",  inline=False) 
         if point >= 15000:
             points[user.id] -= 15000
+            await uid.send(random.choice(ap8))
             await sent_message.edit(embed=buyem8)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
@@ -438,6 +445,7 @@ async def on_reaction_add(reaction, user):
         buyem9.add_field(name="",value=f"❌ : 구매 취소",  inline=False)         
         if point >= 20000:
             points[user.id] -= 20000
+            await uid.send(random.choice(ap9))
             await sent_message.edit(embed=buyem9)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')

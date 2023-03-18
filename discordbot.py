@@ -108,7 +108,7 @@ async def on_reaction_add(reaction, user):
         embedVar11.add_field(name="",value=f"잔액충전은 <#1078652866165743676>에서 요청 해주세요.",inline=True)
         embedVar11.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar11.add_field(name="",value=f"❌ : 구매 취소",  inline=False)              
-        await sent_message.edit(content='',embed=embed11)
+        await sent_message.edit(content='',embed=embedVar11)
         await sent_message.clear_reactions()
         await sent_message.add_reaction('⬅️')
         await sent_message.add_reaction('❌')

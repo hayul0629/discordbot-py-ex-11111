@@ -137,40 +137,40 @@ async def on_reaction_add(reaction, user):
 
 
     if reaction.emoji == '1️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 2000
+        point = points.get(user.id, 0)
+        point - 2000
         await sent_message.edit(content=f"**옵션[1] - 스킨 10~20개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 2,000C`")
     if reaction.emoji == '2️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 3000
+        point = points.get(user.id, 0)
+        point - 3000
         await sent_message.edit(content=f"**옵션[2] - 스킨 20~30개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 3,000C`")
     if reaction.emoji == '3️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 4000
+        point = points.get(user.id, 0)
+        points - 4000
         await sent_message.edit(content=f"**옵션[3] - 스킨 30~40개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 4,000C`")
     if reaction.emoji == '4️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 5000
+        point = points.get(user.id, 0)
+        point - 5000
         await sent_message.edit(content=f"**옵션[4] - 스킨 40~50개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 5,000C`")
     if reaction.emoji == '5️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 6000
+        point = points.get(user.id, 0)
+        point - 6000
         await sent_message.edit(content=f"**옵션[5] - 스킨 50~80개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 6,000C`")
     if reaction.emoji == '6️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 8000
+        point = points.get(user.id, 0)
+        point - 8000
         await sent_message.edit(content=f"**옵션[6] - 스킨 80~100개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 8,000C`")
     if reaction.emoji == '7️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 10000
+        point = points.get(user.id, 0)
+        point - 10000
         await sent_message.edit(content=f"**옵션[7] - 스킨 100~150개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 10,000C`")
     if reaction.emoji == '8️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 15000
+        point = points.get(user.id, 0)
+        point - 15000
         await sent_message.edit(content=f"**옵션[8] - 스킨 150~200개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 15,000C`")
     if reaction.emoji == '9️⃣':
-        point = points.get(message.author.id, 0)
-        points[member.id] = points.get(member.id, 0) - 20000
+        point = points.get(user.id, 0)
+        point - 20000
         await sent_message.edit(content=f"**옵션[9] - 스킨 200개 이상**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 20,000C`")        
         
         

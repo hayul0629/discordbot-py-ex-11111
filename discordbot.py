@@ -97,7 +97,7 @@ async def on_message(message):
                 await message.channel.send("해당 명령어는 사용할 수 없습니다.")
         else:
             await message.channel.send("잘못된 명령어입니다.")
-    if message.content == f'{PREFIX}gen':
+    if message.content.startswith('.gen'):
         if message.channel.id == 1084002292010856538:
             await message.channel.send('DM으로 계정이 전송되었습니다. 꼭 <#1078956269714559046>작성 부탁드립니다!')
             await message.author.send(random.choice(VGEN))

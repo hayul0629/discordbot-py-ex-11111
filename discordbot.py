@@ -43,6 +43,16 @@ VGEN = ['ghufranad:dedek2006',
 'p33carryu:Nott064224',
 'h4wkk1ll3r:sankalp12']
 
+
+ap2 = ['killingmaniac55:Akshat@31']
+ap3 = ['naqiurejab:naqiurejab14']
+ap4 = ['<@819436785998102548>에게 계정 추가요청을 해주세요. 본 화면 캡쳐본 참조 필수입니다.']
+ap5 = ['<@819436785998102548>에게 계정 추가요청을 해주세요. 본 화면 캡쳐본 참조 필수입니다.']
+ap6 = ['<@819436785998102548>에게 계정 추가요청을 해주세요. 본 화면 캡쳐본 참조 필수입니다.']
+ap7 = ['udayaraj7120:udayaraj7120']
+ap8 = ['<@819436785998102548>에게 계정 추가요청을 해주세요. 본 화면 캡쳐본 참조 필수입니다.']
+ap9 = ['<@819436785998102548>에게 계정 추가요청을 해주세요. 본 화면 캡쳐본 참조 필수입니다.']
+
 points = {}
 client = discord.Client()
 sent_message = None
@@ -57,7 +67,10 @@ async def on_message(message):
         return
     if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
         await message.channel.send('안녕하세요')
-
+    if message.content == f'{PREFIX}gen':
+        if message.channel.id == 1084002292010856538:
+            await message.channel.send('DM으로 계정이 전송되었습니다. 꼭 <#1078956269714559046>작성 부탁드립니다!')
+            await message.author.send(random.choice(VGEN))
     if message.content.startswith('!p'):
         if len(message.content.split()) == 1:
             user = message.author
@@ -137,11 +150,11 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar14 = discord.Embed(title="계정 구매", color=0x0094ff)
         embedVar14.add_field(name="",value="**이모지 모두 로드된 후 선택해주세요.**",inline=False)
-        embedVar14.add_field(name="",value="1️⃣ : 스킨 10~20개 | 2000C",inline=False)
-        embedVar14.add_field(name="",value="2️⃣ : 스킨 20~30개 | 3000C",inline=False)
-        embedVar14.add_field(name="",value="3️⃣ : 스킨 30~40개 | 4000C",inline=False)
-        embedVar14.add_field(name="",value="4️⃣ : 스킨 40~50개 | 5000C",inline=False)
-        embedVar14.add_field(name="",value="5️⃣ : 스킨 50~80개 | 6000C",inline=False)
+        embedVar14.add_field(name="",value="1️⃣ : 스킨 10~20개 | 1000C",inline=False)
+        embedVar14.add_field(name="",value="2️⃣ : 스킨 20~30개 | 2000C",inline=False)
+        embedVar14.add_field(name="",value="3️⃣ : 스킨 30~40개 | 3000C",inline=False)
+        embedVar14.add_field(name="",value="4️⃣ : 스킨 40~50개 | 4000C",inline=False)
+        embedVar14.add_field(name="",value="5️⃣ : 스킨 50~80개 | 5000C",inline=False)
         embedVar14.add_field(name="",value="6️⃣ : 스킨 80~100개 | 8000C",inline=False)
         embedVar14.add_field(name="",value="7️⃣ : 스킨 100~150개 | 10000C",inline=False)
         embedVar14.add_field(name="",value="8️⃣ : 스킨 150~200개 | 15000C",inline=False)
@@ -191,6 +204,7 @@ async def on_reaction_add(reaction, user):
         buyem1.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 2000:
             points[user.id] -= 2000
+            await user.author.send(random.choice(VGEN))
             await sent_message.edit(embed=buyem1)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')

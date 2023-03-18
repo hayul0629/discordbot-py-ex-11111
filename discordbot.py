@@ -116,7 +116,7 @@ async def on_message(message):
         await sent_message.add_reaction('❌')
         await message.delete()
 @client.event
-async def on_reaction_add(reaction, user, usermsg):
+async def on_reaction_add(reaction, user):
     uid = await client.fetch_user(user.id)
     if user.bot:
         return

@@ -105,7 +105,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar11 = discord.Embed(title="콘 충전", color=0x0094ff)
         embedVar11.add_field(name="",value=f"보유 콘 : **{point}**",inline=False)
-        embedVar11.add_field(name="",value=f"잔액충전은 <#1078652866165743676>에서 요청 해주세요.",inline=true)
+        embedVar11.add_field(name="",value=f"잔액충전은 <#1078652866165743676>에서 요청 해주세요.",inline=True)
         embedVar11.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar11.add_field(name="",value=f"❌ : 구매 취소",  inline=False)              
         await sent_message.edit(content='',embed=embed11)

@@ -143,7 +143,7 @@ async def on_reaction_add(reaction, user):
         embedVar10.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
         embedVar10.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar10.add_field(name="",value=f"❌ : 구매 취소",  inline=False)              
-        await sent_message.edit(content='',embed=embed10)
+        await sent_message.edit(content='',embed=embedVar10)
         await sent_message.clear_reactions()
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('⬅️')

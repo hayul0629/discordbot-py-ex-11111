@@ -117,7 +117,7 @@ async def on_message(message):
         await message.delete()
 @client.event
 async def on_reaction_add(reaction, user, usermsg):
-uid = await client.fetch_user(user.id)
+    uid = await client.fetch_user(user.id)
     if user.bot:
         return
 

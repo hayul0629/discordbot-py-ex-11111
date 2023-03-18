@@ -176,7 +176,7 @@ async def on_reaction_add(reaction, user):
         embedVar.add_field(name="",value="💳 : 계정 구매",inline=False)
         embedVar.add_field(name="",value="🏧 : 잔액 확인",inline=False)
         embedVar.add_field(name="",value="❌ : 취소",  inline=False)         
-        await sent_message.edit(content=embed=embedVar)        
+        await sent_message.edit(embed=embedVar)        
         
         
         

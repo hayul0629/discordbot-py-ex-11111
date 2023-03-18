@@ -46,7 +46,6 @@ VGEN = ['ghufranad:dedek2006',
 points = {}
 client = discord.Client()
 sent_message = None
-global message
 
 @client.event
 async def on_ready():
@@ -130,8 +129,8 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('8️⃣')
         await sent_message.add_reaction('9️⃣')
     if reaction.emoji == '🏧':
-        point = points.get(message.author.id, 0)
-        await sent_message.edit(content=f"{user.name}님의 보류콘은 {point}입니다. ```⬅️ : 뒤로가기\n❌ : 구매 취소```")
+        point = points.get(user.id, 0)
+        await sent_message.edit(content=f"{user.name}님의 보유콘은 {point}입니다. ```⬅️ : 뒤로가기\n❌ : 구매 취소```")
         await sent_message.clear_reactions()
         await sent_message.add_reaction('⬅️')
         await sent_message.add_reaction('❌')

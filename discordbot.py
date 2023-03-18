@@ -173,7 +173,7 @@ async def on_reaction_add(reaction, user):
         embedVar2.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 3000:
             points[user.id] -= 3000
-        await sent_message.edit(content=f"**옵션[2] - 스킨 20~30개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 3,000C")
+            await sent_message.edit(content=f"**옵션[2] - 스킨 20~30개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 3,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
@@ -196,7 +196,7 @@ async def on_reaction_add(reaction, user):
         embedVar3.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 4000:
             points[user.id] -= 4000
-        await sent_message.edit(content=f"**옵션[3] - 스킨 30~40개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 4,000C")
+            await sent_message.edit(content=f"**옵션[3] - 스킨 30~40개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 4,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
@@ -219,7 +219,7 @@ async def on_reaction_add(reaction, user):
         embedVar4.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 5000:
             points[user.id] -= 5000
-        await sent_message.edit(content=f"**옵션[4] - 스킨 40~50개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 5,000C")
+            await sent_message.edit(content=f"**옵션[4] - 스킨 40~50개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 5,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
@@ -242,7 +242,7 @@ async def on_reaction_add(reaction, user):
         embedVar5.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 6000:
             points[user.id] -= 6000
-        await sent_message.edit(content=f"**옵션[5] - 스킨 50~80개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 6,000C")
+            await sent_message.edit(content=f"**옵션[5] - 스킨 50~80개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 6,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
@@ -265,7 +265,7 @@ async def on_reaction_add(reaction, user):
         embedVar6.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 8000:
             points[user.id] -= 8000
-        await sent_message.edit(content=f"**옵션[6] - 스킨 80~100개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 8,000C")
+            await sent_message.edit(content=f"**옵션[6] - 스킨 80~100개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 8,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
@@ -288,7 +288,7 @@ async def on_reaction_add(reaction, user):
         embedVar7.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 10000:
             points[user.id] -= 10000
-        await sent_message.edit(content=f"**옵션[7] - 스킨 100~150개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 10,000C")
+            await sent_message.edit(content=f"**옵션[7] - 스킨 100~150개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 10,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
@@ -311,7 +311,7 @@ async def on_reaction_add(reaction, user):
         embedVar8.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 15000:
             points[user.id] -= 15000
-        await sent_message.edit(content=f"**옵션[8] - 스킨 150~200개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 15,000C")
+            await sent_message.edit(content=f"**옵션[8] - 스킨 150~200개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 15,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       
@@ -334,7 +334,7 @@ async def on_reaction_add(reaction, user):
         embedVar9.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 20000:
             points[user.id] -= 20000
-        await sent_message.edit(content=f"**옵션[8] - 스킨 150~200개**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 20,000C")
+            await sent_message.edit(content=f"**옵션[9] - 스킨 200개 이상**계정 구매를 성공적으로 완료하였습니다.\nDM을 확인해주세요.\n 잔여 콘 : {point}C\n계정 가격 : 20,000C")
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')       

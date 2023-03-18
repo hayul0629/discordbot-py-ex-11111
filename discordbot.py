@@ -65,8 +65,6 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.channel.category_id == 1078628991969267802 and message.content == '안녕':
-        await message.channel.send('안녕하세요')
     if message.content == f'{PREFIX}gen':
         if message.channel.id == 1084002292010856538:
             await message.channel.send('DM으로 계정이 전송되었습니다. 꼭 <#1078956269714559046>작성 부탁드립니다!')
@@ -102,7 +100,7 @@ async def on_message(message):
         else:
             await message.channel.send("잘못된 명령어입니다.")
 ##################################################################################################################        
-    if message.content.startswith('!sample'):
+    if message.channel.category_id == 1078628991969267802 and message.content == '.bu-v':
         embedVar12 = discord.Embed(title="무엇을 도와드릴까요?", color=0x0094ff)
         embedVar12.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
         embedVar12.add_field(name="",value="💳 : 계정 구매",inline=False)

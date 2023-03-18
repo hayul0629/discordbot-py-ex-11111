@@ -103,7 +103,6 @@ async def on_message(message):
             await message.channel.send("잘못된 명령어입니다.")
 ##################################################################################################################        
     if message.content.startswith('!sample'):
-        usermsg = message.id
         embedVar12 = discord.Embed(title="무엇을 도와드릴까요?", color=0x0094ff)
         embedVar12.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
         embedVar12.add_field(name="",value="💳 : 계정 구매",inline=False)
@@ -118,8 +117,7 @@ async def on_message(message):
         await message.delete()
 @client.event
 async def on_reaction_add(reaction, user, usermsg):
-    usermsg = await channel.fetch_message(usermsg)
-    dm_channel = await usermsg.create_dm()
+uid = await client.fetch_user(user.id)
     if user.bot:
         return
 
@@ -207,7 +205,7 @@ async def on_reaction_add(reaction, user, usermsg):
         buyem1.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
         if point >= 2000:
             points[user.id] -= 2000
-            await dm_channel.send(random.choice(VGEN))
+            await uid.send(random.choice(VGEN))
             await sent_message.edit(embed=buyem1)
             await sent_message.clear_reactions()
             await sent_message.add_reaction('⬅️')

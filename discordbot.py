@@ -41,11 +41,12 @@ VGEN = ['ghufranad:dedek2006',
 'loligragon:Aum!Loli@0877349590',
 'urtywer:urtywer@leage1',
 'p33carryu:Nott064224',
-'h4wkk1ll3r:sankalp12']
+'h4wkk1ll3r:sankalp12',
+'blayze17:ilikekom21']
 
 
-ap2 = ['killingmaniac55:Akshat@31'] #20~30개
-ap3 = ['naqiurejab:naqiurejab14','bossingian:awesomeian_69'] #30~40개
+ap2 = ['killingmaniac55:Akshat@31','valorantbekar22:Vishal@1234'] #20~30개
+ap3 = ['naqiurejab:naqiurejab14','bossingian:awesomeian_69','choirulramzy:medhi0424'] #30~40개
 ap4 = ['maverick0016:Divy1611@'] #40~50개
 ap5 = ['igopokaarbos:secretpassword123?'] #50~80개
 ap6 = ['hoangtien1109:tien11092'] #80~100개
@@ -105,8 +106,8 @@ async def on_message(message):
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
 ##################################################################################################################        
     if message.channel.category_id == 1078628991969267802 and message.content == '.bu-v':
-        embedVar12 = discord.Embed(title="무엇을 도와드릴까요?", color=0x0094ff)
-        embedVar12.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
+        embedVar12 = discord.Embed(title="무엇을 도와드릴까요?", color=0x00ff26)
+        embedVar12.add_field(name="",value="💵 : 잔액 충전",inline=False)
         embedVar12.add_field(name="",value="💳 : 계정 구매",inline=False)
         embedVar12.add_field(name="",value="🏧 : 잔액 확인",inline=False)
         embedVar12.add_field(name="",value="❌ : 취소",  inline=False)      
@@ -123,20 +124,49 @@ async def on_reaction_add(reaction, user):
     if user.bot:
         return
 
+    
     if reaction.emoji == '💵':
         point = points.get(user.id, 0)
-        embedVar11 = discord.Embed(title="콘 충전", color=0x0094ff)
+        embedVar16 = discord.Embed(title="Error", color=0xff1100)
+        embedVar16.add_field(name="",value=f"시간이 초과되었습니다. 다시 시도해주세요.",inline=False)
+        embedVar15 = discord.Embed(title=f"{amount2}C 충전", color=0x00ff26)
+        embedVar15.add_field(name=f"{amount2}원 입금",value=f"토스뱅크 1908-8896-4321 | 토스강하율",inline=False)
+        embedVar15.add_field(name="",value=f"{name1}님으로 {amount2}원 충전 대기중입니다. 입금완료시  💌반응을 눌러주세요.",inline=False)
+        embedVar15.add_field(name="",value=f"💌 : 입금 완료",inline=False)
+        embedVar15.add_field(name="",value=f"⬅️ : 충전 취소",inline=False)
+        embedVar15.add_field(name="",value=f"❌ : 구매 취소",inline=False)
+        embedVar11 = discord.Embed(title="콘 충전", color=0x00ff26)
         embedVar11.add_field(name="",value=f"보유 콘 : **{point}**",inline=False)
-        embedVar11.add_field(name="",value=f"잔액충전은 <@819436785998102548>에게 요청 해주세요.",inline=False)
-        embedVar11.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
-        embedVar11.add_field(name="",value=f"❌ : 구매 취소",  inline=False)              
+        embedVar11.add_field(name="",value=f"`충전할 금액을 입력하세요.`",inline=False)
+        embedVar18 = discord.Embed(title="입금자명 확인", color=0x00ff26)
+        embedVar18.add_field(name="",value=f"입금자명을 입력해주세요.",inline=False)
         await sent_message.edit(embed=embedVar11)
-        await sent_message.clear_reactions()
-        await sent_message.add_reaction('⬅️')
-        await sent_message.add_reaction('❌')
+
+        def check(m):
+            return m.author == message.author and m.channel == message.channel
+
+        amount_msg = await client.wait_for('message', check=check)
+        amount2 = int(amount_msg.content)
+
+ 
+
+        # 이름 물어보기
+        await sent_message.edit(embed=embedVar18)
+        name_msg = await client.wait_for('message', check=check)
+        name1 = name_msg.content
+
+        # 충전 메시지 보내기
+        await sent_message.edit(embed=embedVar15)
+    if reaction.emoji == '💌':
+        embedVar19 = discord.Embed(title="충전 확인중", color=0x00ff26)
+        embedVar19.add_field(name="",value="입금 확인후 잔액이 충전됩니다. 잠시만 기다려주세요.",inline=False)
+        await sent_message.edit(embed=embedVar19)
+        test_channel = client.get_channel(1080458417006719016)
+        await test_channel.send(f'<@819436785998102548>\n{name1}님 {amount2}C 충전 확인해주세요.')
+
     if reaction.emoji == '⬅️':
         embedVar13 = discord.Embed(title="무엇을 도와드릴까요?", color=0x0094ff)
-        embedVar13.add_field(name="",value="💵 : 잔액 충전 안내",inline=False)
+        embedVar13.add_field(name="",value="💵 : 잔액 충전",inline=False)
         embedVar13.add_field(name="",value="💳 : 계정 구매",inline=False)
         embedVar13.add_field(name="",value="🏧 : 잔액 확인",inline=False)
         embedVar13.add_field(name="",value="❌ : 취소",  inline=False) 
@@ -151,7 +181,7 @@ async def on_reaction_add(reaction, user):
         await message.delete()
     if reaction.emoji == '💳':
         point = points.get(user.id, 0)
-        embedVar14 = discord.Embed(title="계정 구매", color=0x0094ff)
+        embedVar14 = discord.Embed(title="계정 구매", color=0x00ff26)
         embedVar14.add_field(name="",value="**이모지가 모두 로드된 후 선택해주세요.**",inline=False)
         embedVar14.add_field(name="",value="1️⃣ : 스킨 10~20개 | 1000C",inline=False)
         embedVar14.add_field(name="",value="2️⃣ : 스킨 20~30개 | 2000C",inline=False)
@@ -177,9 +207,9 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('❌')
     if reaction.emoji == '🏧':
         point = points.get(user.id, 0)
-        embedVar10 = discord.Embed(title="잔액 확인", color=0x0094ff)
+        embedVar10 = discord.Embed(title="잔액 확인", color=0x00ff26)
         embedVar10.add_field(name="",value=f"보유 콘 : **{point}**",inline=False)
-        embedVar10.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar10.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar10.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar10.add_field(name="",value=f"❌ : 구매 취소",  inline=False)              
         await sent_message.edit(content='',embed=embedVar10)
@@ -192,14 +222,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '1️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar1 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar1 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar1.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar1.add_field(name="",value=f"**계정 가격 : 1000C**\n",inline=False)
-        embedVar1.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar1.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar1.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar1.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar1.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem1 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem1 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem1.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem1.add_field(name="",value=f"옵션1 : **스킨 10~20개**",inline=False)
         buyem1.add_field(name="",value=f"계정 가격 : **1000C**\n",inline=False)
@@ -222,14 +252,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '2️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar2 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar2 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar2.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar2.add_field(name="",value=f"**계정 가격 : 2000C**",inline=False)
-        embedVar2.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar2.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar2.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar2.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar2.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem2 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem2 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem2.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem2.add_field(name="",value=f"옵션2 : **스킨 20~30개**",inline=False)
         buyem2.add_field(name="",value=f"계정 가격 : **2000C**\n",inline=False)
@@ -252,14 +282,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '3️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar3 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar3 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar3.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar3.add_field(name="",value=f"**계정 가격 : 3000C**",inline=False)
-        embedVar3.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar3.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar3.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar3.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar3.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem3 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem3 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem3.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem3.add_field(name="",value=f"옵션3 : **스킨 30~40개**",inline=False)
         buyem3.add_field(name="",value=f"계정 가격 : **3000C**\n",inline=False)
@@ -282,14 +312,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '4️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar4 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar4 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar4.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar4.add_field(name="",value=f"**계정 가격 : 4000C**",inline=False)
-        embedVar4.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar4.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar4.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar4.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar4.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem4 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem4 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem4.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem4.add_field(name="",value=f"옵션4 : **스킨 40~50개**",inline=False)
         buyem4.add_field(name="",value=f"계정 가격 : **4000C**\n",inline=False)
@@ -312,14 +342,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '5️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar5 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar5 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar5.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar5.add_field(name="",value=f"**계정 가격 : 5000C**",inline=False)
-        embedVar5.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar5.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar5.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar5.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar5.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem5 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem5 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem5.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem5.add_field(name="",value=f"옵션5 : **스킨 50~80개**",inline=False)
         buyem5.add_field(name="",value=f"계정 가격 : **5000C**\n",inline=False)
@@ -342,14 +372,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '6️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar6 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar6 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar6.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar6.add_field(name="",value=f"**계정 가격 : 7000C**",inline=False)
-        embedVar6.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar6.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar6.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar6.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar6.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem6 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem6 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem6.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem6.add_field(name="",value=f"옵션6 : **스킨 80~100개**",inline=False)
         buyem6.add_field(name="",value=f"계정 가격 : **7000C**\n",inline=False)
@@ -372,14 +402,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '7️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar7 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar7 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar7.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar7.add_field(name="",value=f"**계정 가격 : 10000C**",inline=False)
-        embedVar7.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar7.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar7.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar7.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar7.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem7 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem7 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem7.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem7.add_field(name="",value=f"옵션7 : **스킨 100~150개**",inline=False)
         buyem7.add_field(name="",value=f"계정 가격 : **10000C**\n",inline=False)
@@ -402,14 +432,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '8️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar8 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar8 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar8.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar8.add_field(name="",value=f"**계정 가격 : 15000C**",inline=False)
-        embedVar8.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar8.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar8.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar8.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar8.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem8 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem8 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem8.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem8.add_field(name="",value=f"옵션8 : **스킨 150~200개**",inline=False)
         buyem8.add_field(name="",value=f"계정 가격 : **15000C**\n",inline=False)
@@ -432,14 +462,14 @@ async def on_reaction_add(reaction, user):
     if reaction.emoji == '9️⃣':
         await sent_message.clear_reactions()        
         point = points.get(user.id, 0)
-        embedVar9 = discord.Embed(title="잔액이 부족합니다.", color=0x0094ff)
+        embedVar9 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
         embedVar9.add_field(name="",value=f"**현제 콘 : {point}**",inline=False)
         embedVar9.add_field(name="",value=f"**계정 가격 : 20000C**",inline=False)
-        embedVar9.add_field(name="",value=f"💵 : 콘 충전 안내",inline=False)
+        embedVar9.add_field(name="",value=f"💵 : 콘 충전",inline=False)
         embedVar9.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
         embedVar9.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
         embedVar9.add_field(name="",value=f"❌ : 구매 취소",  inline=False)        
-        buyem9 = discord.Embed(title="계정 구매 성공", color=0x0094ff)
+        buyem9 = discord.Embed(title="계정 구매 성공", color=0x00ff26)
         buyem9.add_field(name="",value=f"계정구매를 완료하였습니다. DM을 확인해주세요",inline=False)
         buyem9.add_field(name="",value=f"옵션9 : **스킨 200개 이상**",inline=False)
         buyem9.add_field(name="",value=f"계정 가격 : **20000C**\n",inline=False)

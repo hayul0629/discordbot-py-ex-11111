@@ -129,9 +129,7 @@ async def on_reaction_add(reaction, user):
         point = points.get(user.id, 0)
         embedVar16 = discord.Embed(title="Error", color=0xff1100)
         embedVar16.add_field(name="",value=f"시간이 초과되었습니다. 다시 시도해주세요.",inline=False)
-        embedVar15 = discord.Embed(title=f"{amount2}C 충전", color=0x00ff26)
-        embedVar15.add_field(name=f"{amount2}원 입금",value=f"토스뱅크 1908-8896-4321 | 토스강하율",inline=False)
-        embedVar15.add_field(name="",value=f"{name1}님으로 {amount2}원 충전 대기중입니다. 입금완료시  💌반응을 눌러주세요.",inline=False)
+
         embedVar15.add_field(name="",value=f"💌 : 입금 완료",inline=False)
         embedVar15.add_field(name="",value=f"⬅️ : 충전 취소",inline=False)
         embedVar15.add_field(name="",value=f"❌ : 구매 취소",inline=False)
@@ -154,7 +152,9 @@ async def on_reaction_add(reaction, user):
         await sent_message.edit(embed=embedVar18)
         name_msg = await client.wait_for('message', check=check)
         name1 = name_msg.content
-
+        embedVar15 = discord.Embed(title=f"{amount2}C 충전", color=0x00ff26)
+        embedVar15.add_field(name=f"{amount2}원 입금",value=f"토스뱅크 1908-8896-4321 | 토스강하율",inline=False)
+        embedVar15.add_field(name="",value=f"{name1}님으로 {amount2}원 충전 대기중입니다. 입금완료시  💌반응을 눌러주세요.",inline=False)
         # 충전 메시지 보내기
         await sent_message.edit(embed=embedVar15)
     if reaction.emoji == '💌':

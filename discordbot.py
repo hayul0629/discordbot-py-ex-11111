@@ -116,6 +116,10 @@ async def on_message(message):
             await message.author.send(random.choice(VGEN))
         else:
             await message.channel.send('계정 젠은 <#1084002292010856538>에서 해주세요.')
+    if message.channel.category_id == 1078628991969267802 and message.content == '.bu-b':
+        embedVar21 = discord.Embed(title="냥코대전쟁 계정 구매", color=0x00ff26)
+        embedVar21.add_field(name="",value="냥코대전쟁 계정 구매는 <@819436785998102548>를 호출해주세요.",inline=False)    
+        await message.channel.send(embed=embedVar21)
 ##################################################################################################################        
     if message.channel.category_id == 1078628991969267802 and message.content == '.bu-v':
         embedVar12 = discord.Embed(title="무엇을 도와드릴까요?", color=0x00ff26)

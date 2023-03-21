@@ -148,9 +148,9 @@ async def on_reaction_add(reaction, user):
 
         # 이름 물어보기
         await sent_message.clear_reactions()
-        global name_msg
         await sent_message.edit(embed=embedVar18)
         await amount_msg.delete()
+        global name_msg
         name_msg = await client.wait_for('message')
         name1 = name_msg.content
         embedVar15 = discord.Embed(title=f"입금 대기", color=0x00ff26)

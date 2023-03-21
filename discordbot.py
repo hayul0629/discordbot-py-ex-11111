@@ -238,7 +238,6 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('❌')
     if reaction.emoji == '❌':
         await sent_message.delete()
-        await message.delete()
     if reaction.emoji == '💳':
         point = points.get(user.id, 0)
         embedVar14 = discord.Embed(title="계정 구매", color=0x00ff26)

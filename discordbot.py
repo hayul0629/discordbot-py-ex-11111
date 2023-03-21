@@ -133,9 +133,10 @@ async def on_reaction_add(reaction, user):
 
         embedVar11 = discord.Embed(title="콘 충전", color=0x00ff26)
         embedVar11.add_field(name="",value=f"보유 콘 : **{point}**",inline=False)
-        embedVar11.add_field(name="",value=f"`충전할 금액을 입력하세요.`",inline=False)
+        embedVar11.add_field(name="",value=f"충전할 금액을 입력하세요.",inline=False)
         embedVar18 = discord.Embed(title="입금자명 확인", color=0x00ff26)
         embedVar18.add_field(name="",value=f"입금자명을 입력해주세요.",inline=False)
+        await sent_message.clear_reactions()
         await sent_message.edit(embed=embedVar11)
 
 
@@ -150,12 +151,15 @@ async def on_reaction_add(reaction, user):
         await amount_msg.delete()
         name_msg = await client.wait_for('message')
         name1 = name_msg.content
-        embedVar15 = discord.Embed(title=f"{amount2}C 충전", color=0x00ff26)
-        embedVar15.add_field(name=f"{amount2}원 입금",value=f"토스뱅크 1908-8896-4321 | 토스강하율",inline=False)
-        embedVar15.add_field(name="",value=f"{name1}님으로 {amount2}원 충전 대기중입니다. 입금완료시  💌반응을 눌러주세요.",inline=False)
+        embedVar15 = discord.Embed(title=f"입금 대기", color=0x00ff26)
+        embedVar15.add_field(name=f"아래 계좌로 {amount2}원 입금 후 이모지로 반응해주세요",value=f"토스뱅크 1908-8896-4321 | 토스강하율",inline=False)
+        embedVar15.add_field(name="",value=f"`{name1}`님으로 `{amount2}`원 충전 대기중입니다. 입금완료시  `💌`반응을 눌러주세요.",inline=False)
         embedVar15.add_field(name="",value=f"💌 : 입금 완료",inline=False)
         embedVar15.add_field(name="",value=f"⬅️ : 충전 취소",inline=False)
         embedVar15.add_field(name="",value=f"❌ : 구매 취소",inline=False)
+        await sent_message.add_reaction('💌')
+        await sent_message.add_reaction('⬅️')
+        await sent_message.add_reaction('❌')
         # 충전 메시지 보내기
         await sent_message.edit(embed=embedVar15)
         await name_msg.delete()

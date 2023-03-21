@@ -148,10 +148,16 @@ async def on_reaction_add(reaction, user):
         embedVar11 = discord.Embed(title="콘 충전", color=0x00ff26)
         embedVar11.add_field(name="",value=f"보유 콘 : **{point}**",inline=False)
         embedVar11.add_field(name="",value=f"충전할 금액을 입력하세요.",inline=False)
+        embedVar11.add_field(name="",value=f"⬅️ : 충전 취소",inline=False)
+        embedVar11.add_field(name="",value=f"❌ : 구매 취소",inline=False)
         embedVar18 = discord.Embed(title="입금자명 확인", color=0x00ff26)
         embedVar18.add_field(name="",value=f"입금자명을 입력해주세요.",inline=False)
+        embedVar18.add_field(name="",value=f"⬅️ : 충전 취소",inline=False)
+        embedVar18.add_field(name="",value=f"❌ : 구매 취소",inline=False)
         await sent_message.clear_reactions()
         await sent_message.edit(embed=embedVar11)
+        await sent_message.add_reaction('⬅️')
+        await sent_message.add_reaction('❌')
         global amount2
 
         amount_msg = await client.wait_for('message')
@@ -162,6 +168,8 @@ async def on_reaction_add(reaction, user):
         # 이름 물어보기
         await sent_message.clear_reactions()
         await sent_message.edit(embed=embedVar18)
+        await sent_message.add_reaction('⬅️')
+        await sent_message.add_reaction('❌')
         await amount_msg.delete()
         global name1
         name_msg = await client.wait_for('message')

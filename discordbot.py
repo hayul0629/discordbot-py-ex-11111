@@ -150,12 +150,11 @@ async def on_reaction_add(reaction, user):
         await sent_message.clear_reactions()
         await sent_message.edit(embed=embedVar18)
         await amount_msg.delete()
-        global name_msg
         name_msg = await client.wait_for('message')
         name1 = name_msg.content
         embedVar15 = discord.Embed(title=f"입금 대기", color=0x00ff26)
         embedVar15.add_field(name=f"아래 계좌로 {amount2}원 입금 후 이모지로 반응해주세요",value=f"토스뱅크 1908-8896-4321 | 토스강하율",inline=False)
-        embedVar15.add_field(name="",value=f"`{name1}`님으로 `{amount2}`원 충전 대기중입니다. 입금완료시  `💌`반응을 눌러주세요.",inline=False)
+        embedVar15.add_field(name="",value=f"{name1}님으로 {amount2}원 충전 대기중입니다. 입금완료시  `💌`반응을 눌러주세요.",inline=False)
         embedVar15.add_field(name="",value=f"💌 : 입금 완료",inline=False)
         embedVar15.add_field(name="",value=f"⬅️ : 충전 취소",inline=False)
         embedVar15.add_field(name="",value=f"❌ : 구매 취소",inline=False)
@@ -170,6 +169,7 @@ async def on_reaction_add(reaction, user):
         embedVar19.add_field(name="",value="입금 확인후 잔액이 충전됩니다. 잠시만 기다려주세요.",inline=False)
         await sent_message.edit(embed=embedVar19)
         test_channel = client.get_channel(1080458417006719016)
+        global name_msg
         await test_channel.send(f'<@819436785998102548>\n{name1}님 {amount2}C 충전 확인해주세요.')
 
     if reaction.emoji == '⬅️':

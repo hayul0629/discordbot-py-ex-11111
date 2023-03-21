@@ -67,7 +67,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('!dl'):
+    if message.content.startswith('!e'):
         if message.author.id == 819436785998102548:
             split = message.content.split()
             if len(split) == 2 and split[0] == '!e':

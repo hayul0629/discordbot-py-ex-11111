@@ -165,11 +165,12 @@ async def on_reaction_add(reaction, user):
         await sent_message.edit(embed=embedVar15)
         await name_msg.delete()
     if reaction.emoji == '💌':
+        global name_msg
+
         embedVar19 = discord.Embed(title="충전 확인중", color=0x00ff26)
         embedVar19.add_field(name="",value="입금 확인후 잔액이 충전됩니다. 잠시만 기다려주세요.",inline=False)
         await sent_message.edit(embed=embedVar19)
         test_channel = client.get_channel(1080458417006719016)
-        global name_msg
         await test_channel.send(f'<@819436785998102548>\n{name1}님 {amount2}C 충전 확인해주세요.')
 
     if reaction.emoji == '⬅️':

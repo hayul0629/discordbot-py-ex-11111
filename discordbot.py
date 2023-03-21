@@ -70,7 +70,7 @@ async def on_message(message):
     if message.content.startswith('!dl'):
         if message.author.id == 819436785998102548:
             split = message.content.split()
-            if len(split) == 2 and split[0] == '!dl':
+            if len(split) == 2 and split[0] == '!e':
                 try:
                     limit = int(split[1])
                     if limit < 1 or limit > 100:
@@ -79,7 +79,6 @@ async def on_message(message):
                     await message.channel.send('ValueError')
                     return
                 deleted = await message.channel.purge(limit=limit)
-                await message.channel.send(f'{len(deleted)}개의 메시지가 삭제되었습니다.')
     if message.content.startswith('!p'):
         if len(message.content.split()) == 1:
             user = message.author

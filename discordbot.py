@@ -138,8 +138,6 @@ async def on_reaction_add(reaction, user):
         embedVar18.add_field(name="",value=f"입금자명을 입력해주세요.",inline=False)
         await sent_message.edit(embed=embedVar11)
 
-        def check(m):
-            return m.author == message.author and m.channel == message.channel
 
         amount_msg = await client.wait_for('message', check=check)
         amount2 = int(amount_msg.content)

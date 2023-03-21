@@ -57,8 +57,8 @@ ap9 = ['제고가 없습니다. <@819436785998102548>에게 계정 추가요청�
 points = {}
 client = discord.Client()
 sent_message = None
-amount_msg = None
-name_msg = None
+amount2 = 0
+name1 = 0
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
@@ -139,7 +139,7 @@ async def on_reaction_add(reaction, user):
         embedVar18.add_field(name="",value=f"입금자명을 입력해주세요.",inline=False)
         await sent_message.clear_reactions()
         await sent_message.edit(embed=embedVar11)
-        global amount_msg
+        global amount2
 
         amount_msg = await client.wait_for('message')
         amount2 = int(amount_msg.content)
@@ -150,7 +150,7 @@ async def on_reaction_add(reaction, user):
         await sent_message.clear_reactions()
         await sent_message.edit(embed=embedVar18)
         await amount_msg.delete()
-        global name_msg
+        global name1
         name_msg = await client.wait_for('message')
         name1 = name_msg.content
         embedVar15 = discord.Embed(title=f"입금 대기", color=0x00ff26)

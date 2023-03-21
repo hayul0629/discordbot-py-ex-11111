@@ -139,7 +139,7 @@ async def on_reaction_add(reaction, user):
         await sent_message.edit(embed=embedVar11)
 
 
-        amount_msg = await client.wait_for('message', check=check)
+        amount_msg = await client.wait_for('message')
         amount2 = int(amount_msg.content)
 
  

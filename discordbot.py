@@ -196,13 +196,13 @@ async def on_reaction_add(reaction, user):
         embedVar19.add_field(name="",value="🏧 : 잔액 확인",inline=False)
         embedVar19.add_field(name="",value="🛑 : 오류 문의",inline=False)
         embedVar19.add_field(name="",value="❌ : 임베드 삭제",inline=False)
-        await sent_message.edit(embed=embedVar19)
+        tckchid = await sent_message.edit(embed=embedVar19)
         await sent_message.add_reaction('⬅️')
         await sent_message.add_reaction('🏧')
         await sent_message.add_reaction('🛑')
         await sent_message.add_reaction('❌')
         test_channel = client.get_channel(1080458417006719016)
-        ticket_channel_id = amount_msg.channel.id
+        ticket_channel_id = tckchid.channel.id
         await test_channel.send(f'<@819436785998102548>\n{name1}님 {amount2}C 충전 확인해주세요.\n- 체널 : <#{ticket_channel_id}>')
 
         

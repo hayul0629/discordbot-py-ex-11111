@@ -180,6 +180,7 @@ async def on_reaction_add(reaction, user):
         embedVar15.add_field(name="",value=f"💌 : 입금 완료",inline=False)
         embedVar15.add_field(name="",value=f"⬅️ : 충전 취소",inline=False)
         embedVar15.add_field(name="",value=f"❌ : 구매 취소",inline=False)
+        await sent_message.clear_reactions()
         await sent_message.add_reaction('💌')
         await sent_message.add_reaction('⬅️')
         await sent_message.add_reaction('❌')

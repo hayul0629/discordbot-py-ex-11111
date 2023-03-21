@@ -129,6 +129,7 @@ async def on_message(message):
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
+        await sent_message.add_reaction('🛑')
         await sent_message.add_reaction('❌')
         await message.delete()
 @client.event

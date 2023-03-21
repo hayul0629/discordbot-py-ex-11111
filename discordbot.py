@@ -166,15 +166,42 @@ async def on_reaction_add(reaction, user):
         await sent_message.edit(embed=embedVar15)
         await name_msg.delete()
     if reaction.emoji == '💌':
-
+        await sent_message.clear_reactions()
         embedVar19 = discord.Embed(title="충전 확인중", color=0x00ff26)
         embedVar19.add_field(name="",value="입금 확인후 잔액이 충전됩니다. 잠시만 기다려주세요.",inline=False)
+        embedVar19.add_field(name="",value="- 임베드를 나가도 안전합니다.",inline=False)
+        embedVar19.add_field(name="",value="⬅️ : 돌아가기",inline=False)
+        embedVar19.add_field(name="",value="🏧 : 잔액 확인",inline=False)
+        embedVar19.add_field(name="",value="🛑 : 콘 충전 오류 문의",inline=False)
+        embedVar19.add_field(name="",value="❌ : 임베드 삭제",inline=False)
         await sent_message.edit(embed=embedVar19)
+        await sent_message.add_reaction('💵')
+        await sent_message.add_reaction('💳')
+        await sent_message.add_reaction('🏧')
+        await sent_message.add_reaction('❌')
         test_channel = client.get_channel(1080458417006719016)
-        await test_channel.send(f'<@819436785998102548>\n{name1}님 {amount2}C 충전 확인해주세요.')
+        ticket_channel_id = message.channel.id
+        await test_channel.send(f'<@819436785998102548>\n{name1}님 {amount2}C 충전 확인해주세요.\n- 체널 : <#{ticket_channel_id}>')
 
+        
+        
+        
+    if reaction.emoji == '🛑':
+        embedVar20 = discord.Embed(title="콘 충전 오류 문의", color=0x00ff26)
+        embedVar20.add_field(name="콘 오류 문의 예시",value="- 입금후 24시간이 지났는데도 콘 충전이 안되는 경우\n- 콘이 있었는데 갑자기 0인 경우",inline=False)
+        embedVar20.add_field(name="문의 방법",value="정확한 사유와 오류시 캡쳐본 등을 함께 <@819436785998102548> DM으로 문의주세요.",inline=False)
+        embedVar20.add_field(name="",value=f"💵 : 콘 충전",inline=False)
+        embedVar20.add_field(name="",value=f"🏧 : 잔액 확인",inline=False)
+        embedVar20.add_field(name="",value=f"⬅️ : 뒤로가기",inline=False)
+        embedVar20.add_field(name="",value=f"❌ : 구매 취소",  inline=False)
+        await sent_message.edit(embed=embedVar20)
+        await sent_message.clear_reactions()
+        await sent_message.add_reaction('💵')
+        await sent_message.add_reaction('🏧')
+        await sent_message.add_reaction('⬅️')
+        await sent_message.add_reaction('❌')
     if reaction.emoji == '⬅️':
-        embedVar13 = discord.Embed(title="무엇을 도와드릴까요?", color=0x0094ff)
+        embedVar13 = discord.Embed(title="무엇을 도와드릴까요?", color=0x00ff26)
         embedVar13.add_field(name="",value="💵 : 잔액 충전",inline=False)
         embedVar13.add_field(name="",value="💳 : 계정 구매",inline=False)
         embedVar13.add_field(name="",value="🏧 : 잔액 확인",inline=False)

@@ -146,7 +146,7 @@ async def on_reaction_add(reaction, user):
 
         # 이름 물어보기
         await sent_message.edit(embed=embedVar18)
-        name_msg = await client.wait_for('message', check=check)
+        name_msg = await client.wait_for('message')
         name1 = name_msg.content
         embedVar15 = discord.Embed(title=f"{amount2}C 충전", color=0x00ff26)
         embedVar15.add_field(name=f"{amount2}원 입금",value=f"토스뱅크 1908-8896-4321 | 토스강하율",inline=False)

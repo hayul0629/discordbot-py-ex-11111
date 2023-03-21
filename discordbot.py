@@ -233,6 +233,7 @@ async def on_reaction_add(reaction, user):
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')
         await sent_message.add_reaction('🏧')
+        await sent_message.add_reaction('🛑')
         await sent_message.add_reaction('❌')
     if reaction.emoji == '❌':
         await sent_message.delete()

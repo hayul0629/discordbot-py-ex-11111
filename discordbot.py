@@ -53,7 +53,41 @@ ap6 = ['hoangtien1109:tien11092'] #80~100개
 ap7 = ['udayaraj7120:udayaraj7120'] #100~150개
 ap8 = ['제고가 없습니다. <@819436785998102548>에게 계정 추가요청을 해주세요.'] #150~200개
 ap9 = ['제고가 없습니다. <@819436785998102548>에게 계정 추가요청을 해주세요.'] #200개 이상
-
+allac = ['ghufranad:dedek2006',
+'unluckyme1:madhuroy1',
+'venitastah:15aug1995',
+'arunsuman:Drag@123',
+'2ez4chano:Sagitarius1220',
+'henhenhen12:S@ms^ng123',
+'xoprishix:rras1975',
+'mathon07:sheilarevilla030720143',
+'prantoislam:Pr@nto1208217',
+'killxsoul:01091994zaza',
+'haymanns:haymann66318',
+'rezzatiey:Rez240700@',
+'boilingwaters:ainalatosa08',
+'ts547878:ts86520000',
+'darkark404:Katasandi1234',
+'devilarfter:Devil981577625',
+'theeaszx486584:!.DekxzaqZeRt$0Cool#@',
+'xkrat0sxx:kratos1481',
+'xpapiemz:Mimidada9',
+'whiteomega98:kobik123456789',
+'jinnn07:Ap10aw2525',
+'hortenzy:boomgunpap08',
+'skyskysora88:cat1314520',
+'drian082219:123Defender-1',
+'zekairyuken:zekairyuken13',
+'thickka:quocanh30032005',
+'loligragon:Aum!Loli@0877349590',
+'urtywer:urtywer@leage1',
+'p33carryu:Nott064224',
+'h4wkk1ll3r:sankalp12',
+'blayze17:ilikekom21',
+'naqiurejab:naqiurejab14','bossingian:awesomeian_69','choirulramzy:medhi0424',
+'killingmaniac55:Akshat@31','valorantbekar22:Vishal@1234',
+'igopokaarbos:secretpassword123?',
+'maverick0016:Divy1611@']
 points = {}
 client = discord.Client()
 sent_message = None
@@ -110,6 +144,26 @@ async def on_message(message):
                 await message.channel.send("해당 명령어는 사용할 수 없습니다.")
         else:
             await message.channel.send("잘못된 명령어입니다.")
+            
+            
+    if message.content.startswith('.ran'):
+        point = points.get(user.id, 0)
+        if message.channel.id == 1087869146114568374:
+            if point >= 500:
+                points[user.id] -= 500
+                embedVar22 = discord.Embed(title="계정 뽑기 성공!", color=0x00ff26)
+                embedVar22.add_field(name="",value="DM으로 계정을 전송하였습니다.",inline=False)
+                embedVar22.add_field(name="",value=f"남은 잔액 : {point}",inline=False)
+                embedVar22.add_field(name="계정 뽑기 일반",value="스킨 10~100개",inline=False)
+                await message.channel.send(embed=embedVar22)
+                await message.author.send(random.choice(allac))
+            else:
+                embedVar23 = discord.Embed(title="작액이 부족합니다.", color=0xff1100)
+                embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
+                embedVar23.add_field(name="",value=f"잔액 : {point}",inline=False)
+                await message.channel.send(embed=embedVar23)
+
+    
     if message.content.startswith('.gen'):
         if message.channel.id == 1084002292010856538:
             await message.channel.send('DM으로 계정이 전송되었습니다. 꼭 <#1078956269714559046>작성 부탁드립니다!')

@@ -167,6 +167,7 @@ async def on_message(message):
         user = message.author
         point = points.get(user.id, 0)
         await message.author.send(f'잔여 콘 : {point}C')
+        await message.delete()
 
     
     if message.content.startswith('.gen'):

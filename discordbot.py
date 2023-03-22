@@ -163,8 +163,10 @@ async def on_message(message):
             else:
                 embedVar23 = discord.Embed(title="작액이 부족합니다.", color=0xff1100)
                 embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
+                embedVar25 = discord.Embed(title="잔액", color=0xff1100)
+                embedVar25.add_field(name="",value=f"남은 잔액 : {point}",inline=False)
                 await message.channel.send(embed=embedVar23)
-                await message.channel.send(embed=embedVar24)
+                await message.channel.send(embed=embedVar25)
 
 
     

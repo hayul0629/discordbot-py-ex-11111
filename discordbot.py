@@ -156,13 +156,11 @@ async def on_message(message):
                 embedVar22.add_field(name="계정 뽑기 일반",value="스킨 10~100개",inline=False)
                 await message.channel.send(embed=embedVar22)
                 await message.author.send(random.choice(allac))
-                await message.delete()
             else:
-                embedVar23 = discord.Embed(title="작액이 부족합니다.", color=0xff1100)
+                embedVar23 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
                 embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
 
                 await message.channel.send(embed=embedVar23)
-                await message.delete()
     if message.content == '.c':
         user = message.author
         point = points.get(user.id, 0)

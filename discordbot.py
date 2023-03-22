@@ -166,7 +166,7 @@ async def on_message(message):
     if message.content == '.c':
         user = message.author
         point = points.get(user.id, 0)
-        await message.author.send(f'잔여 콘 : {point}C')
+        await message.author.send(f'잔여 콘 : **{point}**C')
         await message.delete()
 
     

@@ -150,7 +150,7 @@ async def on_message(message):
         point = points.get(user.id, 0)
         if message.channel.id == 1087869146114568374:
             if point >= 500:
-                points[user.id] -= 500
+                point -= 500
                 embedVar22 = discord.Embed(title="계정 뽑기 성공!", color=0x00ff26)
                 embedVar22.add_field(name="",value="DM으로 계정을 전송하였습니다.",inline=False)
                 embedVar22.add_field(name="",value=f"남은 잔액 : {point}",inline=False)

@@ -153,18 +153,21 @@ async def on_message(message):
                 points[user.id] -= 500
                 embedVar22 = discord.Embed(title="계정 뽑기 성공!", color=0x00ff26)
                 embedVar22.add_field(name="",value="DM으로 계정을 전송하였습니다.",inline=False)
-                embedVar22.add_field(name="",value=f"남은 잔액 : {point}",inline=False)
                 embedVar22.add_field(name="계정 뽑기 일반",value="스킨 10~100개",inline=False)
                 embedVar24 = discord.Embed(title="잔액", color=0x00ff26)
+                embedVar24.add_field(name="",value=f"남은 잔액 : {point}C",inline=False)
                 await message.channel.send(embed=embedVar22)
                 await message.channel.send(embed=embedVar24)
                 await message.author.send(random.choice(allac))
+                await message.delete()
             else:
                 embedVar23 = discord.Embed(title="작액이 부족합니다.", color=0xff1100)
                 embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
                 embedVar25 = discord.Embed(title="잔액", color=0xff1100)
+                embedVar25.add_field(name="",value=f"남은 잔액 : {point}C",inline=False)
                 await message.channel.send(embed=embedVar23)
                 await message.channel.send(embed=embedVar25)
+                await message.delete()
 
 
     

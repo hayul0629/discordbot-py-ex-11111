@@ -126,8 +126,6 @@ async def on_message(message):
                 await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 추가되었습니다. 현재 콘은 {points[member.id]}입니다.")
             else:
                 await message.channel.send("해당 명령어는 사용할 수 없습니다.")
-        else:
-            await message.channel.send("잘못된 명령어입니다.")
     if message.content.startswith('!d'):
         if len(message.content.split()) == 1:
             user = message.author

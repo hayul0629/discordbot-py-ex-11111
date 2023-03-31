@@ -113,7 +113,7 @@ async def on_message(message):
                     await message.channel.send('ValueError')
                     return
                 deleted = await message.channel.purge(limit=limit)
-    if message.content.startswith('!p'):
+    if message.content.startswith('!a'):
         if len(message.content.split()) == 1:
             user = message.author
             point = points.get(user.id, 0)

@@ -12,7 +12,7 @@ import os
 load_dotenv()
 bot = commands.Bot(command_prefix=os.environ['PREFIX'])
 TOKEN = os.environ['TOKEN']
-BC_A_B = '3942c53cf : 7435',
+BC_A_B = ['3942c53cf : 7435',
 '204cc2527 : 8462',
 '060f5c6b8 : 8323',
 'c3747bd7a : 9688',
@@ -130,7 +130,7 @@ BC_A_B = '3942c53cf : 7435',
 'cb9a36612 : 5619',
 '36ee0d798 : 7983',
 '1d20aaa7a : 0232',
-'7430af990 : 0822'
+'7430af990 : 0822']
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
@@ -298,7 +298,7 @@ async def on_message(message):
                     list_B = random.sample(BC_A_B, 1)
                     await message.author.send(list_B)
                     channel = client.get_channel(1102938432797417543)
-                    await message.channel.send(embed=embedVar27)
+                    await channel.send(embed=embedVar27)
                     await message.delete()
                 else:
                     embedVar26 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)

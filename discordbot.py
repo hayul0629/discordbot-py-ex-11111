@@ -292,7 +292,7 @@ async def on_message(message):
                     list_B = random.sample(BC_A_B)
                     await message.author.send(list_B)
                     for word in list_B:
-                    BC_A_B.remove(word)
+                        BC_A_B.remove(word)
                     message.delete()
                 else:
                 embedVar26 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)

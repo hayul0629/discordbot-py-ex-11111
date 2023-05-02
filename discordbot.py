@@ -172,7 +172,7 @@ ap6 = ['hoangtien1109:tien11092'] #80~100개
 ap7 = ['udayaraj7120:udayaraj7120'] #100~150개
 ap8 = ['제고가 없습니다. <@819436785998102548>에게 계정 추가요청을 해주세요.'] #150~200개
 ap9 = ['제고가 없습니다. <@819436785998102548>에게 계정 추가요청을 해주세요.'] #200개 이상
-allac = ['ghufranad:dedek2006',
+allac = 'ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
 'arunsuman:Drag@123',
@@ -206,7 +206,7 @@ allac = ['ghufranad:dedek2006',
 'naqiurejab:naqiurejab14','bossingian:awesomeian_69','choirulramzy:medhi0424',
 'killingmaniac55:Akshat@31','valorantbekar22:Vishal@1234',
 'igopokaarbos:secretpassword123?',
-'maverick0016:Divy1611@']
+'maverick0016:Divy1611@'
 points = {}
 client = discord.Client()
 sent_message = None

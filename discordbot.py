@@ -12,7 +12,7 @@ import os
 load_dotenv()
 bot = commands.Bot(command_prefix=os.environ['PREFIX'])
 TOKEN = os.environ['TOKEN']
-BC_A_B = ['3942c53cf : 7435',
+BC_A_B = '3942c53cf : 7435',
 '204cc2527 : 8462',
 '060f5c6b8 : 8323',
 'c3747bd7a : 9688',
@@ -130,7 +130,7 @@ BC_A_B = ['3942c53cf : 7435',
 'cb9a36612 : 5619',
 '36ee0d798 : 7983',
 '1d20aaa7a : 0232',
-'7430af990 : 0822']
+'7430af990 : 0822'
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
@@ -285,7 +285,7 @@ async def on_message(message):
             if point >= 3000:
                 if len(BC_A_B) > 0:
                     points[user.id] -= 3000
-                    bon_c = random.choice(1000, 2000)
+                    bon_c = random.randint(1000, 2000)
                     points[user.id] += int(bon_c)
                     embedVar27 = discord.Embed(title=f"{message.author.name}님 계정세트 B 구매", color=0x00ff26)
                     embedVar27.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 B 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)

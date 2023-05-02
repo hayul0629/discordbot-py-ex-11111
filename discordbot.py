@@ -291,16 +291,16 @@ async def on_message(message):
                     await message.author.send(embed=embedVar24)
                     list_B = random.sample(BC_A_B)
                     await message.author.send(list_B)
-                    message.delete()
+                    await message.delete()
                 else:
                     embedVar26 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
                     embedVar26.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다..\n바로 구매 : <#1078652866165743676>",inline=False)
-                    message.delete()
+                    await message.delete()
                     await message.author.send(embed=embedVar26)
             else:
                 embedVar25 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
                 embedVar25.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-                message.delete()
+                await message.delete()
                 await message.author.send(embed=embedVar25)
 
     if message.content == '.c':

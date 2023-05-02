@@ -278,31 +278,31 @@ async def on_message(message):
                 embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
 
                 await message.channel.send(embed=embedVar23)
-if message.content.startswith('.BCA-B'):
-    user = message.author
-    point = points.get(user.id, 0)
-    if message.channel.id == 1078960264059293696:
-        if point >= 2000:
-            if len(list_a) > 0:
-                points[user.id] -= 2000
-                embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
-                embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
-                embedVar24.add_field(name="계정 정보",value="__**계정 세트 B**__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
-                await message.author.send(embed=embedVar22)
-                list_B = random.sample(BC_A_B)
-                await message.author.send(list_B)
+    if message.content.startswith('.BCA-B'):
+        user = message.author
+        point = points.get(user.id, 0)
+        if message.channel.id == 1078960264059293696:
+            if point >= 2000:
+                if len(list_a) > 0:
+                    points[user.id] -= 2000
+                    embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
+                    embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
+                    embedVar24.add_field(name="계정 정보",value="__**계정 세트 B**__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
+                    await message.author.send(embed=embedVar22)
+                    list_B = random.sample(BC_A_B)
+                    await message.author.send(list_B)
 
-                message.delete()
+                    message.delete()
+                else:
+                    embedVar26 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
+                    embedVar26.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다..\n바로 구매 : <#1078652866165743676>",inline=False)
+                    message.delete()
+                    await message.author.send(embed=embedVar26)
             else:
-                embedVar26 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
-                embedVar26.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다..\n바로 구매 : <#1078652866165743676>",inline=False)
+                embedVar25 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
+                embedVar25.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
                 message.delete()
-                await message.author.send(embed=embedVar26)
-        else:
-            embedVar25 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
-            embedVar25.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-            message.delete()
-            await message.author.send(embed=embedVar25)
+                await message.author.send(embed=embedVar25)
 
     if message.content == '.c':
         user = message.author

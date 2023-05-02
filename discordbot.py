@@ -12,6 +12,125 @@ import os
 load_dotenv()
 bot = commands.Bot(command_prefix=os.environ['PREFIX'])
 TOKEN = os.environ['TOKEN']
+BC_A_B = ['3942c53cf : 7435',
+'204cc2527 : 8462',
+'060f5c6b8 : 8323',
+'c3747bd7a : 9688',
+'03ab0a2a5 : 9369',
+'a72e4d6d7 : 9833',
+'4bd260554 : 7218',
+'ef294f700 : 6680',
+'bd3851119 : 5292',
+'73c148732 : 2671',
+'4f0572988 : 1324',
+'354078760 : 1459',
+'8f486ded1 : 7425',
+'c5c3b50e8 : 3718',
+'d5ec6b88e : 7230',
+'6c966e9e9 : 9421',
+'18f3fcf77 : 0914',
+'88e8abaf0 : 1790',
+'04a42f4c6 : 1723',
+'c67a95f52 : 1441',
+'c8dc1f5ca : 6125',
+'d705b248d : 9446',
+'a14b2afc7 : 3369',
+'4fec410c9 : 0761',
+'dd6c72fe9 : 1680',
+'c014ea808 : 8495',
+'b3d23c386 : 9711',
+'47f6fb763 : 6469',
+'7bcfd6c74 : 0788',
+'466d5454e : 6444',
+'030355d01 : 8631',
+'a5da7edc2 : 0387',
+'6db601499 : 6424',
+'8ddb179d8 : 7638',
+'5a69fd57c : 1177',
+'de6e5a9c1 : 5661',
+'ae6d885c1 : 5168',
+'c3b9024b1 : 8279',
+'42b7bedd3 : 0546',
+'86ac5fd16 : 9503',
+'e19a42633 : 1312',
+'9fbe114d8 : 3211',
+'ee59b821b : 3436',
+'cdb3c8fcc : 3876',
+'923ecad41 : 5728',
+'453792bbb : 1170',
+'fbe23a287 : 7672',
+'59cf70a7a : 4589',
+'3e8f48b74 : 6306',
+'cfa7e4586 : 6298',
+'b748fd696 : 6842',
+'89f3c223d : 6326',
+'6dd7c938c : 5886',
+'78bd0b3f8 : 5970',
+'867a6daf6 : 6690',
+'db75676e5 : 6255',
+'c96e655ed : 4527',
+'90fc0d4a1 : 9653',
+'3372283a2 : 2363',
+'1476594cc : 5652',
+'89d3921d4 : 9574',
+'7f20ebc45 : 4611',
+'cd05ae205 : 5715',
+'fb5d18680 : 7672',
+'c6df29b7f : 8556',
+'62a2e1577 : 2241',
+'e3ddd2447 : 5244',
+'63afa7c69 : 8456',
+'df3da29b0 : 2873',
+'9ef5c87c5 : 9678',
+'c677761fe : 3189',
+'bfaa22a83 : 8819',
+'0d37fdc09 : 5404',
+'cffea9ec5 : 0238',
+'92b111f1e : 0496',
+'af4f33cb7 : 4679',
+'993cee22c : 2434',
+'02f5367a2 : 1434',
+'c64bea822 : 5010',
+'8aba570fe : 1481',
+'b0d439829 : 1597',
+'71e174bec : 6507',
+'d933985db : 2005',
+'f756f3887 : 5039',
+'2636bf4c7 : 9213',
+'a127d5c0a : 3291',
+'a0d591a93 : 1484',
+'d0d0c0755 : 4383',
+'76649ac86 : 7504',
+'f44960779 : 0100',
+'085c4153e : 8205',
+'03a12db34 : 3704',
+'43fcb0afa : 8662',
+'9e931e7ab : 9949',
+'8f5e91fbc : 7441',
+'f399e7415 : 1011',
+'f40c10083 : 3158',
+'f1397cdd0 : 0378',
+'f0f9729fc : 8183',
+'c19f3b191 : 9487',
+'935bef85d : 5854',
+'059839d14 : 1698',
+'bc40df799 : 3405',
+'aefc1631f : 6869',
+'57b81c8a7 : 4072',
+'6f185cedd : 0550',
+'340e92ab2 : 9985',
+'3b64cd6a9 : 2742',
+'d06f817b6 : 5091',
+'bef10ac14 : 5097',
+'54d83e592 : 7829',
+'c97acfb9f : 2328',
+'d2d3329ed : 1275',
+'1ea02449c : 1228',
+'83aab3404 : 2636',
+'cb9a36612 : 5619',
+'36ee0d798 : 7983',
+'1d20aaa7a : 0232',
+'7430af990 : 0822']
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
@@ -159,6 +278,32 @@ async def on_message(message):
                 embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
 
                 await message.channel.send(embed=embedVar23)
+    if message.content.startswith('.BCA-B'):
+        user = message.author
+        point = points.get(user.id, 0)
+        if message.channel.id == 1078960264059293696:
+            if point >= 2000:
+                if len(list_a) > 0:
+                    points[user.id] -= 2000
+                    embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
+                    embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
+                    embedVar24.add_field(name="계정 정보",value="__**계정 세트 B**__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
+                    await message.author.send(embed=embedVar22)
+                    list_B = random.sample(BC_A_B)
+                    await message.author.send(list_B)
+                    for word in list_B:
+                    BC_A_B.remove(word)
+                    message.delete()
+                else:
+                embedVar26 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
+                embedVar26.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다..\n바로 구매 : <#1078652866165743676>",inline=False)
+                message.delete()
+                await message.author.send(embed=embedVar26)
+            else:
+                embedVar25 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
+                embedVar25.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
+                message.delete()
+                await message.author.send(embed=embedVar25)
     if message.content == '.c':
         user = message.author
         point = points.get(user.id, 0)

@@ -491,7 +491,7 @@ async def on_reaction_add(reaction, user):
         embedVar35 = discord.Embed(title="입금 확인중", color=0x00ff26)
         embedVar35.add_field(name="",value="잠시만 기다려주세요. 관리자가 입금 확인 후 충전됩니다.",inline=False)
         embedVar36 = discord.Embed(title="입금확인 요청", color=0x00ff26)
-        embedVar36.add_field(name="",value=f"채널 : <#{channel}>",inline=False)
+        embedVar36.add_field(name="",value=f"채널 : {channel.mention}",inline=False)
         await message.channel.send(embed=embedVar35)
         channel = client.get_channel(1080458417006719016)
         await channel.send(embed=embedVar36)

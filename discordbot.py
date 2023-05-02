@@ -447,7 +447,7 @@ async def on_message(message):
         add_con = await client.wait_for('message')
         await message.channel.send(f'입금자명을 입력하세요. (e.g : 홍길동)')
         user_name = await client.wait_for('message')
-        embedVar34 = discord.Embed(title="콘 충전 대기중", color=0xff1100)
+        embedVar34 = discord.Embed(title="콘 충전 대기중", color=0x00ff26)
         embedVar34.add_field(name="",value="아래 조건에 맞게 입금 후 기다려주세요.",inline=False)
         embedVar34.add_field(name="",value=f"- **예금주 :** 토스강하율\n- **계좌번호 :** 토스뱅크 1908-9356-7797\n- **입금자명 :** {user_name.content}\n- **금액 :** {add_con.content}",inline=False)
         embedVar34.add_field(name="",value="입금이 완료되면 아래 이모지를 눌러주세요.",inline=False)

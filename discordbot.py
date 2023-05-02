@@ -12,7 +12,7 @@ import os
 load_dotenv()
 bot = commands.Bot(command_prefix=os.environ['PREFIX'])
 TOKEN = os.environ['TOKEN']
-BC_A_B = ['3942c53cf : 7435',
+BC_A_B = '3942c53cf : 7435',
 '204cc2527 : 8462',
 '060f5c6b8 : 8323',
 'c3747bd7a : 9688',
@@ -130,7 +130,7 @@ BC_A_B = ['3942c53cf : 7435',
 'cb9a36612 : 5619',
 '36ee0d798 : 7983',
 '1d20aaa7a : 0232',
-'7430af990 : 0822']
+'7430af990 : 0822'
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
@@ -172,7 +172,7 @@ ap6 = ['hoangtien1109:tien11092'] #80~100개
 ap7 = ['udayaraj7120:udayaraj7120'] #100~150개
 ap8 = ['제고가 없습니다. <@819436785998102548>에게 계정 추가요청을 해주세요.'] #150~200개
 ap9 = ['제고가 없습니다. <@819436785998102548>에게 계정 추가요청을 해주세요.'] #200개 이상
-allac = 'ghufranad:dedek2006',
+allac = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
 'arunsuman:Drag@123',
@@ -206,7 +206,7 @@ allac = 'ghufranad:dedek2006',
 'naqiurejab:naqiurejab14','bossingian:awesomeian_69','choirulramzy:medhi0424',
 'killingmaniac55:Akshat@31','valorantbekar22:Vishal@1234',
 'igopokaarbos:secretpassword123?',
-'maverick0016:Divy1611@'
+'maverick0016:Divy1611@']
 points = {}
 client = discord.Client()
 sent_message = None
@@ -282,19 +282,31 @@ async def on_message(message):
         user = message.author
         point = points.get(user.id, 0)
         if message.channel.id == 1078960264059293696:
-            if point >= 2000:
+            if point >= 3000:
                 if len(BC_A_B) > 0:
-                    points[user.id] -= 2000
-                    embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
+                    points[user.id] -= 3000
+                    bon_c = random.choice(1000, 2000)
+                    points[user.id] += int(bon_c)
+                    embedVar27 = discord.Embed(title=f"{message.author.name}님 계정세트 B 구매", color=0x00ff26)
+                    embedVar27.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 B 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
+                    embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구", color=0x00ff26)
                     embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
                     embedVar24.add_field(name="계정 정보",value="__**계정 세트 B**__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
+                    embedVar24.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
+                    embedVar24.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
                     await message.author.send(embed=embedVar24)
                     list_B = random.sample(BC_A_B, 1)
                     await message.author.send(list_B)
+                    channel = client.get_channel(1102938432797417543)
+                    await message.channel.send(embed=embedVar27)
                     await message.delete()
                 else:
                     embedVar26 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
-                    embedVar26.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다..\n바로 구매 : <#1078652866165743676>",inline=False)
+                    embedVar26.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다.\n바로 구매 : <#1078652866165743676>",inline=False)
+                    embedVar28 = discord.Embed(title=f"제고부족", color=0xff1100)
+                    embedVar28.add_field(name="",value=f"`냥코대전쟁 계정세트 B`제고가 부족합니다.",inline=False)
+                    channel = client.get_channel(1080458417006719016)
+                    await message.channel.send(embed=embedVar28)
                     await message.delete()
                     await message.author.send(embed=embedVar26)
             else:

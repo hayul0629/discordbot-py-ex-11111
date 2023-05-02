@@ -12,7 +12,7 @@ import os
 load_dotenv()
 bot = commands.Bot(command_prefix=os.environ['PREFIX'])
 TOKEN = os.environ['TOKEN']
-BC_A_B=['3942c53cf : 7435',
+BC_A_B = '3942c53cf : 7435',
         '204cc2527 : 8462',
         '060f5c6b8 : 8323',
         'c3747bd7a : 9688',
@@ -130,7 +130,7 @@ BC_A_B=['3942c53cf : 7435',
         'cb9a36612 : 5619',
         '36ee0d798 : 7983',
         '1d20aaa7a : 0232',
-        '7430af990 : 0822']
+        '7430af990 : 0822'
 VGEN = ['ghufranad:dedek2006',
 'unluckyme1:madhuroy1',
 'venitastah:15aug1995',
@@ -289,7 +289,7 @@ async def on_message(message):
                     points[user.id] += int(bon_c)
                     embedVar27 = discord.Embed(title=f"{message.author.name}님 계정세트 B 구매", color=0x00ff26)
                     embedVar27.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 B 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
-                    embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구", color=0x00ff26)
+                    embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
                     embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
                     embedVar24.add_field(name="계정 정보",value="__**계정 세트 B**__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
                     embedVar24.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)

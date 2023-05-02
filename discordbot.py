@@ -283,7 +283,7 @@ async def on_message(message):
         point = points.get(user.id, 0)
         if message.channel.id == 1078960264059293696:
             if point >= 2000:
-                if len(list_a) > 0:
+                if len(BC_A_B) > 0:
                     points[user.id] -= 2000
                     embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
                     embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)

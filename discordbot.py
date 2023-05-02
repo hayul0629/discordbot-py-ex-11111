@@ -289,7 +289,7 @@ async def on_message(message):
                     embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
                     embedVar24.add_field(name="계정 정보",value="__**계정 세트 B**__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
                     await message.author.send(embed=embedVar24)
-                    list_B = random.sample(BC_A_B)
+                    list_B = random.sample(BC_A_B, 1)
                     await message.author.send(list_B)
                     await message.delete()
                 else:

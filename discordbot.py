@@ -304,6 +304,8 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+    if message.channel.id == 1078960264059293696 and message.content not in [".BCA-B", ".BCA-A"]:
+        await message.delete()
     if message.content.startswith('!e'):
         if message.author.id == 819436785998102548:
             split = message.content.split()
@@ -362,7 +364,7 @@ async def on_message(message):
                 embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
 
                 await message.channel.send(embed=embedVar23)
-    if message.content.startswith('.bc-a'):
+    if message.content.startswith('.BCA-A'):
         user = message.author
         point = points.get(user.id, 0)
         if message.channel.id == 1078960264059293696:
@@ -399,7 +401,7 @@ async def on_message(message):
                 await message.delete()
                 await message.author.send(embed=embedVar33)
 
-    if message.content.startswith('.bc-b'):
+    if message.content.startswith('.BCA-B'):
         user = message.author
         point = points.get(user.id, 0)
         if message.channel.id == 1078960264059293696:

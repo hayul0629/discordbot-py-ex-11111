@@ -330,7 +330,6 @@ if message.content.startswith('.BCA-B'):
         embedVar12.add_field(name="",value="🏧 : 잔액 확인",inline=False)
         embedVar12.add_field(name="",value="🛑 : 오류 문의",inline=False)
         embedVar12.add_field(name="",value="❌ : 취소",  inline=False)      
-        global sent_message
         sent_message = await message.channel.send(embed=embedVar12)
         await sent_message.add_reaction('💵')
         await sent_message.add_reaction('💳')

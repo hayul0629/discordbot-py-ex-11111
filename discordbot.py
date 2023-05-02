@@ -12,6 +12,90 @@ import os
 load_dotenv()
 bot = commands.Bot(command_prefix=os.environ['PREFIX'])
 TOKEN = os.environ['TOKEN']
+BC_A_A = ["b8e6ddea3 : 8116",
+"116ef068c : 0977",
+"1ad4677ba : 6522",
+"f2beb1d46 : 5388",
+"3716b8bea : 2270",
+"df6fe773b : 0996",
+"23b838aee : 5895",
+"2f1b3714d : 6481",
+"c049a8c2a : 1468",
+"8b63703e4 : 0293",
+"1f47451fe : 3709",
+"c60ac1fe9 : 3173",
+"b7317ae14 : 9661",
+"c13fed08b : 2618",
+"36cb93685 : 6446",
+"f1d494c37 : 3765",
+"186175fd9 : 4829",
+"92ec1dd56 : 1223",
+"437d1e51b : 5770",
+"83f95d659 : 3998",
+"9b82b6d89 : 3965",
+"b49bc7e95 : 2447",
+"9a7184a7a : 7907",
+"8e62a1577 : 4917",
+"487170ac2 : 2573",
+"9fcea2186 : 8045",
+"b3e492521 : 4577",
+"11196c032 : 5553",
+"f5e4bcb2c : 1045",
+"ea1c14752 : 5037",
+"9f9ebe811 : 7647",
+"66474ec17 : 5378",
+"c99b32a38 : 0845",
+"3ee938c62 : 8828",
+"37fe48a21 : 2621",
+"4d4cc98f4 : 2823",
+"ad6ccf906 : 2190",
+"d6f84ce24 : 3919",
+"08170a1fa : 9365",
+"a0b0d2d39 : 6272",
+"a0b4f52ac : 4206",
+"682904b96 : 9984",
+"fbaefb2f1 : 2164",
+"e6035d824 : 9019",
+"bd94a978d : 3173",
+"1b8475094 : 3100",
+"9c0ecbfda : 7808",
+"6cb70e4e2 : 8600",
+"09c1faa6d : 3206",
+"5e9f42c04 : 2510",
+"dfb967e7e : 0313",
+"b2fe50390 : 8334",
+"d496f7f22 : 3633",
+"98ea56b20 : 2761",
+"85f9a3f16 : 8371",
+"fdd4aa24b : 8910",
+"fa521c71f : 6467",
+"ed6f7c4ab : 8162",
+"cfe2e4fea : 6113",
+"53bab1566 : 3144",
+"3ab2f9847 : 0663",
+"c88b00c8c : 1498",
+"e09bead5b : 3113",
+"5e1b9a989 : 5821",
+"cd1a5a11d : 2673",
+"fd0e12ad5 : 9139",
+"1d3b0c16a : 2145",
+"ecd37691b : 7716",
+"9f94660b7 : 9290",
+"4680c2aaa : 6219",
+"73e594cee : 7726",
+"467097799 : 7758",
+"65e078100 : 6182",
+"d660e1d18 : 4896",
+"d0b8c6cdb : 5779",
+"183fb8105 : 4893",
+"7ad3a7e7a : 5638",
+"761937c32 : 8893",
+"c4cca7cd2 : 3508",
+"4cda6b24d : 1942",
+"49ad9da99 : 8448",
+"d4f404662 : 6598",
+"f7d7c28b9 : 3373",
+"d99b0ed76 : 6606"]
 BC_A_B = ['3942c53cf : 7435',
         '204cc2527 : 8462',
         '060f5c6b8 : 8323',
@@ -278,7 +362,44 @@ async def on_message(message):
                 embedVar23.add_field(name="",value="<#1078652866165743676>에서 `.bu-v`명령어로 콘 충전 가능합니다.",inline=False)
 
                 await message.channel.send(embed=embedVar23)
-    if message.content.startswith('.BCA-B'):
+    if message.content.startswith('.bc-a'):
+        user = message.author
+        point = points.get(user.id, 0)
+        if message.channel.id == 1078960264059293696:
+            if point >= 2000:
+                if len(BC_A_B) > 0:
+                    points[user.id] -= 2000
+                    bon_c = random.randint(500, 1000)
+                    points[user.id] += int(bon_c)
+                    embedVar29 = discord.Embed(title=f"{message.author.name}님 계정세트 A 구매", color=0x00ff26)
+                    embedVar29.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 A 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
+                    embedVar30 = discord.Embed(title="냥코대전쟁 계정 세트 A 구매 성공", color=0x00ff26)
+                    embedVar30.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
+                    embedVar30.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클, 올보물",inline=False)
+                    embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
+                    embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
+                    await message.author.send(embed=embedVar30)
+                    list_A = random.sample(BC_A_A, 1)
+                    await message.author.send(list_A)
+                    channel = client.get_channel(1102938432797417543)
+                    await channel.send(embed=embedVar29)
+                    await message.delete()
+                else:
+                    embedVar31 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
+                    embedVar31.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다.\n바로 구매 : <#1078652866165743676>",inline=False)
+                    embedVar32 = discord.Embed(title=f"제고부족", color=0xff1100)
+                    embedVar32.add_field(name="",value=f"`냥코대전쟁 계정세트 A`제고가 부족합니다.",inline=False)
+                    channel = client.get_channel(1080458417006719016)
+                    await message.channel.send(embed=embedVar32)
+                    await message.author.send(embed=embedVar31)
+                    await message.delete()
+            else:
+                embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
+                embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
+                await message.delete()
+                await message.author.send(embed=embedVar33)
+
+    if message.content.startswith('.bc-b'):
         user = message.author
         point = points.get(user.id, 0)
         if message.channel.id == 1078960264059293696:
@@ -291,7 +412,7 @@ async def on_message(message):
                     embedVar27.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 B 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
                     embedVar24 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
                     embedVar24.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
-                    embedVar24.add_field(name="계정 정보",value="__**계정 세트 B**__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
+                    embedVar24.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
                     embedVar24.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
                     embedVar24.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
                     await message.author.send(embed=embedVar24)
@@ -320,7 +441,18 @@ async def on_message(message):
         point = points.get(user.id, 0)
         await message.author.send(f'잔여 콘 : **{point}**C')
         await message.delete()
-
+        
+    if message.channel.category_id == 1078628991969267802 and message.content == '.con':
+        await message.channel.send(f'충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)')
+        add_con = await client.wait_for('message')
+        await message.channel.send(f'입금자명을 입력하세요. (e.g : 홍길동)')
+        user_name = await client.wait_for('message')
+        embedVar34 = discord.Embed(title="콘 충전 대기중", color=0xff1100)
+        embedVar34.add_field(name="",value="아래 조건에 맞게 입금 후 기다려주세요.",inline=False)
+        embedVar34.add_field(name="",value=f"- **예금주 :** 토스강하율\n- **계좌번호 :** 토스뱅크 1908-9356-7797\n- **입금자명 :** {user_name}\n- **금액 :** {add_con}",inline=False)
+        embedVar34.add_field(name="",value="입금이 완료되면 아래 이모지를 눌러주세요.",inline=False)
+        conmsg = await message.channel.send(embed=embedVar34)
+        await conmsg.add_reaction('✔')
     
     if message.content.startswith('.gen'):
         if message.channel.id == 1084002292010856538:
@@ -352,6 +484,15 @@ async def on_reaction_add(reaction, user):
     uid = await client.fetch_user(user.id)
     if user.bot:
         return
+    if reaction.emoji == '✔':
+        embedVar35 = discord.Embed(title="입금 확인중", color=0x00ff26)
+        embedVar35.add_field(name="",value="잠시만 기다려주세요. 관리자가 입금 확인 후 충전됩니다.",inline=False)
+        embedVar36 = discord.Embed(title="입금확인 요청", color=0x00ff26)
+        embedVar36.add_field(name="",value=f"채널 : <#{channel.id}>",inline=False)
+        await message.channel.send(embed=embedVar35)
+        channel = client.get_channel(1080458417006719016)
+        await channel.send(embed=embedVar36)
+
 
 
     if reaction.emoji == '💵':

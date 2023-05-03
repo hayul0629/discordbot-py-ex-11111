@@ -329,8 +329,7 @@ async def on_message(message):
                 amount = int(message.content.split()[1])
                 member = message.mentions[0]
                 points[member.id] = points.get(member.id, 0) + amount
-                ans1 = await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 추가되었습니다. 현재 콘은 {points[member.id]}입니다.")
-                await ans1.delete()
+                await message.channel.send(f"{member.name}님에게 {amount}c를 추가하였습니다.(잔여 :{points[member.id]}c)")
     if message.content.startswith('!d'):
         if len(message.content.split()) == 1:
             user = message.author

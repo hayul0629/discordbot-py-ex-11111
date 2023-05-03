@@ -319,6 +319,7 @@ async def on_message(message):
                     return
                 deleted = await message.channel.purge(limit=limit)
     if message.content.startswith('!a'):
+        await message.delete()
         if len(message.content.split()) == 1:
             user = message.author
             point = points.get(user.id, 0)
@@ -328,9 +329,8 @@ async def on_message(message):
                 amount = int(message.content.split()[1])
                 member = message.mentions[0]
                 points[member.id] = points.get(member.id, 0) + amount
-                ans = await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 추가되었습니다. 현재 콘은 {points[member.id]}입니다.")
-                await ans.delete()
-                await messgae.delete()
+                ans1 = await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 추가되었습니다. 현재 콘은 {points[member.id]}입니다.")
+                await ans1.delete()
     if message.content.startswith('!d'):
         if len(message.content.split()) == 1:
             user = message.author

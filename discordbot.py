@@ -312,7 +312,7 @@ async def on_message(message):
             if len(split) == 2 and split[0] == '!e':
                 try:
                     limit = int(split[1])
-                    if limit < 1 or limit > 100:
+                    if limit < 1 or limit > 1000:
                         raise ValueError
                 except ValueError:
                     await message.channel.send('ValueError')
@@ -328,9 +328,9 @@ async def on_message(message):
                 amount = int(message.content.split()[1])
                 member = message.mentions[0]
                 points[member.id] = points.get(member.id, 0) + amount
-                await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 추가되었습니다. 현재 콘은 {points[member.id]}입니다.")
-            else:
-                await message.channel.send("해당 명령어는 사용할 수 없습니다.")
+                ans = await message.channel.send(f"{member.name}님의 콘이 {amount}만큼 추가되었습니다. 현재 콘은 {points[member.id]}입니다.")
+                await ans.delete()
+                await messgae.delete()
     if message.content.startswith('!d'):
         if len(message.content.split()) == 1:
             user = message.author

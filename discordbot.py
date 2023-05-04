@@ -482,7 +482,7 @@ async def on_reaction_add(reaction, user):
                 else:
                     embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
                     embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-                        await message.author.send(embed=embedVar33)
+                    await message.author.send(embed=embedVar33)
             elif str(reaction.emoji) == '❌':
                 embedVar33 = discord.Embed(title="구매 취소", color=0xff1100)
                 embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 A** 구매가 취소되었습니다.",inline=False)
@@ -537,7 +537,7 @@ async def on_reaction_add(reaction, user):
                 else:
                     embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
                     embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-                        await message.author.send(embed=embedVar33)
+                    await message.author.send(embed=embedVar33)
             elif str(reaction.emoji) == '❌':
                 embedVar33 = discord.Embed(title="구매 취소", color=0xff1100)
                 embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 B** 구매가 취소되었습니다.",inline=False)                

@@ -915,18 +915,15 @@ async def on_reaction_add(reaction, user):
             await sent_message.add_reaction('❌')
     def check(res):
         return res.user == message.author and res.channel == message.channel and res.component.label in ["test", "here"]
-    # 사용자가 버튼을 클릭하면 반환되는 응답을 확인하는 함수입니다.
 
-    try:
-        res = await client.wait_for("button_click", check=check)
-        # 사용자가 버튼을 클릭하면 응답을 받습니다.
-        if res.component.label == "test":
-            await res.respond(content="test button is clicked!")
-            # 'test' 버튼을 클릭하면 'test button is clicked!'이라는 메시지를 보냅니다.
-        elif res.component.label == "here":
-            await res.respond(content="hello?")
-        
 try:
-    client.run(TOKEN)
+    res = await client.wait_for("button_click", timeout=15.0, check=check)
+    # 사용자가 버튼을 클릭하면 응답을 받습니다.
+    if res.component.label == "test":
+        await res.respond(content="test button is clicked!")
+        # 'test' 버튼을 클릭하면 'test button is clicked!'이라는 메시지를 보냅니다.
+    elif res.component.label == "here":
+        await res.respond(content="hello?")
+        client.run(TOKEN)
 except discord.errors.LoginFailure as e:
     print("Improper token has been passed.")

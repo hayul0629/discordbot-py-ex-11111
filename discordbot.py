@@ -3,6 +3,8 @@ from distutils.sysconfig import PREFIX
 import discord
 import asyncio
 import random
+from discord_buttons_plugin import *
+
 from time import sleep
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -486,7 +488,12 @@ async def on_message(message):
         await sent_message.add_reaction('🛑')
         await sent_message.add_reaction('❌')
         await message.delete()
-
+@client.event
+async def on_button_click(res):
+    if res.component.label == "test":
+        await res.respond(type=6, content="test button is clicked!")
+    elif res.component.label == "here":
+        await res.respond(type=6, content="hello?")
 @client.event
 async def on_reaction_add(reaction, user):
     uid = await client.fetch_user(user.id)

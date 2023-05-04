@@ -3,7 +3,6 @@ from distutils.sysconfig import PREFIX
 import discord
 import asyncio
 import random
-from discord_buttons_plugin import *
 from discord.ui import Button, View
 from discord import ButtonStyle, Message
 from time import sleep

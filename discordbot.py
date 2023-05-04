@@ -310,7 +310,26 @@ async def on_message(message):
         await message.delete()
     if message.channel.id == 1078960264059293696 and message.content == '!구매':
         if message.author.id == 819436785998102548:
-                await message.channel.send("click button!", components=[Button(style=ButtonStyle.green, label="test"), Button(style=ButtonStyle.red, label="here")])
+                # 'test'라는 글씨와 'here'라는 글씨의 버튼을 만듭니다.
+            buttons = [
+                Button(style=ButtonStyle.blue, label="test"),
+                Button(style=ButtonStyle.red, label="here")
+            ]
+        # 버튼이 있는 메시지를 보냅니다.
+            sent_msg = await message.channel.send(
+                content="click button!",
+                components=[buttons]
+            )
+        # 버튼을 누르면 실행될 함수를 정의합니다.
+            def check(res):
+                return res.user == message.author and res.message.id == sent_msg.id
+        # 버튼을 기다립니다.
+            res = await client.wait_for("button_click", check=check)
+        # 버튼의 label에 따라 다른 메시지를 보냅니다.
+            if res.component.label == "test":
+                await res.respond(content="test button is clicked!", type=InteractionType.ChannelMessageWithSource)
+            elif res.component.label == "here":
+                await res.respond(content="hello?", type=InteractionType.ChannelMessageWithSource)
     if message.content.startswith('!e'):
         if message.author.id == 819436785998102548:
             split = message.content.split()
@@ -913,15 +932,8 @@ async def on_reaction_add(reaction, user):
             await sent_message.add_reaction('🏧')
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')
-def check(res):
-    return res.user == message.author and res.channel == message.channel and res.component.label in ["test", "here"]
     
 try:
-    res = await client.wait_for("button_click", timeout=15.0, check=check)
-    # 사용자가 버튼을 클릭하면 응답을 받습니다.
-    if res.component.label == "test":
-        await res.respond(content="test button is clicked!")
-        # 'test' 버튼을 클릭하면 'test button is clicked!'이라는 메시지를 보냅니다.
-    elif res.component.label == "here":
-        await res.respond(content="hello?")
-        client.run(TOKEN)
+    client.run(TOKEN)
+except discord.errors.LoginFailure as e:
+    print("Improper token has been passed.")

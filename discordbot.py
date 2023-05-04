@@ -299,7 +299,6 @@ name1 = 0
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
-    DiscordComponents(client)
 
 @client.event
 async def on_message(message):

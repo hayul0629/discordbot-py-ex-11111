@@ -2,6 +2,7 @@ from cmath import log
 from distutils.sysconfig import PREFIX
 import discord
 import asyncio
+from discord_buttons_plugin import *
 import random
 from time import sleep
 from dotenv import load_dotenv
@@ -308,7 +309,9 @@ async def on_message(message):
         await message.delete()
     if message.channel.id == 1078960264059293696 and message.content == '!구매':
         if message.author.id == 819436785998102548:
-            await message.channel.send("z")
+                button1 = Button(style=ButtonStyle.blue, label="test")
+                button2 = Button(style=ButtonStyle.green, label="here")
+                await message.channel.send("click button!", components=[[button1, button2]])
 
     if message.content.startswith('!e'):
         if message.author.id == 819436785998102548:
@@ -484,6 +487,12 @@ async def on_message(message):
         await sent_message.add_reaction('🛑')
         await sent_message.add_reaction('❌')
         await message.delete()
+@client.event
+async def on_button_click(res):
+    if res.component.label == "test":
+        await res.respond(type=6, content="test button is clicked!")
+    elif res.component.label == "here":
+        await res.respond(type=6, content="hello?")
 @client.event
 async def on_reaction_add(reaction, user):
     uid = await client.fetch_user(user.id)

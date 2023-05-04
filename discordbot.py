@@ -4,7 +4,8 @@ import discord
 import asyncio
 import random
 from discord_buttons_plugin import *
-
+from discord.ui import Button, View
+from discord import ButtonStyle, Message
 from time import sleep
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -298,6 +299,17 @@ client = discord.Client()
 sent_message = None
 amount2 = 0
 name1 = 0
+class ButtonView(View):
+    def __init__(self):
+        super().__init__()
+        self.add_item(Button(label="버튼1", style=ButtonStyle.green, custom_id="button1"))
+        self.add_item(Button(label="버튼2", style=ButtonStyle.red, custom_id="button2"))
+
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if interaction.user.id == self.context.author.id:
+            return True
+        await interaction.response.send_message("이 버튼은 당신에게 쓰인 것이 아닙니다.", ephemeral=True)
+        return False
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
@@ -308,11 +320,9 @@ async def on_message(message):
         return
     if message.channel.id == 1078960264059293696 and message.content not in [".BCA-B", ".BCA-A"]:
         await message.delete()
-    if message.channel.id == 1078960264059293696 and message.content == '!구매':
-        if message.author.id == 819436785998102548:
-                button1 = Button(style=ButtonStyle.blue, label="test")
-                button2 = Button(style=ButtonStyle.green, label="here")
-                await message.channel.send("click button!", components=[[button1, button2]])
+    if message.content == ".버튼":
+        view = ButtonView()
+        await message.channel.send("버튼을 선택해주세요.", view=view)
 
     if message.content.startswith('!e'):
         if message.author.id == 819436785998102548:

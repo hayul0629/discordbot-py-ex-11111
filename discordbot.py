@@ -913,9 +913,9 @@ async def on_reaction_add(reaction, user):
             await sent_message.add_reaction('🏧')
             await sent_message.add_reaction('⬅️')
             await sent_message.add_reaction('❌')
-    def check(res):
-        return res.user == message.author and res.channel == message.channel and res.component.label in ["test", "here"]
-
+def check(res):
+    return res.user == message.author and res.channel == message.channel and res.component.label in ["test", "here"]
+    
 try:
     res = await client.wait_for("button_click", timeout=15.0, check=check)
     # 사용자가 버튼을 클릭하면 응답을 받습니다.
@@ -925,5 +925,3 @@ try:
     elif res.component.label == "here":
         await res.respond(content="hello?")
         client.run(TOKEN)
-except discord.errors.LoginFailure as e:
-    print("Improper token has been passed.")

@@ -421,17 +421,9 @@ async def on_message(message):
         await accby_msg.add_reaction('🅱')
         await message.delete()
 @client.event
-async def on_reaction_add(reaction, user, payload):
+async def on_reaction_add(reaction, user):
     uid = await client.fetch_user(user.id)
-    t_channel_id = payload.channel_id
-    t_message_id = payload.message_id
 
-    # 이모지 추가한 사용자
-    t_user_id = payload.user_id
-    t_user = await client.fetch_user(user_id)
-
-    # 이모지
-    t_emoji = str(payload.emoji)
     if user.bot:
         return
     if reaction.emoji == '✔':
@@ -447,12 +439,10 @@ async def on_reaction_add(reaction, user, payload):
         await channel.send(embed=embedVar36)
 
     if reaction.emoji == '🅰':
-        tchannel = await client.fetch_channel(channel_id)
-        tmessage = await channel.fetch_message(message_id)
-        await tmessage.clear_reactions()
+        await accby_msg.clear_reactions()
         embedVar38 = discord.Embed(title="계정세트 A 구매", color=0x00ff26)
         embedVar38.add_field(name="",value="구매하시겠습니까?",inline=False)
-        ans = await tmessage.author.send(embed=embedVar38)
+        ans = await user.send(embed=embedVar38)
         await accby_msg.add_reaction('🅰')
         await accby_msg.add_reaction('🅱')        
         await ans.add_reaction('⭕')
@@ -466,7 +456,7 @@ async def on_reaction_add(reaction, user, payload):
         except asyncio.TimeoutError:
             embedVar16 = discord.Embed(title="Error", color=0xff1100)
             embedVar16.add_field(name="",value=f"시간이 초과되었습니다. 다시 시도해주세요.",inline=False)                
-            await tmessage.author.send(embed=embedVar16)
+            await user.send(embed=embedVar16)
         else:
             if str(reaction.emoji) == '⭕':
                 user = message.author
@@ -483,9 +473,9 @@ async def on_reaction_add(reaction, user, payload):
                         embedVar30.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클, 올보물",inline=False)
                         embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
                         embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
-                        await tmessage.author.send(embed=embedVar30)
+                        await user.send(embed=embedVar30)
                         list_A = random.sample(BC_A_A, 1)
-                        await tmessage.author.send(list_A)
+                        await user.send(list_A)
                         channel = client.get_channel(1102938432797417543)
                         await channel.send(embed=embedVar29)
                     else:
@@ -495,24 +485,23 @@ async def on_reaction_add(reaction, user, payload):
                         embedVar32.add_field(name="",value=f"`냥코대전쟁 계정세트 A`제고가 부족합니다.",inline=False)
                         channel = client.get_channel(1080458417006719016)
                         await channel.send(embed=embedVar32)
-                        await tmessage.author.send(embed=embedVar31)
+                        await user.send(embed=embedVar31)
                 else:
                     embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
                     embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-                    await tmessage.author.send(embed=embedVar33)
+                    await user.send(embed=embedVar33)
             elif str(reaction.emoji) == '❌':
                 embedVar33 = discord.Embed(title="구매 취소", color=0xff1100)
                 embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 A** 구매가 취소되었습니다.",inline=False)
+                await user.send(embed=embedVar33)
 
                         
                         
     if reaction.emoji == '🅱️':
-        tchannel = await client.fetch_channel(channel_id)
-        tmessage = await channel.fetch_message(message_id)
-        await tmessage.clear_reactions()
+        await accby_msg.clear_reactions()
         embedVar38 = discord.Embed(title="계정세트 B 구매", color=0x00ff26)
         embedVar38.add_field(name="",value="구매하시겠습니까?",inline=False)
-        ans = await tmessage.author.send(embed=embedVar38)
+        ans = await user.send(embed=embedVar38)
         await accby_msg.add_reaction('🅰')
         await accby_msg.add_reaction('🅱')        
         await ans.add_reaction('⭕')
@@ -526,7 +515,7 @@ async def on_reaction_add(reaction, user, payload):
         except asyncio.TimeoutError:
             embedVar16 = discord.Embed(title="Error", color=0xff1100)
             embedVar16.add_field(name="",value=f"시간이 초과되었습니다. 다시 시도해주세요.",inline=False)                
-            await tmessage.author.send(embed=embedVar16)
+            await user.send(embed=embedVar16)
         else:
             if str(reaction.emoji) == '⭕':
                 user = message.author
@@ -543,9 +532,9 @@ async def on_reaction_add(reaction, user, payload):
                         embedVar30.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
                         embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
                         embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
-                        await tmessage.author.send(embed=embedVar30)
+                        await user.send(embed=embedVar30)
                         list_B = random.sample(BC_A_B, 1)
-                        await tmessage.author.send(list_B)
+                        await user.send(list_B)
                         channel = client.get_channel(1102938432797417543)
                         await channel.send(embed=embedVar29)
                     else:
@@ -555,14 +544,15 @@ async def on_reaction_add(reaction, user, payload):
                         embedVar32.add_field(name="",value=f"`냥코대전쟁 계정세트 B`제고가 부족합니다.",inline=False)
                         channel = client.get_channel(1080458417006719016)
                         await channel.send(embed=embedVar32)
-                        await tmessage.author.send(embed=embedVar31)
+                        await user.send(embed=embedVar31)
                 else:
                     embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
                     embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-                    await tmessage.author.send(embed=embedVar33)
+                    await user.send(embed=embedVar33)
             elif str(reaction.emoji) == '❌':
                 embedVar33 = discord.Embed(title="구매 취소", color=0xff1100)
-                embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 B** 구매가 취소되었습니다.",inline=False)                
+                embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 B** 구매가 취소되었습니다.",inline=False)    
+                await user.send(embed=embedVar33)
     if reaction.emoji == '💵':
         point = points.get(user.id, 0)
         embedVar16 = discord.Embed(title="Error", color=0xff1100)

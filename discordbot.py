@@ -294,7 +294,6 @@ allac = ['ghufranad:dedek2006',
 points = {}
 client = discord.Client()
 sent_message = None
-accby_msg = None
 amount2 = 0
 name1 = 0
 @client.event
@@ -305,13 +304,7 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content == ".계정구매":
-        embedVar37 = discord.Embed(title="냥코대전쟁 계정 구매", color=0x00ff26)
-        embedVar37.add_field(name="",value="- **계정 세트**는 __이모지 상호작용__으로 구매 가능합니다.```🅰 : 계정 세트 A 구매```**: (2000C)**```🅱 : 계정 세트 B 구매```**: (3000C)**",inline=False)
-        embedVar37.add_field(name="추가옵션&콘(C)충전 안내",value="- **계정 미리보기 :** <#1078830400304066640>\n- **옵션표 :** <#1079005959873110076>\n▶ *옵션 사용시 주문제작으로 간주하므로 <#1078652866165743676>에서 문의주세요.\n\n**예시 :**```계정 세트 B + NP/본능옥```",inline=False)
-        accby_msg = await message.channel.send(embed=embedVar37)
-        await accby_msg.add_reaction('🅰')
-        await accby_msg.add_reaction('🅱')
+
     if message.content.startswith('!e'):
         if message.author.id == 819436785998102548:
             split = message.content.split()
@@ -416,6 +409,17 @@ async def on_message(message):
         await sent_message.add_reaction('🛑')
         await sent_message.add_reaction('❌')
         await message.delete()
+        
+        
+    if message.content == ".계정구매":
+        embedVar37 = discord.Embed(title="냥코대전쟁 계정 구매", color=0x00ff26)
+        embedVar37.add_field(name="",value="- **계정 세트**는 __이모지 상호작용__으로 구매 가능합니다.```🅰 : 계정 세트 A 구매```**: (2000C)**```🅱 : 계정 세트 B 구매```**: (3000C)**",inline=False)
+        embedVar37.add_field(name="추가옵션&콘(C)충전 안내",value="- **계정 미리보기 :** <#1078830400304066640>\n- **옵션표 :** <#1079005959873110076>\n▶ *옵션 사용시 주문제작으로 간주하므로 <#1078652866165743676>에서 문의주세요.\n\n**예시 :**```계정 세트 B + NP/본능옥```",inline=False)
+        global accby_msg
+        accby_msg = await message.channel.send(embed=embedVar37)
+        await accby_msg.add_reaction('🅰')
+        await accby_msg.add_reaction('🅱')
+        await message.delete()
 @client.event
 async def on_reaction_add(reaction, user):
     uid = await client.fetch_user(user.id)
@@ -434,12 +438,12 @@ async def on_reaction_add(reaction, user):
         await channel.send(embed=embedVar36)
 
     if reaction.emoji == '🅰':
-        await accby_msg.clear_reactions()
-        await accby_msg.add_reaction('🅰')
-        await accby_msg.add_reaction('🅱')
         embedVar38 = discord.Embed(title="계정세트 A 구매", color=0x00ff26)
         embedVar38.add_field(name="",value="구매하시겠습니까?",inline=False)
         ans = await message.author.send(embed=embedVar38)
+        await accby_msg.clear_reactions()
+        await accby_msg.add_reaction('🅰')
+        await accby_msg.add_reaction('🅱')        
         await ans.add_reaction('⭕')
         await ans.add_reaction('❌')
         try:
@@ -492,12 +496,13 @@ async def on_reaction_add(reaction, user):
                         
                         
     if reaction.emoji == '🅱️':
-        await accby_msg.clear_reactions()
-        await accby_msg.add_reaction('🅰')
-        await accby_msg.add_reaction('🅱')        
+
         embedVar38 = discord.Embed(title="계정세트 B 구매", color=0x00ff26)
         embedVar38.add_field(name="",value="구매하시겠습니까?",inline=False)
         ans = await message.author.send(embed=embedVar38)
+        await accby_msg.clear_reactions()
+        await accby_msg.add_reaction('🅰')
+        await accby_msg.add_reaction('🅱')        
         await ans.add_reaction('⭕')
         await ans.add_reaction('❌')
         try:

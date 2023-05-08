@@ -372,17 +372,24 @@ async def on_message(message):
         await message.author.send(f'잔여 콘 : **{point}**C')
         await message.delete()
         
-    if message.channel.category_id == 1078628991969267802 and message.content == '.con':
-        await message.channel.send(f'충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)')
-        add_con = await client.wait_for('message')
-        await message.channel.send(f'입금자명을 입력하세요. (e.g : 홍길동)')
-        user_name = await client.wait_for('message')
-        embedVar34 = discord.Embed(title="콘 충전 대기중", color=0x00ff26)
-        embedVar34.add_field(name="",value="아래 조건에 맞게 입금 후 기다려주세요.",inline=False)
-        embedVar34.add_field(name="",value=f"- **예금주 :** 토스강하율\n- **계좌번호 :** 토스뱅크 1908-9356-7797\n- **입금자명 :** {user_name.content}\n- **금액 :** {add_con.content}",inline=False)
-        embedVar34.add_field(name="",value="입금이 완료되면 아래 이모지를 눌러주세요.",inline=False)
-        conmsg = await message.channel.send(embed=embedVar34)
-        await conmsg.add_reaction('✔')
+    if message.channel.category_id == 1078628991969267802 and message.content.startswith('.con'):
+        if message.content == '.con':
+            await message.channel.send(f'충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)')
+            add_con = await client.wait_for('message')
+            await message.channel.send(f'입금자명을 입력하세요. (e.g : 홍길동)')
+            user_name = await client.wait_for('message')
+            embedVar34 = discord.Embed(title="콘 충전 대기중", color=0x00ff26)
+            embedVar34.add_field(name="",value="아래 조건에 맞게 입금 후 기다려주세요.",inline=False)
+            embedVar34.add_field(name="",value=f"- **예금주 :** 토스강하율\n- **계좌번호 :** 토스뱅크 1908-9356-7797\n- **입금자명 :** {user_name.content}\n- **금액 :** {add_con.content}",inline=False)
+            embedVar34.add_field(name="",value="입금이 완료되면 아래 이모지를 눌러주세요.",inline=False)
+            conmsg = await message.channel.send(embed=embedVar34)
+            await conmsg.add_reaction('✔')
+        else:
+            embedVar35 = discord.Embed(title="콘 충전 사용법", color=0x00ff26)
+            embedVar35.add_field(name="예시",value="```.con```**> 충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)**```5000```**> 입금자명을 입력하세요. (e.g : 홍길동)**```아무개```**> [콘 충전 임베드]**\n* __입금 완료후, '✔'이모지 반응 완료시 확인 후 콘 충전됩니다(관리자가 직접 확인)__,inline=False)
+            embedVar35.add_field(name="",value=f"- **예금주 :** 토스강하율\n- **계좌번호 :** 토스뱅크 1908-9356-7797\n- **입금자명 :** {user_name.content}\n- **금액 :** {add_con.content}",inline=False)
+            embedVar35.add_field(name="",value="입금이 완료되면 아래 이모지를 눌러주세요.",inline=False)
+            conmsg = await message.channel.send(embed=embedVar34)
     
     if message.content.startswith('.gen'):
         if message.channel.id == 1084002292010856538:
@@ -440,117 +447,77 @@ async def on_reaction_add(reaction, user):
     
     if reaction.emoji == '🅰':
         await accby_msg.clear_reactions()
-        embedVar38 = discord.Embed(title="계정세트 A 구매", color=0x00ff26)
-        embedVar38.add_field(name="",value="구매하시겠습니까?",inline=False)
-        ans = await user.send(embed=embedVar38)
         await accby_msg.add_reaction('🅰')
         await accby_msg.add_reaction('🅱')
-    
-        try:
-            reaction, user = await client.wait_for(
-                'reaction_add',
-                check=lambda r, u: u == user and str(r.emoji) in ['⭕', '❌'],
-                timeout=15.0
-            )
-            if str(reaction.emoji) == '⭕':
-                user = message.author
-                point = points.get(user.id, 0)
-                if point >= 2000:
-                    if len(BC_A_B) > 0:
-                        points[user.id] -= 2000
-                        bon_c = random.randint(500, 1000)
-                        points[user.id] += int(bon_c)
-                        embedVar29 = discord.Embed(title=f"{message.author.name}님 계정세트 A 구매", color=0x00ff26)
-                        embedVar29.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 A 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
-                        embedVar30 = discord.Embed(title="냥코대전쟁 계정 세트 A 구매 성공", color=0x00ff26)
-                        embedVar30.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
-                        embedVar30.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클, 올보물",inline=False)
-                        embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
-                        embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
-                        await user.send(embed=embedVar30)
-                        list_A = random.sample(BC_A_A, 1)
-                        BC_A_A.remove(list_A)
-                        await user.send(list_A)
-                        channel = client.get_channel(1102938432797417543)
-                        await channel.send(embed=embedVar29)
-                    else:
-                        embedVar31 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
-                        embedVar31.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다.\n바로 구매 : <#1078652866165743676>",inline=False)
-                        embedVar32 = discord.Embed(title=f"제고부족", color=0xff1100)
-                        embedVar32.add_field(name="",value=f"`냥코대전쟁 계정세트 A`제고가 부족합니다.",inline=False)
-                        channel = client.get_channel(1080458417006719016)
-                        await channel.send(embed=embedVar32)
-                        await user.send(embed=embedVar31)
-                else:
-                    embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
-                    embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-                    await user.send(embed=embedVar33)
-            if str(reaction.emoji) == '❌':
-                embedVar33 = discord.Embed(title="구매 취소", color=0xff1100)
-                embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 A** 구매가 취소되었습니다.",inline=False)
-                await user.send(embed=embedVar33)
-        except asyncio.TimeoutError:
-            embedVar39 = discord.Embed(title="Timeout", color=0x00ff26)
-            embedVar39.add_field(name="",value="시간이 초과되었습니다.",inline=False)
-            await user.send(embed=embedVar39)
-                        
-                        
+        user = message.author
+        point = points.get(user.id, 0)
+        if point >= 2000:
+            if len(BC_A_B) > 0:
+                points[user.id] -= 2000
+                bon_c = random.randint(500, 1000)
+                points[user.id] += int(bon_c)
+                embedVar29 = discord.Embed(title=f"{message.author.name}님 계정세트 A 구매", color=0x00ff26)
+                embedVar29.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 A 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
+                embedVar30 = discord.Embed(title="냥코대전쟁 계정 세트 A 구매 성공", color=0x00ff26)
+                embedVar30.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
+                embedVar30.add_field(name="계정 정보",value="__계정 세트 A__\n리스타트팩, 올냥, 올강, 올클, 올보물",inline=False)
+                embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
+                embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
+                await user.send(embed=embedVar30)
+                list_A = random.sample(BC_A_A, 1)
+                BC_A_A.remove(list_A)
+                await user.send(list_A)
+                channel = client.get_channel(1102938432797417543)
+                await channel.send(embed=embedVar29)
+            else:
+                embedVar31 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
+                embedVar31.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다.\n바로 구매 : <#1078652866165743676>",inline=False)
+                embedVar32 = discord.Embed(title=f"제고부족", color=0xff1100)
+                embedVar32.add_field(name="",value=f"`냥코대전쟁 계정세트 A`제고가 부족합니다.",inline=False)
+                channel = client.get_channel(1080458417006719016)
+                await channel.send(embed=embedVar32)
+                await user.send(embed=embedVar31)
+        else:
+            embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
+            embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
+            await user.send(embed=embedVar33)
                         
     if reaction.emoji == '🅱️':
         await accby_msg.clear_reactions()
-        embedVar38 = discord.Embed(title="계정세트 B 구매", color=0x00ff26)
-        embedVar38.add_field(name="",value="구매하시겠습니까?",inline=False)
-        ans = await user.send(embed=embedVar38)
         await accby_msg.add_reaction('🅰')
         await accby_msg.add_reaction('🅱')
-    
-        try:
-            reaction, user = await client.wait_for(
-                'reaction_add',
-                check=lambda r, u: u == user and str(r.emoji) in ['⭕', '❌'],
-                timeout=15.0
-            )
-            if str(reaction.emoji) == '⭕':
-                user = message.author
-                point = points.get(user.id, 0)
-                if point >= 3000:
-                    if len(BC_A_B) > 0:
-                        points[user.id] -= 3000
-                        bon_c = random.randint(1000, 2000)
-                        points[user.id] += int(bon_c)
-                        embedVar29 = discord.Embed(title=f"{message.author.name}님 계정세트 B 구매", color=0x00ff26)
-                        embedVar29.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 B 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
-                        embedVar30 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
-                        embedVar30.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
-                        embedVar30.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
-                        embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
-                        embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
-                        await user.send(embed=embedVar30)
-                        list_B = random.sample(BC_A_B, 1)
-                        BC_A_B.remove(list_B)
-                        await user.send(list_B)
-                        channel = client.get_channel(1102938432797417543)
-                        await channel.send(embed=embedVar29)
-                    else:
-                        embedVar31 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
-                        embedVar31.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다.\n바로 구매 : <#1078652866165743676>",inline=False)
-                        embedVar32 = discord.Embed(title=f"제고부족", color=0xff1100)
-                        embedVar32.add_field(name="",value=f"`냥코대전쟁 계정세트 B`제고가 부족합니다.",inline=False)
-                        channel = client.get_channel(1080458417006719016)
-                        await channel.send(embed=embedVar32)
-                        await user.send(embed=embedVar31)
-                else:
-                    embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
-                    embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
-                    await user.send(embed=embedVar33)
-            if str(reaction.emoji) == '❌':
-                embedVar33 = discord.Embed(title="구매 취소", color=0xff1100)
-                embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 B** 구매가 취소되었습니다.",inline=False)
-                await user.send(embed=embedVar33)
-        except asyncio.TimeoutError:
-            embedVar39 = discord.Embed(title="Timeout", color=0x00ff26)
-            embedVar39.add_field(name="",value="시간이 초과되었습니다.",inline=False)
-            await user.send(embed=embedVar39)
+        user = message.author
+        point = points.get(user.id, 0)
+        if point >= 3000:
+            if len(BC_A_B) > 0:
+                points[user.id] -= 3000
+                bon_c = random.randint(1000, 1500)
+                points[user.id] += int(bon_c)
+                embedVar29 = discord.Embed(title=f"{message.author.name}님 계정세트 B 구매", color=0x00ff26)
+                embedVar29.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 B 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
+                embedVar30 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
+                embedVar30.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
+                embedVar30.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
+                embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
+                embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
+                await user.send(embed=embedVar30)
+                list_B = random.sample(BC_A_B, 1)
+                BC_A_B.remove(list_B)
+                await user.send(list_B)
+                channel = client.get_channel(1102938432797417543)
+                await channel.send(embed=embedVar29)
+            else:
+                embedVar31 = discord.Embed(title="제고가 부족합니다.", color=0xff1100)
+                embedVar31.add_field(name="",value="관리자에게 제고요청 DM을 발송했습니다.\n바로 구매 : <#1078652866165743676>",inline=False)
+                embedVar32 = discord.Embed(title=f"제고부족", color=0xff1100)
+                embedVar32.add_field(name="",value=f"`냥코대전쟁 계정세트 B`제고가 부족합니다.",inline=False)
+                channel = client.get_channel(1080458417006719016)
+                await channel.send(embed=embedVar32)
+                await user.send(embed=embedVar31)
+        else:
+            embedVar33 = discord.Embed(title="잔액이 부족합니다.", color=0xff1100)
+            embedVar33.add_field(name="",value="<#1078652866165743676>에서 `.con`명령어로 콘 충전 가능합니다.",inline=False)
+            await user.send(embed=embedVar33)
                 
                 
                 

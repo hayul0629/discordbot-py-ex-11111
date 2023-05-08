@@ -526,15 +526,15 @@ async def on_reaction_add(reaction, user):
                         bon_c = random.randint(1000, 2000)
                         points[user.id] += int(bon_c)
                         embedVar29 = discord.Embed(title=f"{message.author.name}님 계정세트 B 구매", color=0x00ff26)
-                        embedVar29.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 B 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
+                        embedVar29.add_field(name="",value=f"{message.author.name}님 냥코대전쟁 계정세트 A 구매 감사합니다.\n보너스 콘 : {bon_c}C",inline=False)
                         embedVar30 = discord.Embed(title="냥코대전쟁 계정 세트 B 구매 성공", color=0x00ff26)
                         embedVar30.add_field(name="",value="DM으로 계정의 이어하기코드&인증번호를 전송하였습니다.",inline=False)
                         embedVar30.add_field(name="계정 정보",value="__계정 세트 B__\n리스타트팩, 올냥, 올강, 올클리어, 올3진, 올보물, 전투 아이템, 통조림, 레전드 올클리어, 레전드 4성작",inline=False)
                         embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
                         embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
                         await user.send(embed=embedVar30)
-                        list_B = random.sample(BC_A_B, 1)
-                        await user.send(list_B)
+                        list_A = random.sample(BC_A_A, 1)
+                        await user.send(list_A)
                         channel = client.get_channel(1102938432797417543)
                         await channel.send(embed=embedVar29)
                     else:
@@ -551,13 +551,8 @@ async def on_reaction_add(reaction, user):
                     await user.send(embed=embedVar33)
             elif str(reaction.emoji) == '❌':
                 embedVar33 = discord.Embed(title="구매 취소", color=0xff1100)
-                embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 B** 구매가 취소되었습니다.",inline=False)    
+                embedVar33.add_field(name="",value="**냥코대전쟁 계정 세트 B** 구매가 취소되었습니다.",inline=False)
                 await user.send(embed=embedVar33)
-    if reaction.emoji == '💵':
-        point = points.get(user.id, 0)
-        embedVar16 = discord.Embed(title="Error", color=0xff1100)
-        embedVar16.add_field(name="",value=f"시간이 초과되었습니다. 다시 시도해주세요.",inline=False)
-
 
         embedVar11 = discord.Embed(title="콘 충전", color=0x00ff26)
         embedVar11.add_field(name="",value=f"보유 콘 : **{point}**",inline=False)

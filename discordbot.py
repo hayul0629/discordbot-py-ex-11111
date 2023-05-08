@@ -386,7 +386,7 @@ async def on_message(message):
             await conmsg.add_reaction('✔')
         else:
             embedVar35 = discord.Embed(title="콘 충전 사용법", color=0x00ff26)
-            embedVar35.add_field(name="예시",value="```.con```**> 충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)**```5000```**> 입금자명을 입력하세요. (e.g : 홍길동)**```아무개```**> [콘 충전 임베드]**\n* __입금 완료후, '✔'이모지 반응 완료시 확인 후 콘 충전됩니다(관리자가 직접 확인__"), inline=False)
+            embedVar35.add_field(name="예시",    value="```.con```**> 충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)**```5000```**> 입금자명을 입력하세요. (e.g : 홍길동)**```아무개```**> [콘 충전 임베드]**\n* __입금 완료후, '✔'이모지 반응 완료시 확인 후 콘 충전됩니다(관리자가 직접 확인)__", inline=False)
             conmsg = await message.channel.send(embed=embedVar35)
     
     if message.content.startswith('.gen'):

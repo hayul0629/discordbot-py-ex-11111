@@ -447,7 +447,7 @@ async def on_reaction_add(reaction, user):
         await accby_msg.clear_reactions()
         await accby_msg.add_reaction('🅰')
         await accby_msg.add_reaction('🅱')
-        user = message.author
+        user = reaction.message.author
         point = points.get(user.id, 0)
         if point >= 2000:
             if len(BC_A_B) > 0:
@@ -484,7 +484,7 @@ async def on_reaction_add(reaction, user):
         await accby_msg.clear_reactions()
         await accby_msg.add_reaction('🅰')
         await accby_msg.add_reaction('🅱')
-        user = message.author
+        user = reaction.message.author
         point = points.get(user.id, 0)
         if point >= 3000:
             if len(BC_A_B) > 0:

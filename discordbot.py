@@ -386,10 +386,8 @@ async def on_message(message):
             await conmsg.add_reaction('✔')
         else:
             embedVar35 = discord.Embed(title="콘 충전 사용법", color=0x00ff26)
-            embedVar35.add_field(name="예시",value="```.con```**> 충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)**```5000```**> 입금자명을 입력하세요. (e.g : 홍길동)**```아무개```**> [콘 충전 임베드]**\n* __입금 완료후, '✔'이모지 반응 완료시 확인 후 콘 충전됩니다(관리자가 직접 확인")__,inline=False)
-            embedVar35.add_field(name="",value=f"- **예금주 :** 토스강하율\n- **계좌번호 :** 토스뱅크 1908-9356-7797\n- **입금자명 :** {user_name.content}\n- **금액 :** {add_con.content}",inline=False)
-            embedVar35.add_field(name="",value="입금이 완료되면 아래 이모지를 눌러주세요.",inline=False)
-            conmsg = await message.channel.send(embed=embedVar34)
+            embedVar35.add_field(name="예시",value="```.con```**> 충전할 콘(C)을 입력하세요.(e.g : 10000, 5000, 8000)**```5000```**> 입금자명을 입력하세요. (e.g : 홍길동)**```아무개```**> [콘 충전 임베드]**\n* __입금 완료후, '✔'이모지 반응 완료시 확인 후 콘 충전됩니다(관리자가 직접 확인__"), inline=False)
+            conmsg = await message.channel.send(embed=embedVar35)
     
     if message.content.startswith('.gen'):
         if message.channel.id == 1084002292010856538:

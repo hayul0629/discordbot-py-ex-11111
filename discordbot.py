@@ -450,13 +450,8 @@ async def on_reaction_add(reaction, user):
         try:
             reaction, user = await client.wait_for(
                 'reaction_add',
-                timeout=15.0,
                 check=lambda r, u: u == user and str(r.emoji) in ['⭕', '❌']
             )
-        except asyncio.TimeoutError:
-            embedVar16 = discord.Embed(title="Error", color=0xff1100)
-            embedVar16.add_field(name="",value=f"시간이 초과되었습니다. 다시 시도해주세요.",inline=False)                
-            await user.send(embed=embedVar16)
         else:
             if str(reaction.emoji) == '⭕':
                 user = message.author
@@ -509,13 +504,8 @@ async def on_reaction_add(reaction, user):
         try:
             reaction, user = await client.wait_for(
                 'reaction_add',
-                timeout=15.0,
                 check=lambda r, u: u == user and str(r.emoji) in ['⭕', '❌']
             )
-        except asyncio.TimeoutError:
-            embedVar16 = discord.Embed(title="Error", color=0xff1100)
-            embedVar16.add_field(name="",value=f"시간이 초과되었습니다. 다시 시도해주세요.",inline=False)                
-            await user.send(embed=embedVar16)
         else:
             if str(reaction.emoji) == '⭕':
                 user = message.author

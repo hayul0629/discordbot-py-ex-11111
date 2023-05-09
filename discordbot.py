@@ -10,7 +10,6 @@ import json
 
 import os
 load_dotenv()
-bot = commands.Bot(command_prefix=os.environ['PREFIX'])
 TOKEN = os.environ['TOKEN']
 BC_A_A = ["b8e6ddea3 : 8116",
 "116ef068c : 0977",

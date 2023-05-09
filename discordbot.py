@@ -444,6 +444,7 @@ async def on_reaction_add(reaction, user):
         await channel.send(embed=embedVar36)
     
     if reaction.emoji == '🅰':
+        user.create_dm()
         await accby_msg.clear_reactions()
         await accby_msg.add_reaction('🅰')
         await accby_msg.add_reaction('🅱')
@@ -461,7 +462,6 @@ async def on_reaction_add(reaction, user):
                 embedVar30.add_field(name="계정 정보",value="__계정 세트 A__\n리스타트팩, 올냥, 올강, 올클, 올보물",inline=False)
                 embedVar30.add_field(name="",value="\n구매후기 : <#1078956269714559046>",inline=False)
                 embedVar30.add_field(name="",value="\n오류문의 : <#1078652866165743676>",inline=False)
-                user.create_dm()
                 await user.send(embed=embedVar30)
                 list_A = random.sample(BC_A_A, 1)
                 BC_A_A.remove(list_A)

@@ -426,10 +426,10 @@ async def on_message(message):
         await accby_msg.add_reaction('🅱')
         await message.delete()
 @client.event
-async def on_reaction_add(reaction, user):
+async def on_reaction_add(reaction):
     uid = await client.fetch_user(user.id)
-
-    if user.bot:
+    user = message.author
+    if user.client:
         return
     if reaction.emoji == '✔':
         message = reaction.message

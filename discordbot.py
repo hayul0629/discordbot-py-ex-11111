@@ -429,7 +429,7 @@ async def on_message(message):
 async def on_reaction_add(reaction, user):
     uid = await client.fetch_user(user.id)
     user = reaction.message.author
-    if user.client:
+    if reaction.message.author.bot:
         return
     if reaction.emoji == '✔':
         message = reaction.message

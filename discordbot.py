@@ -428,7 +428,7 @@ async def on_message(message):
 @client.event
 async def on_reaction_add(reaction):
     uid = await client.fetch_user(user.id)
-    user = message.author
+    user = reaction.message.author
     if user.client:
         return
     if reaction.emoji == '✔':

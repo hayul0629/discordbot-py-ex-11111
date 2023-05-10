@@ -413,8 +413,26 @@ async def on_message(message):
         await sent_message.add_reaction('🛑')
         await sent_message.add_reaction('❌')
         await message.delete()
-        
-        
+    if message.content.startswith('.계정A'):
+        user = message.author
+        if message.author.id == 819436785998102548:
+            if len(BC_A_A) > 0:
+                list_A = random.sample(BC_A_A, 1)[0]
+                await user.send("계정A")
+                BC_A_A.remove(list_A)
+                await user.send(list_A)
+            else:
+                await user.send("제고가 부족합니다.")
+    if message.content.startswith('.계정B'):
+        user = message.author
+        if message.author.id == 819436785998102548:
+            if len(BC_A_B) > 0:
+                list_B = random.sample(BC_A_B, 1)[0]
+                BC_A_B.remove(list_B)
+                await user.send("계정B")
+                await user.send(list_B)
+            else:
+                await user.send("제고가 부족합니다.")
     if message.content == ".계정구매":
         embedVar37 = discord.Embed(title="냥코대전쟁 계정 구매", color=0x00ff26)
         embedVar37.add_field(name="",value="- **계정 세트**는 __이모지 상호작용__으로 구매 가능합니다.```🅰 : 계정 세트 A 구매```**: (2000C)**```🅱 : 계정 세트 B 구매```**: (3000C)**",inline=False)
